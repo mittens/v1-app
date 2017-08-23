@@ -9,10 +9,6 @@ export default class Search extends Component {
     header: () => <NavBar title="Search" />
   }
 
-  static renderHeader() {
-    return <NavBar />
-  }
-
   render() {
     return (
       <Main style={styles.container}>

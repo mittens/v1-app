@@ -9,10 +9,6 @@ export default class Home extends Component {
     header: () => <NavBar title="Home" />
   }
 
-  static renderHeader() {
-    return <NavBar />
-  }
-
   render() {
     return (
       <Main style={styles.container}>

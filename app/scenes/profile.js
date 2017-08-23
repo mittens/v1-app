@@ -9,10 +9,6 @@ export default class Profile extends Component {
     header: () => <NavBar title="Profile" />
   }
 
-  static renderHeader() {
-    return <NavBar />
-  }
-
   render() {
     return (
       <Main style={styles.container}>

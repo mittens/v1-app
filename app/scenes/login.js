@@ -18,6 +18,8 @@ export default class Login extends Component {
     this.state = {
       loading: true
     }
+
+    this.login = this.login.bind(this)
   }
 
   async componentWillMount() {
@@ -34,7 +36,7 @@ export default class Login extends Component {
     }, 500)
   }
 
-  login = async () => {
+  async login() {
     await storage.put('token', 'token')
 
     this.goHome()

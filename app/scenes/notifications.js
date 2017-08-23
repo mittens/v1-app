@@ -9,10 +9,6 @@ export default class Notifications extends Component {
     header: () => <NavBar title="Notifications" />
   }
 
-  static renderHeader() {
-    return <NavBar />
-  }
-
   render() {
     return (
       <Main style={styles.container}>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-  I18nManager,
   Image,
   Platform,
   StyleSheet,
@@ -49,22 +48,12 @@ const styles = StyleSheet.create({
   left: {
     position: 'absolute',
     left: 0,
-    top,
-    transform: [
-      {
-        scaleX: I18nManager.isRTL ? -1 : 1
-      }
-    ]
+    top
   },
   right: {
     position: 'absolute',
     right: 0,
-    top,
-    transform: [
-      {
-        scaleX: I18nManager.isRTL ? -1 : 1
-      }
-    ]
+    top
   },
   image: {
     height: 20,

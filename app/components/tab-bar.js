@@ -22,10 +22,8 @@ export default class TabBar extends Component {
 
     return (
       <View style={styles.container}>
-        {routes.map((route, index) => {
+        {routes.map(({ key }, index) => {
           const current = navigation.state.index === index
-
-          const { key } = route
 
           return (
             <TouchableOpacity
