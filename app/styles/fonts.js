@@ -1,7 +1,3 @@
-import { Platform } from 'react-native'
-
-const ios = Platform.OS === 'ios'
-
 const size = {
   heading: 24,
   subheading: 18
@@ -13,16 +9,13 @@ const fonts = {
   input: 14,
 
   navBar: {
-    fontSize: 16,
-    fontWeight: ios ? '600' : 'normal'
+    fontSize: 16
   },
   heading: {
-    fontSize: size.heading,
-    fontWeight: ios ? '500' : 'normal'
+    fontSize: size.heading
   },
   subheading: {
-    fontSize: size.subheading,
-    fontWeight: ios ? '500' : 'normal'
+    fontSize: size.subheading
   }
 }
 

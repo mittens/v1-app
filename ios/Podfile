@@ -1,0 +1,5 @@
+platform :ios, '9.0'
+
+target 'GitHub' do
+  pod 'DCTAuth', :git => 'https://github.com/danielctull/DCTAuth.git'
+end

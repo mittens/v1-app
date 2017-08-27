@@ -3,7 +3,7 @@ import { ActivityIndicator, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 
 import { Button, Logo, Main } from '../components'
-import { storage } from '../lib'
+import { oauth, storage } from '../lib'
 import { Colors, Layout } from '../styles'
 
 export default class Login extends Component {
@@ -25,24 +25,27 @@ export default class Login extends Component {
   async componentWillMount() {
     const token = await storage.get('token')
 
-    setTimeout(() => {
+    if (token) {
+      this.goHome()
+    } else {
       this.setState({
         loading: false
       })
-
-      if (token) {
-        this.goHome()
-      }
-    }, 500)
+    }
   }
 
   async login() {
-    await storage.put('token', 'token')
+    const github = await oauth.login()
+
+    await storage.put('id', github.response.identifier)
+    await storage.put('token', github.response.credentials.accessToken)
 
     this.goHome()
   }
 
   goHome() {
+    const { dispatch } = this.props.navigation
+
     const home = NavigationActions.reset({
       index: 0,
       actions: [
@@ -52,7 +55,7 @@ export default class Login extends Component {
       ]
     })
 
-    this.props.navigation.dispatch(home)
+    dispatch(home)
   }
 
   render() {
