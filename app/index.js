@@ -9,7 +9,7 @@ import {
 } from 'react-navigation'
 
 import { Main, TabBar } from './components'
-import { storage } from './lib'
+import { firebase } from './lib'
 import { Login, Home, Search, Notifications, Profile } from './scenes'
 import { Colors } from './styles'
 
@@ -43,6 +43,10 @@ export const Navigator = StackNavigator({
 })
 
 class GitHub extends Component {
+  componentWillMount() {
+    firebase.messaging().requestPermissions()
+  }
+
   render() {
     const { dispatch, state } = this.props
 

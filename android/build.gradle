@@ -4,6 +4,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.google.gms:google-services:3.0.0'
     }
 }
 
@@ -12,7 +13,7 @@ allprojects {
         mavenLocal()
         jcenter()
         maven {
-            url "https://jitpack.io"
+            url 'https://jitpack.io'
         }
         maven {
             url "$rootDir/../node_modules/react-native/android"
@@ -20,10 +21,10 @@ allprojects {
     }
     subprojects {
         afterEvaluate { project ->
-            if (project.hasProperty("android")) {
+            if (project.hasProperty('android')) {
                 android {
                     compileSdkVersion 26
-                    buildToolsVersion "26.0.1"
+                    buildToolsVersion '26.0.1'
                 }
             }
         }

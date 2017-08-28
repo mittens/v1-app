@@ -1,9 +1,7 @@
-// import Firebase from 'react-native-firebase'
-//
-// const firebase = Firebase.initializeApp({
-//   debug: __DEV__
-// })
-//
-// export default firebase
+import Firebase from 'react-native-firebase'
 
-export default {}
+const firebase = Firebase.initializeApp({
+  debug: __DEV__
+})
+
+export default firebase

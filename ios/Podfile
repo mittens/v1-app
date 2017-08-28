@@ -1,5 +1,17 @@
 platform :ios, '9.0'
 
 target 'GitHub' do
+  pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+		'BatchedBridge',
+		'Core'
+	]
+
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
+
+	pod 'Firebase/Core'
+	pod 'Firebase/Crash'
+	pod 'Firebase/Messaging'
+
   pod 'DCTAuth', :git => 'https://github.com/danielctull/DCTAuth.git'
 end

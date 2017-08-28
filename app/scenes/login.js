@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { ActivityIndicator, StyleSheet } from 'react-native'
+import { ActivityIndicator, Platform, StyleSheet } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 
 import { Button, Logo, Main } from '../components'
-import { oauth, storage } from '../lib'
+import { api, firebase, oauth, storage } from '../lib'
 import { Colors, Layout } from '../styles'
 
 export default class Login extends Component {
@@ -35,10 +35,37 @@ export default class Login extends Component {
   }
 
   async login() {
+    this.setState({
+      fetching: true
+    })
+
     const github = await oauth.login()
 
-    await storage.put('id', github.response.identifier)
-    await storage.put('token', github.response.credentials.accessToken)
+    const { identifier, credentials } = github
+
+    const token = credentials.accessToken
+
+    await storage.put('token', token)
+
+    const profile = await oauth.manager.makeRequest(
+      'github',
+      'https://api.github.com/user'
+    )
+
+    const { email, login: username } = profile.data
+
+    const firebaseToken = await firebase.messaging().getToken()
+
+    const user = await api.post('/users', {
+      identifier,
+      email,
+      username,
+      token,
+      device: {
+        platform: Platform.OS,
+        token: firebaseToken
+      }
+    })
 
     this.goHome()
   }
@@ -59,7 +86,7 @@ export default class Login extends Component {
   }
 
   render() {
-    const { loading } = this.state
+    const { fetching, loading } = this.state
 
     return (
       <Main>
@@ -69,7 +96,12 @@ export default class Login extends Component {
             <ActivityIndicator style={styles.spinner} color={Colors.primary} />}
         </Main>
         {loading ||
-          <Button style={styles.login} label="Login" onPress={this.login} />}
+          <Button
+            style={styles.login}
+            label="Login"
+            loading={fetching}
+            onPress={this.login}
+          />}
       </Main>
     )
   }

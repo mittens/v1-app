@@ -4,8 +4,8 @@ const layout = {
   margin: 15,
   padding: 10,
 
-  buttonHeight: 40,
-  inputHeight: 40
+  buttonHeight: 50,
+  inputHeight: 50
 }
 
 export default layout

@@ -1,15 +1,19 @@
+import { API_URL, API_NAMESPACE } from 'react-native-dotenv'
+
 import storage from './storage'
 
 export default {
-  api: {
-    url: 'https://api.github.com',
-    headers: {
-      Accept: 'application/vnd.github.v3+json'
-    }
-  },
+  url: API_URL,
+  namespace: API_NAMESPACE,
 
-  profile() {
-    return this.request('/user')
+  get(url) {
+    return this.request(url)
+  },
+  post(url, data) {
+    return this.request(url, 'POST', data)
+  },
+  put(url, data) {
+    return this.request(url, 'PUT', data)
   },
 
   async request(url, method = 'GET', data) {
@@ -17,18 +21,21 @@ export default {
       this.token = await storage.get('token')
     }
 
-    const { api, token } = this
+    console.log('request', url, method, data)
 
-    const response = await fetch(`${api.url}${url}`, {
+    const response = await fetch(`${this.url}/${this.namespace}${url}`, {
       method,
       headers: {
-        ...api.headers,
-        Authorization: `token ${token}`
+        Accept: 'application/json',
+        Authorization: this.token,
+        'Content-Type': 'application/json'
       },
       body: data && JSON.stringify(data)
     })
 
     const json = await response.json()
+
+    console.log('response', url, method, json)
 
     return json
   }

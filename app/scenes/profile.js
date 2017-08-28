@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { ActivityIndicator, Image, Text, StyleSheet, View } from 'react-native'
 
 import { Main, NavBar } from '../components'
-import { api } from '../lib'
+import { oauth } from '../lib'
 import { Colors, Fonts, Layout } from '../styles'
 
 export default class Profile extends Component {
@@ -16,16 +16,19 @@ export default class Profile extends Component {
   }
 
   async componentWillMount() {
-    const profile = await api.profile()
+    const { data: profile } = await oauth.manager.makeRequest(
+      'github',
+      'https://api.github.com/user'
+    )
 
-    const { avatar_url, bio, name } = profile
+    const { avatar_url: avatar, bio: about, name } = profile
 
     this.setState({
       loading: false,
       user: {
-        name,
-        about: bio,
-        avatar: avatar_url
+        about,
+        avatar,
+        name
       }
     })
   }

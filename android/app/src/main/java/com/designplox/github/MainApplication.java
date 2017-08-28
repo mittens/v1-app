@@ -3,9 +3,6 @@ package com.designplox.github;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-
-import io.fullstack.oauth.OAuthManagerPackage;
-
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -13,6 +10,10 @@ import com.facebook.soloader.SoLoader;
 
 import java.util.Arrays;
 import java.util.List;
+
+import io.fullstack.oauth.OAuthManagerPackage;
+import io.invertase.firebase.crash.RNFirebaseCrashPackage;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -26,7 +27,9 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.asList(
                     new MainReactPackage(),
-                    new OAuthManagerPackage()
+                    new OAuthManagerPackage(),
+                    new RNFirebaseCrashPackage(),
+                    new RNFirebaseMessagingPackage()
             );
         }
     };
