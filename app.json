@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "GitHub",
+    "description": "GitHub notifications",
+    "slug": "github",
+    "privacy": "public",
+    "sdkVersion": "25.0.0",
+    "platforms": ["ios"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./artwork/icon.png",
+    "splash": {
+      "image": "./artwork/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000"
+    }
+  }
+}
