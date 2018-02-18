@@ -1,5 +1,7 @@
 import github from './github.png'
 
-import cog from './cog.png'
+import all from './all.png'
+import unread from './unread.png'
+import settings from './settings.png'
 
-export { github, cog }
+export { github, all, unread, settings }

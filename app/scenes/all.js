@@ -1,23 +1,40 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { connect } from 'react-redux'
 
-import { NavBar } from '../components'
+import { getAll } from '../actions'
+import { NavBar, Notifications } from '../components'
 
-export default class All extends Component {
+class All extends Component {
+  static navigationOptions = {
+    header: <NavBar title="Notifications" />
+  }
+
+  componentDidMount = () => {
+    const { getAll } = this.props
+
+    getAll()
+  }
+
   render() {
-    return (
-      <View style={styles.main}>
-        <Text>All</Text>
-      </View>
-    )
+    const { data, loading } = this.props
+
+    return <Notifications notifications={data} loading={loading} />
   }
 }
 
-const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+const mapStateToProps = state => {
+  const { data, loading } = state.all
+
+  return {
+    data,
+    loading
   }
-})
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getAll: () => dispatch(getAll())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(All)

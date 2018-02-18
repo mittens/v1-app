@@ -9,6 +9,10 @@ import { Button, Main, Spinner, TextBox } from '../components'
 import { Layout } from '../styles'
 
 class Login extends Component {
+  static navigationOptions = {
+    header: null
+  }
+
   state = {
     token: ''
   }

@@ -8,6 +8,10 @@ import { Button, Main, NavBar, TextBox } from '../components'
 import { Colors, Fonts, Layout } from '../styles'
 
 class Settings extends Component {
+  static navigationOptions = {
+    header: <NavBar title="Settings" />
+  }
+
   state = {
     notifications: true,
     token: null
@@ -43,12 +47,8 @@ class Settings extends Component {
 
     return (
       <Main>
-        <View style={styles.header}>
-          <Text style={styles.title}>
-            {name ? `Hello, ${name}` : 'Settings'}
-          </Text>
-        </View>
         <Main style={styles.main}>
+          {!!name && <Text style={styles.subtitle}>Hello, {name}</Text>}
           <Text style={styles.subtitle}>Your GitHub token</Text>
           <TextBox
             placeholder="Personal access token"
@@ -73,14 +73,6 @@ class Settings extends Component {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    borderBottomColor: Colors.borderLight,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    padding: Layout.margin
-  },
-  title: {
-    ...Fonts.title
-  },
   main: {
     paddingHorizontal: Layout.margin
   },

@@ -12,7 +12,11 @@ export default {
       url += `?access_token=${token}`
     }
 
-    const request = await fetch(this.host + url)
+    url += `&v=${Date.now()}`
+
+    const { host } = this
+
+    const request = await fetch(host + url)
 
     const json = await request.json()
 

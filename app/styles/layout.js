@@ -1,5 +1,5 @@
 export default {
-  margin: 20,
+  margin: 15,
   padding: 10,
 
   borderRadius: 5,

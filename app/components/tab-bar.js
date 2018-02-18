@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
-import { startCase } from 'lodash'
 
 import { Touchable } from './'
-import { cog } from '../assets'
+import { all, unread, settings } from '../assets'
 import { Colors, Fonts, Layout } from '../styles'
+
+const icons = {
+  all,
+  unread,
+  settings
+}
 
 export default class TabBar extends Component {
   render() {
@@ -17,25 +22,16 @@ export default class TabBar extends Component {
         {routes.map(({ key, routes }, index) => {
           const current = navigation.state.index === index
 
-          const settings = key === 'settings'
-
           return (
             <Touchable
               key={key}
-              style={[styles.button, settings && styles.settings]}
+              style={styles.button}
               onPress={() => jumpToIndex(index)}
             >
-              {settings && (
-                <Image
-                  style={[styles.icon, current && styles.active]}
-                  source={cog}
-                />
-              )}
-              {!settings && (
-                <Text style={[styles.label, current && styles.current]}>
-                  {startCase(key)}
-                </Text>
-              )}
+              <Image
+                style={[styles.icon, current && styles.active]}
+                source={icons[key]}
+              />
             </Touchable>
           )
         })}
@@ -57,10 +53,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: Layout.tabBarHeight,
     justifyContent: 'center'
-  },
-  settings: {
-    flex: 0,
-    width: Layout.tabBarHeight
   },
   icon: {
     height: 20,
