@@ -21,7 +21,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     borderBottomColor: Colors.borderLight,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    padding: Layout.margin
+    height: Layout.navBarHeight,
+    justifyContent: 'center',
+    paddingHorizontal: Layout.margin
   },
   title: {
     ...Fonts.title,

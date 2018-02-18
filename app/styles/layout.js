@@ -4,7 +4,7 @@ export default {
 
   borderRadius: 5,
 
-  navBarHeight: 50,
+  navBarHeight: 60,
   tabBarHeight: 50,
 
   buttonHeight: 50,

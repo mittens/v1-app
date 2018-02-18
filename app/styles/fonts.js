@@ -1,5 +1,5 @@
 const size = {
-  title: 32,
+  title: 26,
   subtitle: 18
 }
 
