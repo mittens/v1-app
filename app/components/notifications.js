@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
-import { Dimensions, FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 
 import { Main, Notification, Separator, Spinner, Touchable } from './'
 import { Colors, Layout } from '../styles'
-
-const { height } = Dimensions.get('window')
 
 export default class Notifications extends Component {
   renderEmpty = () => {
     const { loading } = this.props
 
-    return (
-      <View style={styles.empty}>
-        {loading && <Spinner />}
-        {!loading && <Text style={styles.nothing}>Nothing here</Text>}
-      </View>
-    )
+    if (loading) {
+      return null
+    }
+
+    return <Text style={styles.empty}>Nothing here</Text>
   }
 
   renderItem = ({ item }) => {
@@ -79,11 +76,8 @@ const styles = StyleSheet.create({
     marginLeft: Layout.padding
   },
   empty: {
-    alignItems: 'center',
-    paddingHorizontal: Layout.margin,
-    paddingTop: (height - 200) / 2
-  },
-  nothing: {
-    color: Colors.textLight
+    alignSelf: 'center',
+    color: Colors.textLight,
+    margin: Layout.margin
   }
 })
