@@ -1,11 +1,14 @@
 import React from 'react'
+import { AppRegistry } from 'react-native'
 import { Provider } from 'react-redux'
 
-import GitHub from './app/index'
+import App from './app/index'
 import store from './app/store'
 
-export default () => (
+const GitHub = () => (
   <Provider store={store()}>
-    <GitHub />
+    <App />
   </Provider>
 )
+
+AppRegistry.registerComponent('GitHub', () => GitHub)

@@ -36,14 +36,21 @@ const AppNavigator = TabNavigator(
   }
 )
 
-export const Navigator = StackNavigator({
-  login: {
-    screen: Login
+export const Navigator = StackNavigator(
+  {
+    login: {
+      screen: Login
+    },
+    app: {
+      screen: AppNavigator
+    }
   },
-  app: {
-    screen: AppNavigator
+  {
+    cardStyle: {
+      shadowColor: 'transparent'
+    }
   }
-})
+)
 
 class GitHub extends Component {
   render() {
