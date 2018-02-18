@@ -1,8 +1,18 @@
 import React, { Component } from 'react'
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import {
+  Dimensions,
+  Image,
+  FlatList,
+  StyleSheet,
+  Text,
+  View
+} from 'react-native'
 
 import { Main, Notification, Separator } from './'
+import { check } from '../assets'
 import { Colors, Layout } from '../styles'
+
+const { height } = Dimensions.get('window')
 
 export default class Notifications extends Component {
   renderEmpty = () => {
@@ -12,7 +22,14 @@ export default class Notifications extends Component {
       return null
     }
 
-    return <Text style={styles.empty}>Nothing here</Text>
+    return (
+      <View style={styles.empty}>
+        <Image style={styles.done} source={check} />
+        <Text style={styles.message}>All done</Text>
+      </View>
+    )
+
+    return
   }
 
   renderItem = ({ item }) => {
@@ -78,8 +95,16 @@ const styles = StyleSheet.create({
     marginLeft: Layout.padding
   },
   empty: {
-    alignSelf: 'center',
-    color: Colors.textLight,
-    margin: Layout.margin
+    alignItems: 'center',
+    height: height * 3 / 4,
+    justifyContent: 'center'
+  },
+  done: {
+    height: height / 10,
+    width: height / 10
+  },
+  message: {
+    color: Colors.text,
+    marginTop: Layout.margin
   }
 })
