@@ -3,26 +3,49 @@ import { storage } from './'
 export default {
   host: 'https://api.github.com',
 
-  async get(url) {
-    const token = await storage.get('token')
+  token() {
+    return storage.get('token')
+  },
 
-    if (url.includes('?')) {
-      url += `&access_token=${token}`
-    } else {
-      url += `?access_token=${token}`
-    }
+  get(url) {
+    return this.request({
+      url,
+      method: 'GET'
+    })
+  },
+  put(url, data = {}) {
+    return this.request({
+      data,
+      url,
+      method: 'PUT'
+    })
+  },
 
-    url += `&v=${Date.now()}`
+  async request(options = {}) {
+    const token = await this.token()
 
     const { host } = this
+    const { data, url, method } = options
 
-    const request = await fetch(host + url)
+    const body = data ? JSON.stringify(data) : undefined
 
-    const json = await request.json()
+    const headers = {
+      authorization: `token ${token}`
+    }
 
-    const { status } = request
+    const response = await fetch(host + url, {
+      body,
+      headers,
+      method
+    })
 
-    console.log(url, status, json)
+    const { status } = response
+
+    if (status === 205) {
+      return true
+    }
+
+    const json = await response.json()
 
     if (status >= 400) {
       const { message } = json

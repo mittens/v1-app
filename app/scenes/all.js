@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { getAll } from '../actions'
+import { getAll, markRead } from '../actions'
 import { NavBar, Notifications } from '../components'
+import { link } from '../lib'
 
 class All extends Component {
   static navigationOptions = {
@@ -15,10 +16,25 @@ class All extends Component {
     getAll()
   }
 
+  onPress = notification => {
+    const { markRead } = this.props
+    const { updated_at } = notification
+
+    markRead(updated_at)
+
+    link.open(notification)
+  }
+
   render() {
     const { data, loading } = this.props
 
-    return <Notifications notifications={data} loading={loading} />
+    return (
+      <Notifications
+        notifications={data}
+        loading={loading}
+        onPress={this.onPress}
+      />
+    )
   }
 }
 
@@ -33,7 +49,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAll: () => dispatch(getAll())
+    getAll: () => dispatch(getAll()),
+    markRead: time => dispatch(markRead(time))
   }
 }
 

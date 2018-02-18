@@ -3,12 +3,11 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import moment from 'moment'
 
 import { Touchable } from './'
-import { link } from '../lib'
 import { Colors, Layout } from '../styles'
 
 export default class Notification extends Component {
   render() {
-    const { notification } = this.props
+    const { notification, onPress } = this.props
     const {
       repository,
       subject,
@@ -22,7 +21,7 @@ export default class Notification extends Component {
 
     return (
       <View style={unread && styles.unread}>
-        <Touchable style={styles.main} onPress={() => link.open(notification)}>
+        <Touchable style={styles.main} onPress={() => onPress(notification)}>
           <Image style={styles.image} source={{ uri: avatar_url }} />
           <View style={styles.details}>
             <Text style={styles.title}>{title}</Text>

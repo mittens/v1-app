@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 
-import { Main, Notification, Separator, Spinner, Touchable } from './'
+import { Main, Notification, Separator } from './'
 import { Colors, Layout } from '../styles'
 
 export default class Notifications extends Component {
@@ -16,7 +16,9 @@ export default class Notifications extends Component {
   }
 
   renderItem = ({ item }) => {
-    return <Notification notification={item} />
+    const { onPress } = this.props
+
+    return <Notification notification={item} onPress={onPress} />
   }
 
   render() {
