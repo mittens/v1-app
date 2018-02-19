@@ -12,7 +12,7 @@
     "lodash.get": "^4.4.2",
     "moment": "^2.20.1",
     "react": "16.2.0",
-    "react-native": "0.53.0",
+    "react-native": "0.53.2",
     "react-navigation": "^1.0.3",
     "react-navigation-redux-helpers": "^1.0.1",
     "react-redux": "^5.0.7",
