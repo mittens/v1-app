@@ -55,3 +55,11 @@ buck-out/
 # Environment variables
 #
 .env*
+
+# CocoaPods
+#
+Pods
+
+# Firebase
+#
+GoogleService-Info.plist

@@ -1,0 +1,6 @@
+platform :ios, '9.0'
+
+target 'GitHub' do
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+end
