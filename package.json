@@ -1,6 +1,11 @@
 {
   "name": "github",
-  "private": true,
+  "author": "Ali Zahid <ali.zahid@live.com> (https://designplox.com/)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alizahid/github"
+  },
+  "license": "MIT",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
