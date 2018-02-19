@@ -1,11 +1,5 @@
 import React, { Component } from 'react'
-import {
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  View
-} from 'react-native'
+import { KeyboardAvoidingView, SafeAreaView, StyleSheet } from 'react-native'
 import {
   addNavigationHelpers,
   StackNavigator,
@@ -62,13 +56,11 @@ class GitHub extends Component {
       addListener: createReduxBoundAddListener('root')
     })
 
-    const Main = Platform.OS === 'android' ? View : KeyboardAvoidingView
-
     return (
       <SafeAreaView style={styles.main}>
-        <Main style={styles.main} behavior="padding">
+        <KeyboardAvoidingView style={styles.main} behavior="padding">
           <Navigator navigation={navigation} />
-        </Main>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     )
   }
