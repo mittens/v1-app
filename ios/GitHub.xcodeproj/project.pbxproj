@@ -38,7 +38,7 @@
 		9C3BBFA3D584B198F28AB6F7 /* libPods-GitHub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D91014456A658EB9E2FC57DF /* libPods-GitHub.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		D937AEE72039C4A700436992 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
-		D9CC4680203B2C14001BA169 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9CC467F203B2C14001BA169 /* GoogleService-Info.plist */; };
+		D9F68F14203F0A0500D05D04 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9F68F13203F0A0500D05D04 /* GoogleService-Info.plist */; };
 		EEEE4FC38280470F8DFC4C9D /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2EC93C0CE3343559E21285B /* libRNFirebase.a */; };
 /* End PBXBuildFile section */
 
@@ -357,7 +357,7 @@
 		B2EC93C0CE3343559E21285B /* libRNFirebase.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFirebase.a; sourceTree = "<group>"; };
 		D91014456A658EB9E2FC57DF /* libPods-GitHub.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GitHub.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9CC467E203B2BBB001BA169 /* GitHub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = GitHub.entitlements; path = GitHub/GitHub.entitlements; sourceTree = "<group>"; };
-		D9CC467F203B2C14001BA169 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D9F68F13203F0A0500D05D04 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA81D885A4424263B47E1D41 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -504,7 +504,7 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				D9CC467F203B2C14001BA169 /* GoogleService-Info.plist */,
+				D9F68F13203F0A0500D05D04 /* GoogleService-Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -1119,7 +1119,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				D9CC4680203B2C14001BA169 /* GoogleService-Info.plist in Resources */,
+				D9F68F14203F0A0500D05D04 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
