@@ -1,11 +1,6 @@
 import React, { Component } from 'react'
 import { KeyboardAvoidingView, SafeAreaView, StyleSheet } from 'react-native'
-import {
-  addNavigationHelpers,
-  StackNavigator,
-  TabNavigator
-} from 'react-navigation'
-import { createReduxBoundAddListener } from 'react-navigation-redux-helpers'
+import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
 import { TabBar } from './components'
@@ -38,18 +33,10 @@ export const Navigator = StackNavigator(
 
 class GitHub extends Component {
   render() {
-    const { dispatch, state } = this.props
-
-    const navigation = addNavigationHelpers({
-      dispatch,
-      state,
-      addListener: createReduxBoundAddListener('root')
-    })
-
     return (
       <SafeAreaView style={styles.main}>
         <KeyboardAvoidingView style={styles.main} behavior="padding">
-          <Navigator navigation={navigation} />
+          <Navigator />
         </KeyboardAvoidingView>
       </SafeAreaView>
     )
@@ -63,9 +50,4 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = ({ dispatch, state }) => ({
-  dispatch,
-  state
-})
-
-export default connect(mapStateToProps)(GitHub)
+export default connect()(GitHub)
