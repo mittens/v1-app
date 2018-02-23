@@ -19,6 +19,9 @@ export default class Notification extends Component {
     const { avatar_url } = owner
     const { title } = subject
 
+    const read = last_read_at && moment(last_read_at).fromNow()
+    const updated = updated_at && moment(updated_at).fromNow()
+
     return (
       <View style={unread && styles.unread}>
         <Touchable style={styles.main} onPress={() => onPress(notification)}>
@@ -26,14 +29,14 @@ export default class Notification extends Component {
           <View style={styles.details}>
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.repository}>{full_name}</Text>
-            <View style={styles.footer}>
-              <Text style={styles.time}>
-                Read {moment(last_read_at).fromNow()}
-              </Text>
-              <Text style={[styles.time, styles.updated]}>
-                Updated {moment(updated_at).fromNow()}
-              </Text>
-            </View>
+            {(read || updated) && (
+              <View style={styles.footer}>
+                {read && (
+                  <Text style={[styles.time, styles.read]}>Read {read}</Text>
+                )}
+                {updated && <Text style={styles.time}>Updated {updated}</Text>}
+              </View>
+            )}
           </View>
         </Touchable>
       </View>
@@ -75,7 +78,7 @@ const styles = StyleSheet.create({
     color: Colors.textLight,
     fontSize: 12
   },
-  updated: {
-    marginLeft: Layout.padding
+  read: {
+    marginRight: Layout.padding
   }
 })
