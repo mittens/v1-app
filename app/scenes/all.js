@@ -33,6 +33,7 @@ class All extends Component {
         notifications={data}
         loading={loading}
         onPress={this.onPress}
+        reload={this.componentDidMount}
       />
     )
   }

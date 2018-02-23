@@ -39,7 +39,7 @@ export default class Notifications extends Component {
   }
 
   render() {
-    const { notifications, loading } = this.props
+    const { notifications, loading, reload } = this.props
 
     return (
       <Main>
@@ -48,7 +48,7 @@ export default class Notifications extends Component {
           ItemSeparatorComponent={Separator}
           keyExtractor={item => item.id}
           ListEmptyComponent={this.renderEmpty}
-          onRefresh={this.componentDidMount}
+          onRefresh={reload}
           refreshing={loading}
           renderItem={this.renderItem}
         />
