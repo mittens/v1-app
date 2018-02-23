@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { StyleSheet, Switch, Text, View } from 'react-native'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { get } from 'lodash'
 
-import { getUser } from '../actions'
+import { getUser, logout } from '../actions'
 import { Button, Main, NavBar, TextBox } from '../components'
 import { Colors, Fonts, Layout } from '../styles'
 
@@ -28,20 +29,42 @@ class Settings extends Component {
     })
   }
 
+  logout = async () => {
+    const { navigation, logout } = this.props
+
+    await logout()
+
+    const reset = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({
+          routeName: 'login'
+        })
+      ]
+    })
+
+    navigation.dispatch(reset)
+  }
+
   render() {
     const { name } = this.props
     const { notifications } = this.state
 
     return (
-      <Main style={styles.main}>
-        {!!name && <Text style={styles.subtitle}>Hello, {name}</Text>}
-        <View style={styles.toggle}>
-          <Text style={styles.label}>Push notifications</Text>
-          <Switch
-            onTintColor={Colors.accent}
-            onValueChange={this.toggleNotifications}
-            value={notifications}
-          />
+      <Main>
+        <Main style={styles.main}>
+          {!!name && <Text style={styles.subtitle}>Hello, {name}</Text>}
+          <View style={styles.toggle}>
+            <Text style={styles.label}>Push notifications</Text>
+            <Switch
+              onTintColor={Colors.accent}
+              onValueChange={this.toggleNotifications}
+              value={notifications}
+            />
+          </View>
+        </Main>
+        <View style={styles.footer}>
+          <Button label="Logout" onPress={this.logout} />
         </View>
       </Main>
     )
@@ -86,7 +109,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUser: () => dispatch(getUser())
+    getUser: () => dispatch(getUser()),
+    logout: () => dispatch(logout())
   }
 }
 

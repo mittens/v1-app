@@ -1,7 +1,8 @@
 import {
   GET_TOKEN_PENDING,
   GET_TOKEN_SUCCESS,
-  GET_TOKEN_FAILURE
+  GET_TOKEN_FAILURE,
+  LOGOUT
 } from '../constants'
 
 const initialState = {
@@ -12,6 +13,9 @@ const initialState = {
 
 export default (state = initialState, { type, data, error }) => {
   switch (type) {
+    case LOGOUT:
+      return initialState
+
     case GET_TOKEN_PENDING:
       return {
         ...state,

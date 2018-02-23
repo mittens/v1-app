@@ -1,4 +1,9 @@
-import { GET_ALL_PENDING, GET_ALL_SUCCESS, GET_ALL_FAILURE } from '../constants'
+import {
+  GET_ALL_PENDING,
+  GET_ALL_SUCCESS,
+  GET_ALL_FAILURE,
+  LOGOUT
+} from '../constants'
 
 const initialState = {
   data: [],
@@ -8,6 +13,9 @@ const initialState = {
 
 export default (state = initialState, { type, data, error }) => {
   switch (type) {
+    case LOGOUT:
+      return initialState
+
     case GET_ALL_PENDING:
       return {
         ...state,

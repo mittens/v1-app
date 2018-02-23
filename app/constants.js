@@ -13,3 +13,5 @@ export const GET_UNREAD_FAILURE = 'GET_UNREAD_FAILURE'
 export const GET_ALL_PENDING = 'GET_ALL_PENDING'
 export const GET_ALL_SUCCESS = 'GET_ALL_SUCCESS'
 export const GET_ALL_FAILURE = 'GET_ALL_FAILURE'
+
+export const LOGOUT = 'LOGOUT'

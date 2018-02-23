@@ -12,8 +12,6 @@ export default token => {
       await github.get('/user')
 
       dispatch(getTokenSuccess(token))
-
-      dialog.alert('Token saved')
     } catch (err) {
       dispatch(getTokenFailure(err))
 
