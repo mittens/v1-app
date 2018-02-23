@@ -31,15 +31,23 @@ export default () => {
     dispatch(getTokenPending())
 
     try {
-      const token = await storage.get('githubToken')
+      const auth = await storage.get('authToken')
+      const github = await storage.get('githubToken')
 
-      if (token) {
-        dispatch(getTokenSuccess(token))
+      if (auth && github) {
+        dispatch(
+          getTokenSuccess({
+            auth,
+            github
+          })
+        )
       } else {
-        dispatch(getTokenFailure())
+        const err = new Error('Token not found')
+
+        dispatch(getTokenFailure(err))
       }
     } catch (err) {
-      dispatch(getTokenFailure())
+      dispatch(getTokenFailure(err))
     }
   }
 }

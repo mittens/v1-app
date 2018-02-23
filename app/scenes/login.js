@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 
-import { getToken, setToken } from '../actions'
+import { getConfig, getToken, getUser, login } from '../actions'
 import { github } from '../assets'
 import { Auth, Button, Main, Spinner } from '../components'
 import { Layout } from '../styles'
@@ -24,9 +24,9 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(props) {
-    const { data, navigation } = props
+    const { config, token, user, navigation, getUser } = props
 
-    if (data) {
+    if (token.data && user.data) {
       const reset = NavigationActions.reset({
         index: 0,
         actions: [
@@ -37,30 +37,36 @@ class Login extends Component {
       })
 
       navigation.dispatch(reset)
+    } else if (token.data && !user.loading && !user.error) {
+      getUser()
+    } else if (!token.loading && !user.loading && config.data) {
+      this.setState({
+        auth: true
+      })
     }
   }
 
   login = () => {
-    this.setState({
-      auth: true
-    })
+    const { getConfig } = this.props
+
+    getConfig()
   }
 
-  onToken = token => {
+  onCode = code => {
+    const { login } = this.props
+
+    login(code)
+
     this.setState({
       auth: false
     })
-
-    const { setToken } = this.props
-
-    setToken(token)
   }
 
   render() {
-    const { loading } = this.props
+    const { config, token, user } = this.props
     const { auth } = this.state
 
-    if (loading) {
+    if (token.loading) {
       return (
         <Main style={styles.main}>
           <Spinner />
@@ -68,8 +74,8 @@ class Login extends Component {
       )
     }
 
-    if (auth) {
-      return <Auth onToken={this.onToken} />
+    if (auth && config.data) {
+      return <Auth config={config.data} onCode={this.onCode} />
     }
 
     return (
@@ -77,7 +83,12 @@ class Login extends Component {
         <Main style={styles.main}>
           <Image style={styles.logo} source={github} />
         </Main>
-        <Button style={styles.button} label="Login" onPress={this.login} />
+        <Button
+          style={styles.button}
+          label="Login"
+          loading={config.loading || user.loading}
+          onPress={this.login}
+        />
       </Main>
     )
   }
@@ -98,18 +109,21 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-  const { data, loading } = state.token
+  const { config, token, user } = state
 
   return {
-    data,
-    loading
+    config,
+    token,
+    user
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    getConfig: () => dispatch(getConfig()),
     getToken: () => dispatch(getToken()),
-    setToken: token => dispatch(setToken(token))
+    getUser: () => dispatch(getUser()),
+    login: code => dispatch(login(code))
   }
 }
 

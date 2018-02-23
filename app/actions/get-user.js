@@ -4,7 +4,7 @@ import {
   GET_USER_FAILURE
 } from '../constants'
 
-import { github } from '../lib'
+import { api } from '../lib'
 
 export const getUserPending = () => {
   return {
@@ -31,7 +31,7 @@ export default () => {
     dispatch(getUserPending())
 
     try {
-      const user = await github.get('/user')
+      const { user } = await api.get('/users/me')
 
       dispatch(getUserSuccess(user))
     } catch (err) {

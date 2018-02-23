@@ -4,6 +4,7 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
 import { TabBar } from './components'
+import { firebase } from './lib'
 import { Login, All, Unread, Settings } from './scenes'
 import { Colors } from './styles'
 
@@ -32,6 +33,10 @@ export const Navigator = StackNavigator(
 )
 
 class GitHub extends Component {
+  componentDidMount() {
+    firebase.requestPermissions()
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.main}>

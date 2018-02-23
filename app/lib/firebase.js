@@ -3,7 +3,7 @@ import firebase from 'react-native-firebase'
 const messaging = firebase.messaging()
 
 class Firebase {
-  constructor() {
+  requestPermissions() {
     messaging.requestPermissions()
   }
 

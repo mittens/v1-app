@@ -36,7 +36,9 @@ export default {
     const body = data ? JSON.stringify(data) : undefined
 
     const headers = {
-      authorization: token
+      authorization: token,
+      accept: 'application/json',
+      'content-type': 'application/json'
     }
 
     const response = await fetch(API_URI + url, {

@@ -11,10 +11,10 @@ export default class Auth extends Component {
     uri: null
   }
 
-  componentDidMount = async () => {
-    this.github = await api.get('/github')
+  componentDidMount() {
+    const { config } = this.props
 
-    const { base, id, scope } = this.github
+    const { base, id, scope } = config
 
     this.setState({
       loading: false,
@@ -29,30 +29,14 @@ export default class Auth extends Component {
     const { code } = query
 
     if (protocol === 'github:' && code) {
+      const { onCode } = this.props
+
+      onCode(code)
+
       this.setState({
         loading: true,
         uri: null
       })
-
-      const { base, id, secret } = this.github
-
-      const response = await fetch(
-        `${base}/access_token?client_id=${id}&client_secret=${secret}&code=${code}`,
-        {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          }
-        }
-      )
-
-      const json = await response.json()
-
-      const { access_token } = json
-
-      const { onToken } = this.props
-
-      onToken(access_token)
     }
   }
 

@@ -1,8 +1,7 @@
 import {
-  GET_TOKEN_PENDING,
-  GET_TOKEN_SUCCESS,
-  GET_TOKEN_FAILURE,
-  LOGIN,
+  GET_PROFILE_PENDING,
+  GET_PROFILE_SUCCESS,
+  GET_PROFILE_FAILURE,
   LOGOUT
 } from '../constants'
 
@@ -17,31 +16,20 @@ export default (state = initialState, { type, data, error }) => {
     case LOGOUT:
       return initialState
 
-    case LOGIN:
-      const { authToken, githubToken } = data
-
-      return {
-        ...initialState,
-        data: {
-          auth: authToken,
-          github: githubToken
-        }
-      }
-
-    case GET_TOKEN_PENDING:
+    case GET_PROFILE_PENDING:
       return {
         ...state,
         loading: true
       }
 
-    case GET_TOKEN_SUCCESS:
+    case GET_PROFILE_SUCCESS:
       return {
         ...state,
         data,
         loading: false
       }
 
-    case GET_TOKEN_FAILURE:
+    case GET_PROFILE_FAILURE:
       return {
         ...state,
         error,

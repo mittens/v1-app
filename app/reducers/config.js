@@ -1,7 +1,7 @@
 import {
-  GET_TOKEN_PENDING,
-  GET_TOKEN_SUCCESS,
-  GET_TOKEN_FAILURE,
+  GET_CONFIG_PENDING,
+  GET_CONFIG_SUCCESS,
+  GET_CONFIG_FAILURE,
   LOGIN,
   LOGOUT
 } from '../constants'
@@ -14,34 +14,24 @@ const initialState = {
 
 export default (state = initialState, { type, data, error }) => {
   switch (type) {
+    case LOGIN:
     case LOGOUT:
       return initialState
 
-    case LOGIN:
-      const { authToken, githubToken } = data
-
-      return {
-        ...initialState,
-        data: {
-          auth: authToken,
-          github: githubToken
-        }
-      }
-
-    case GET_TOKEN_PENDING:
+    case GET_CONFIG_PENDING:
       return {
         ...state,
         loading: true
       }
 
-    case GET_TOKEN_SUCCESS:
+    case GET_CONFIG_SUCCESS:
       return {
         ...state,
         data,
         loading: false
       }
 
-    case GET_TOKEN_FAILURE:
+    case GET_CONFIG_FAILURE:
       return {
         ...state,
         error,

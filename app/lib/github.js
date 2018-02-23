@@ -30,7 +30,9 @@ export default {
     const body = data ? JSON.stringify(data) : undefined
 
     const headers = {
-      authorization: `token ${token}`
+      authorization: `token ${token}`,
+      accept: 'application/json',
+      'content-type': 'application/json'
     }
 
     const response = await fetch(host + url, {
