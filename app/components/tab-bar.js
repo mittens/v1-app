@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 
-import { Touchable } from './'
+import { Touchable } from '.'
 import { all, unread, settings } from '../assets'
 import { Colors, Fonts, Layout } from '../styles'
 

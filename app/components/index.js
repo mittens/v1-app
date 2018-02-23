@@ -1,3 +1,4 @@
+import Auth from './auth'
 import Button from './button'
 import Main from './main'
 import NavBar from './nav-bar'
@@ -10,6 +11,7 @@ import TextBox from './text-box'
 import Touchable from './touchable'
 
 export {
+  Auth,
   Button,
   Main,
   NavBar,

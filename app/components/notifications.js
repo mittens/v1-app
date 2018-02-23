@@ -8,7 +8,7 @@ import {
   View
 } from 'react-native'
 
-import { Main, Notification, Separator } from './'
+import { Main, Notification, Separator } from '.'
 import { check } from '../assets'
 import { Colors, Layout } from '../styles'
 

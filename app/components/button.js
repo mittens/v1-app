@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native'
 
-import { Touchable } from './'
+import { Touchable } from '.'
 import { Colors, Layout } from '../styles'
 
 export default class Button extends Component {

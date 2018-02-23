@@ -4,7 +4,7 @@ import {
   GET_UNREAD_FAILURE
 } from '../constants'
 
-import { api } from '../lib'
+import { github } from '../lib'
 
 export const getUnreadPending = () => {
   return {
@@ -31,7 +31,7 @@ export default () => {
     dispatch(getUnreadPending())
 
     try {
-      const notifications = await api.get('/notifications')
+      const notifications = await github.get('/notifications')
 
       dispatch(getUnreadSuccess(notifications))
     } catch (err) {

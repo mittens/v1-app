@@ -1,4 +1,4 @@
-import { api, dialog, storage } from '../lib'
+import { dialog, github, storage } from '../lib'
 
 import { getTokenPending, getTokenSuccess, getTokenFailure } from './get-token'
 
@@ -7,9 +7,9 @@ export default token => {
     dispatch(getTokenPending())
 
     try {
-      await storage.put('token', token)
+      await storage.put('githubToken', token)
 
-      await api.get('/user')
+      await github.get('/user')
 
       dispatch(getTokenSuccess(token))
 
@@ -17,7 +17,7 @@ export default token => {
     } catch (err) {
       dispatch(getTokenFailure(err))
 
-      await storage.remove('token')
+      await storage.remove('githubToken')
 
       dialog.alert(err.message)
     }

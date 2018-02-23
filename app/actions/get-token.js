@@ -31,7 +31,7 @@ export default () => {
     dispatch(getTokenPending())
 
     try {
-      const token = await storage.get('token')
+      const token = await storage.get('githubToken')
 
       if (token) {
         dispatch(getTokenSuccess(token))

@@ -6,7 +6,7 @@ import App from './app/index'
 import store from './app/store'
 
 const GitHub = () => (
-  <Provider store={store()}>
+  <Provider store={store}>
     <App />
   </Provider>
 )

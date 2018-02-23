@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import moment from 'moment'
 
-import { Touchable } from './'
+import { Touchable } from '.'
 import { Colors, Layout } from '../styles'
 
 export default class Notification extends Component {

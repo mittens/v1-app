@@ -1,6 +1,6 @@
 import { GET_ALL_PENDING, GET_ALL_SUCCESS, GET_ALL_FAILURE } from '../constants'
 
-import { api } from '../lib'
+import { github } from '../lib'
 
 export const getAllPending = () => {
   return {
@@ -27,7 +27,7 @@ export default () => {
     dispatch(getAllPending())
 
     try {
-      const notifications = await api.get('/notifications?all=true')
+      const notifications = await github.get('/notifications?all=1')
 
       dispatch(getAllSuccess(notifications))
     } catch (err) {

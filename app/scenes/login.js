@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import { getToken, setToken } from '../actions'
 import { github } from '../assets'
-import { Button, Main, Spinner, TextBox } from '../components'
+import { Auth, Button, Main, Spinner } from '../components'
 import { Layout } from '../styles'
 
 class Login extends Component {
@@ -14,7 +14,7 @@ class Login extends Component {
   }
 
   state = {
-    token: ''
+    auth: false
   }
 
   componentDidMount() {
@@ -41,38 +41,43 @@ class Login extends Component {
   }
 
   login = () => {
-    const { setToken } = this.props
-    const { token } = this.state
+    this.setState({
+      auth: true
+    })
+  }
 
-    if (token) {
-      setToken(token)
-    }
+  onToken = token => {
+    this.setState({
+      auth: false
+    })
+
+    const { setToken } = this.props
+
+    setToken(token)
   }
 
   render() {
     const { loading } = this.props
-    const { token } = this.state
+    const { auth } = this.state
+
+    if (loading) {
+      return (
+        <Main style={styles.main}>
+          <Spinner />
+        </Main>
+      )
+    }
+
+    if (auth) {
+      return <Auth onToken={this.onToken} />
+    }
 
     return (
       <Main>
-        <View style={styles.main}>
+        <Main style={styles.main}>
           <Image style={styles.logo} source={github} />
-          {!token && loading && <Spinner />}
-        </View>
-        {(token || !loading) && (
-          <View style={styles.login}>
-            <TextBox
-              placeholder="Personal access token"
-              onChangeText={token => this.setState({ token })}
-            />
-            <Button
-              style={styles.button}
-              label="Save"
-              loading={loading}
-              onPress={this.login}
-            />
-          </View>
-        )}
+        </Main>
+        <Button style={styles.button} label="Login" onPress={this.login} />
       </Main>
     )
   }
@@ -81,20 +86,14 @@ class Login extends Component {
 const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
-    flex: 1,
     justifyContent: 'center'
   },
   logo: {
-    alignSelf: 'center',
     height: 100,
-    marginBottom: Layout.margin * 2,
     width: 100
   },
-  login: {
-    padding: Layout.margin
-  },
   button: {
-    marginTop: Layout.margin
+    margin: Layout.margin
   }
 })
 

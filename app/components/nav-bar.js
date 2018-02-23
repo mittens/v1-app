@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 
-import { Touchable } from './'
+import { Touchable } from '.'
 import { Colors, Fonts, Layout } from '../styles'
 
 export default class NavBar extends Component {

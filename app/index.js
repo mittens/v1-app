@@ -14,15 +14,9 @@ import { Colors } from './styles'
 
 const AppNavigator = TabNavigator(
   {
-    unread: {
-      screen: Unread
-    },
-    all: {
-      screen: All
-    },
-    settings: {
-      screen: Settings
-    }
+    unread: Unread,
+    all: All,
+    settings: Settings
   },
   {
     tabBarComponent: TabBar,
@@ -32,12 +26,8 @@ const AppNavigator = TabNavigator(
 
 export const Navigator = StackNavigator(
   {
-    login: {
-      screen: Login
-    },
-    app: {
-      screen: AppNavigator
-    }
+    login: Login,
+    app: AppNavigator
   },
   {
     cardStyle: {
