@@ -4,7 +4,7 @@ import {
   GET_CONFIG_FAILURE
 } from '../constants'
 
-import { api } from '../lib'
+import { api, dialog } from '../lib'
 
 export const getConfigPending = () => {
   return {
