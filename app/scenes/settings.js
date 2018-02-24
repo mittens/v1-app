@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { get } from 'lodash'
 
-import { getProfile, logout } from '../actions'
+import { getProfile, logout, toggleNotifications } from '../actions'
 import { Button, Main, NavBar, TextBox } from '../components'
 import { Colors, Fonts, Layout } from '../styles'
 
@@ -29,7 +29,21 @@ class Settings extends Component {
     })
   }
 
+  componentWillReceiveProps(props) {
+    const { user } = props
+
+    const notifications = get(user, 'data.notifications', false)
+
+    this.setState({
+      notifications
+    })
+  }
+
   toggleNotifications = notifications => {
+    const { toggleNotifications } = this.props
+
+    toggleNotifications(notifications)
+
     this.setState({
       notifications
     })
@@ -117,7 +131,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getProfile: () => dispatch(getProfile()),
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    toggleNotifications: notifications =>
+      dispatch(toggleNotifications(notifications))
   }
 }
 
