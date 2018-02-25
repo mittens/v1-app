@@ -1,7 +1,7 @@
 import {
-  GET_UNREAD_PENDING,
-  GET_UNREAD_SUCCESS,
-  GET_UNREAD_FAILURE,
+  GET_NOTIFICATIONS_PENDING,
+  GET_NOTIFICATIONS_SUCCESS,
+  GET_NOTIFICATIONS_FAILURE,
   LOGOUT
 } from '../constants'
 
@@ -16,20 +16,20 @@ export default (state = initialState, { type, data, error }) => {
     case LOGOUT:
       return initialState
 
-    case GET_UNREAD_PENDING:
+    case GET_NOTIFICATIONS_PENDING:
       return {
         ...state,
         loading: true
       }
 
-    case GET_UNREAD_SUCCESS:
+    case GET_NOTIFICATIONS_SUCCESS:
       return {
         ...state,
         data,
         loading: false
       }
 
-    case GET_UNREAD_FAILURE:
+    case GET_NOTIFICATIONS_FAILURE:
       return {
         ...state,
         error,

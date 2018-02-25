@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { getUnread, markRead } from '../actions'
+import { getNotifications, markRead } from '../actions'
 import { NavBar, Notifications } from '../components'
 import { link } from '../lib'
 
@@ -11,9 +11,9 @@ class Unread extends Component {
   }
 
   componentDidMount = () => {
-    const { getUnread } = this.props
+    const { getNotifications } = this.props
 
-    getUnread()
+    getNotifications()
   }
 
   onPress = notification => {
@@ -26,11 +26,11 @@ class Unread extends Component {
   }
 
   render() {
-    const { data, loading } = this.props
+    const { notifications, loading } = this.props
 
     return (
       <Notifications
-        notifications={data}
+        notifications={notifications}
         loading={loading}
         onPress={this.onPress}
         reload={this.componentDidMount}
@@ -40,17 +40,19 @@ class Unread extends Component {
 }
 
 const mapStateToProps = state => {
-  const { data, loading } = state.unread
+  const { data, loading } = state.notifications
+
+  const notifications = data.filter(notification => notification.unread)
 
   return {
-    data,
+    notifications,
     loading
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUnread: () => dispatch(getUnread()),
+    getNotifications: () => dispatch(getNotifications()),
     markRead: time => dispatch(markRead(time))
   }
 }

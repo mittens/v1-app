@@ -9,17 +9,15 @@ import getUser from './get-user'
 import toggleNotifications from './toggle-notifications'
 
 // github
-import getAll from './get-all'
+import getNotifications from './get-notifications'
 import getProfile from './get-profile'
-import getUnread from './get-unread'
 import markRead from './mark-read'
 
 export {
-  getAll,
   getConfig,
+  getNotifications,
   getProfile,
   getToken,
-  getUnread,
   getUser,
   login,
   logout,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { getAll, markRead } from '../actions'
+import { markRead } from '../actions'
 import { NavBar, Notifications } from '../components'
 import { link } from '../lib'
 
@@ -10,17 +10,13 @@ class All extends Component {
     header: <NavBar title="Notifications" />
   }
 
-  componentDidMount = () => {
-    const { getAll } = this.props
-
-    getAll()
-  }
-
   onPress = notification => {
     const { markRead } = this.props
-    const { updated_at } = notification
+    const { unread, updated_at } = notification
 
-    markRead(updated_at)
+    if (unread) {
+      markRead(updated_at)
+    }
 
     link.open(notification)
   }
@@ -40,7 +36,7 @@ class All extends Component {
 }
 
 const mapStateToProps = state => {
-  const { data, loading } = state.all
+  const { data, loading } = state.notifications
 
   return {
     data,
@@ -50,7 +46,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAll: () => dispatch(getAll()),
     markRead: time => dispatch(markRead(time))
   }
 }

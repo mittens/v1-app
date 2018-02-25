@@ -5,8 +5,7 @@ import token from './token'
 import config from './config'
 import user from './user'
 
-import all from './all'
-import unread from './unread'
+import notifications from './notifications'
 import profile from './profile'
 
 export default combineReducers({
@@ -15,7 +14,6 @@ export default combineReducers({
   config,
   user,
 
-  all,
-  unread,
+  notifications,
   profile
 })
