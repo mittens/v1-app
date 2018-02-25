@@ -73,7 +73,7 @@ class Settings extends Component {
     return (
       <Main>
         <Main style={styles.main}>
-          {!!name && <Text style={styles.subtitle}>Hello, {name}</Text>}
+          {!!name && <Text style={styles.name}>Hello, {name}</Text>}
           <View style={styles.toggle}>
             <Text style={styles.label}>Push notifications</Text>
             <Switch
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   main: {
     paddingHorizontal: Layout.margin
   },
-  subtitle: {
+  name: {
     ...Fonts.subtitle,
     marginBottom: Layout.padding,
     marginTop: Layout.margin
@@ -106,7 +106,6 @@ const styles = StyleSheet.create({
     marginVertical: Layout.margin
   },
   label: {
-    ...Fonts.subtitle,
     flex: 1
   },
   footer: {

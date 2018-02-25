@@ -8,8 +8,7 @@ export default {
   background: 'white',
   backgroundDark: '#f6f7f8',
 
-  border: 'rgba(0, 0, 0, 0.25)',
-  borderLight: 'rgba(0, 0, 0, 0.125)',
+  border: 'rgba(0, 0, 0, 0.125)',
 
   text: '#000',
   textLight: '#666'

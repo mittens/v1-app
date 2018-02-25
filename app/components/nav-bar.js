@@ -18,7 +18,7 @@ export default class NavBar extends Component {
 const styles = StyleSheet.create({
   main: {
     backgroundColor: Colors.background,
-    borderBottomColor: Colors.borderLight,
+    borderBottomColor: Colors.border,
     borderBottomWidth: StyleSheet.hairlineWidth,
     justifyContent: 'center',
     padding: Layout.margin

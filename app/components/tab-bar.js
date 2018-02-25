@@ -43,7 +43,7 @@ export default class TabBar extends Component {
 const styles = StyleSheet.create({
   main: {
     backgroundColor: Colors.background,
-    borderTopColor: Colors.borderLight,
+    borderTopColor: Colors.border,
     borderTopWidth: StyleSheet.hairlineWidth,
     flexDirection: 'row'
   },

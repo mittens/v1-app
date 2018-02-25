@@ -11,7 +11,7 @@ export default class Separator extends Component {
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: Colors.borderLight,
+    backgroundColor: Colors.border,
     height: StyleSheet.hairlineWidth
   }
 })
