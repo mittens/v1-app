@@ -4,8 +4,12 @@ import thunk from 'redux-thunk'
 
 import reducers from './reducers'
 
-const middleware = applyMiddleware(...[thunk, __DEV__ && logger])
+const middleware = [thunk]
 
-const enhancer = compose(middleware)
+if (__DEV__) {
+  middleware.push(logger)
+}
+
+const enhancer = compose(applyMiddleware(...middleware))
 
 export default createStore(reducers, enhancer)
