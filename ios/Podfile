@@ -1,10 +1,11 @@
-platform :ios, '9.0'
+platform :ios, '11.0'
 
 target 'GitHub' do
   pod 'React', path: '../node_modules/react-native', subspecs: %w[
     Core
     CxxBridge
     DevSupport
+    RCTWebSocket
   ]
 
   pod 'yoga', path: '../node_modules/react-native/ReactCommon/yoga'

@@ -97,6 +97,7 @@ DEPENDENCIES:
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
+  - React/RCTWebSocket (from `../node_modules/react-native`)
   - SentryReactNative (from `../node_modules/react-native-sentry`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -133,6 +134,6 @@ SPEC CHECKSUMS:
   SentryReactNative: a306955d6c4b45954ff04d2fbeaa536f947f5ba4
   yoga: 55da126afc384965b96bff46652464373b330add
 
-PODFILE CHECKSUM: c615ffbff2060473d4f88a39bc1de4a443c3600d
+PODFILE CHECKSUM: af897b9f24e1a3c5157ad325a2783c330839e98f
 
 COCOAPODS: 1.4.0
