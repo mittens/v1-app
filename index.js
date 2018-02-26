@@ -4,6 +4,9 @@ import { Provider } from 'react-redux'
 
 import App from './app/index'
 import store from './app/store'
+import { sentry } from './app/lib'
+
+sentry()
 
 class GitHub extends Component {
   render() {
