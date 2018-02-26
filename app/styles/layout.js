@@ -5,7 +5,6 @@ export default {
   borderRadius: 5,
 
   tabBarHeight: 50,
-
   buttonHeight: 50,
   textboxHeight: 50
 }
