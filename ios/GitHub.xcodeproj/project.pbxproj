@@ -39,6 +39,7 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		D9B638F6204548C400C42124 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9B638F5204548C400C42124 /* GoogleService-Info.plist */; };
+		D9CAD5472045A00100E3E0B6 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -385,6 +386,7 @@
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
+				D9CAD5472045A00100E3E0B6 /* libRCTWebSocket.a in Frameworks */,
 				3D2B7E91317741DEB72DD83F /* libRNFirebase.a in Frameworks */,
 				1DD1C3CA78DE4988AC82B032 /* libz.tbd in Frameworks */,
 				10E4D747F44F8D7A80F0FAD9 /* libPods-GitHub.a in Frameworks */,
