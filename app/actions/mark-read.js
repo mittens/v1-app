@@ -2,7 +2,7 @@ import moment from 'moment'
 
 import { dialog, github } from '../lib'
 
-import { getAll, getUnread } from '.'
+import { getNotifications } from '.'
 
 export default (time = moment()) => {
   return async dispatch => {
@@ -11,8 +11,7 @@ export default (time = moment()) => {
 
       await github.put(`/notifications?last_read_at=${last_read_at}`)
 
-      dispatch(getAll())
-      dispatch(getUnread())
+      dispatch(getNotifications())
     } catch (err) {
       dialog.alert(err.message)
     }
