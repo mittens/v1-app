@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { markRead } from '../actions'
+import { getNotifications, markRead } from '../actions'
 import { NavBar, Notifications } from '../components'
 import { link } from '../lib'
 
 class All extends Component {
   static navigationOptions = {
     header: <NavBar title="Notifications" />
+  }
+
+  refresh = () => {
+    const { getNotifications } = this.props
+
+    getNotifications()
   }
 
   onPress = notification => {
@@ -29,7 +35,7 @@ class All extends Component {
         notifications={data}
         loading={loading}
         onPress={this.onPress}
-        reload={this.componentDidMount}
+        reload={this.refresh}
       />
     )
   }
@@ -46,6 +52,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    getNotifications: () => dispatch(getNotifications()),
     markRead: time => dispatch(markRead(time))
   }
 }

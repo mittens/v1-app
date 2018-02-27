@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
   },
   name: {
     ...Fonts.subtitle,
+    color: Colors.text,
     marginBottom: Layout.padding,
     marginTop: Layout.margin
   },
@@ -106,6 +107,7 @@ const styles = StyleSheet.create({
     marginVertical: Layout.margin
   },
   label: {
+    color: Colors.text,
     flex: 1
   },
   footer: {

@@ -22,6 +22,8 @@ export default class Notification extends Component {
     const read = last_read_at && moment(last_read_at).fromNow()
     const updated = updated_at && moment(updated_at).fromNow()
 
+    const same = read === updated
+
     return (
       <View style={unread && styles.unread}>
         <Touchable style={styles.main} onPress={() => onPress(notification)}>
@@ -31,10 +33,13 @@ export default class Notification extends Component {
             <Text style={styles.repository}>{full_name}</Text>
             {(read || updated) && (
               <View style={styles.footer}>
-                {read && (
-                  <Text style={[styles.time, styles.read]}>Read {read}</Text>
-                )}
-                {updated && <Text style={styles.time}>Updated {updated}</Text>}
+                {same && <Text style={[styles.time, styles.read]}>{read}</Text>}
+                {!same &&
+                  read && (
+                    <Text style={[styles.time, styles.read]}>Read {read}</Text>
+                  )}
+                {!same &&
+                  updated && <Text style={styles.time}>Updated {updated}</Text>}
               </View>
             )}
           </View>
@@ -64,11 +69,12 @@ const styles = StyleSheet.create({
     marginLeft: Layout.margin
   },
   title: {
-    color: Colors.text
+    color: Colors.text,
+    fontSize: 16
   },
   repository: {
     color: Colors.textLight,
-    fontSize: 12,
+    fontSize: 14,
     marginVertical: Layout.padding
   },
   footer: {

@@ -1,3 +1,5 @@
+import { Platform } from 'react-native'
+
 import { LOGIN } from '../constants'
 
 import { api, dialog, firebase, storage } from '../lib'
@@ -19,7 +21,11 @@ export default code => {
       const { config } = getState()
 
       const { data } = config
-      const { base, id, secret } = data
+      const { base, android, ios } = data
+
+      const github = Platform.OS === 'android' ? android : ios
+
+      const { id, secret } = github
 
       const response = await fetch(
         `${base}/access_token?client_id=${id}&client_secret=${secret}&code=${code}`,

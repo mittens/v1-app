@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { SafeAreaView, StyleSheet, WebView } from 'react-native'
+import { Platform, SafeAreaView, StyleSheet, WebView } from 'react-native'
 import parse from 'url-parse'
 
 import { Main, Spinner } from '.'
@@ -14,7 +14,11 @@ export default class Auth extends Component {
   componentDidMount() {
     const { config } = this.props
 
-    const { base, id, scope } = config
+    const { base, android, ios, scope } = config
+
+    const github = Platform.OS === 'android' ? android : ios
+
+    const { id } = github
 
     this.setState({
       loading: false,
@@ -25,10 +29,26 @@ export default class Auth extends Component {
   onNavigationStateChange = async ({ url }) => {
     const parsed = parse(url, true)
 
-    const { protocol, query } = parsed
+    const { host, protocol, query } = parsed
     const { code } = query
 
-    if (protocol === 'github:' && code) {
+    console.log('parsed', parsed)
+
+    if (
+      Platform.OS === 'android' &&
+      host === 'localhost' &&
+      protocol === 'http:' &&
+      code
+    ) {
+      const { onCode } = this.props
+
+      onCode(code)
+
+      this.setState({
+        loading: true,
+        uri: null
+      })
+    } else if (Platform.OS === 'ios' && protocol === 'github:' && code) {
       const { onCode } = this.props
 
       onCode(code)

@@ -62,6 +62,7 @@ Pods
 
 # Firebase
 #
+google-services.json
 GoogleService-Info.plist
 
 # Sentry
