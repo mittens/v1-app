@@ -5,7 +5,7 @@ import { NavigationActions } from 'react-navigation'
 import { get } from 'lodash'
 
 import { getProfile, logout, toggleNotifications } from '../actions'
-import { Button, Main, NavBar, TextBox } from '../components'
+import { Button, Main, NavBar } from '../components'
 import { Colors, Fonts, Layout } from '../styles'
 
 class Settings extends Component {
