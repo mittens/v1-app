@@ -3,10 +3,10 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 
-import { getConfig, getToken, getUser, login } from '../actions'
-import { github } from '../assets'
-import { Auth, Button, Main, Spinner } from '../components'
-import { Layout } from '../styles'
+import { getConfig, getToken, getUser, login, loginWithToken } from '../actions'
+import { mittens } from '../assets'
+import { Auth, AuthToken, Button, Main, Spinner } from '../components'
+import { Colors, Fonts, Layout } from '../styles'
 
 class Login extends Component {
   static navigationOptions = {
@@ -14,7 +14,8 @@ class Login extends Component {
   }
 
   state = {
-    auth: false
+    auth: false,
+    withToken: false
   }
 
   componentDidMount() {
@@ -52,6 +53,12 @@ class Login extends Component {
     getConfig()
   }
 
+  loginWithToken = withToken => {
+    this.setState({
+      withToken
+    })
+  }
+
   onCode = code => {
     const { login } = this.props
 
@@ -62,9 +69,19 @@ class Login extends Component {
     })
   }
 
+  onToken = token => {
+    const { loginWithToken } = this.props
+
+    loginWithToken(token)
+
+    this.setState({
+      withToken: false
+    })
+  }
+
   render() {
     const { config, token, user } = this.props
-    const { auth } = this.state
+    const { auth, withToken } = this.state
 
     if (token.loading) {
       return (
@@ -78,17 +95,37 @@ class Login extends Component {
       return <Auth config={config.data} onCode={this.onCode} />
     }
 
+    const loading = config.loading || user.loading
+
     return (
       <Main>
         <Main style={styles.main}>
-          <Image style={styles.logo} source={github} />
+          <Image style={styles.logo} source={mittens} />
+          <Text style={styles.title}>mittens</Text>
+          <Text style={styles.intro}>
+            Mittens brings you push notifications from GitHub
+          </Text>
         </Main>
         <Button
-          style={styles.button}
-          label="Login"
-          loading={config.loading || user.loading}
+          style={styles.login}
+          label="Login with GitHub"
+          loading={loading}
           onPress={this.login}
         />
+        {!loading && (
+          <Button
+            style={styles.loginWithToken}
+            styleLabel={styles.loginWithTokenLabel}
+            label="Login with personal access token"
+            onPress={() => this.loginWithToken(true)}
+          />
+        )}
+        {!!withToken && (
+          <AuthToken
+            onToken={this.onToken}
+            onClose={() => this.loginWithToken(false)}
+          />
+        )}
       </Main>
     )
   }
@@ -97,14 +134,39 @@ class Login extends Component {
 const styles = StyleSheet.create({
   main: {
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: Layout.margin * 2
   },
   logo: {
     height: 100,
     width: 100
   },
-  button: {
+  title: {
+    color: Colors.primary,
+    fontSize: Fonts.size.title,
+    marginTop: Layout.margin,
+    textAlign: 'center'
+  },
+  intro: {
+    color: Colors.textLight,
+    fontSize: 14,
+    lineHeight: 22,
+    marginTop: Layout.margin,
+    textAlign: 'center',
+    width: '70%'
+  },
+  login: {
     margin: Layout.margin
+  },
+  loginWithToken: {
+    backgroundColor: Colors.background,
+    borderColor: Colors.primary,
+    borderWidth: 1,
+    margin: Layout.margin,
+    marginTop: 0
+  },
+  loginWithTokenLabel: {
+    color: Colors.primary
   }
 })
 
@@ -123,7 +185,8 @@ const mapDispatchToProps = dispatch => {
     getConfig: () => dispatch(getConfig()),
     getToken: () => dispatch(getToken()),
     getUser: () => dispatch(getUser()),
-    login: code => dispatch(login(code))
+    login: code => dispatch(login(code)),
+    loginWithToken: token => dispatch(loginWithToken(token))
   }
 }
 

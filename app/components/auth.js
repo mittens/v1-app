@@ -32,8 +32,6 @@ export default class Auth extends Component {
     const { host, protocol, query } = parsed
     const { code } = query
 
-    console.log('parsed', parsed)
-
     if (
       Platform.OS === 'android' &&
       host === 'localhost' &&
@@ -48,7 +46,7 @@ export default class Auth extends Component {
         loading: true,
         uri: null
       })
-    } else if (Platform.OS === 'ios' && protocol === 'github:' && code) {
+    } else if (Platform.OS === 'ios' && protocol === 'mittens:' && code) {
       const { onCode } = this.props
 
       onCode(code)

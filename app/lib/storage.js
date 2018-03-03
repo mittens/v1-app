@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native'
 
 export default {
-  prefix: '@github:',
+  prefix: '@mittens:',
 
   async get(key) {
     const value = await AsyncStorage.getItem(this.prefix + key)

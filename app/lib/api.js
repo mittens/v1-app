@@ -27,6 +27,13 @@ export default {
       method: 'PUT'
     })
   },
+  delete(url, data = {}) {
+    return this.request({
+      data,
+      url,
+      method: 'DELETE'
+    })
+  },
 
   async request(options = {}) {
     const token = await this.token()

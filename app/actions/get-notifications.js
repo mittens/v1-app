@@ -31,7 +31,9 @@ export default () => {
     dispatch(getNotificationsPending())
 
     try {
-      const notifications = await github.get('/notifications?all=1')
+      const notifications = await github.get(
+        `/notifications?all=1&v=${Math.random()}`
+      )
 
       dispatch(getNotificationsSuccess(notifications))
     } catch (err) {

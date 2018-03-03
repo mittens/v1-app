@@ -1,4 +1,5 @@
 import Auth from './auth'
+import AuthToken from './auth-token'
 import Button from './button'
 import Main from './main'
 import NavBar from './nav-bar'
@@ -12,6 +13,7 @@ import Touchable from './touchable'
 
 export {
   Auth,
+  AuthToken,
   Button,
   Main,
   NavBar,

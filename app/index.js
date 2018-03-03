@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import { KeyboardAvoidingView, SafeAreaView, StyleSheet } from 'react-native'
+import {
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  StyleSheet,
+  View
+} from 'react-native'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
@@ -32,17 +38,19 @@ export const Navigator = StackNavigator(
   }
 )
 
-class GitHub extends Component {
+class Mittens extends Component {
   componentDidMount() {
     firebase.requestPermissions()
   }
 
   render() {
+    const Main = Platform.OS === 'android' ? View : KeyboardAvoidingView
+
     return (
       <SafeAreaView style={styles.main}>
-        <KeyboardAvoidingView style={styles.main} behavior="padding">
+        <Main style={styles.main} behavior="padding">
           <Navigator />
-        </KeyboardAvoidingView>
+        </Main>
       </SafeAreaView>
     )
   }
@@ -55,4 +63,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect()(GitHub)
+export default connect()(Mittens)

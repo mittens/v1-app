@@ -1,6 +1,6 @@
 import { LOGOUT } from '../constants'
 
-import { storage } from '../lib'
+import { api, storage } from '../lib'
 
 export const logout = () => {
   return {
@@ -10,6 +10,8 @@ export const logout = () => {
 
 export default () => {
   return async dispatch => {
+    await api.delete('/users')
+
     await storage.remove('authToken')
     await storage.remove('githubToken')
 

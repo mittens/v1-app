@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 
 import com.android.build.OutputFile
 
@@ -6,12 +7,7 @@ project.ext.react = [
         entryFile: 'index.js'
 ]
 
-project.ext.sentryCli = [
-        logLevel: 'debug'
-]
-
 apply from: '../../node_modules/react-native/react.gradle'
-apply from: '../../node_modules/react-native-sentry/sentry.gradle'
 
 def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
@@ -23,6 +19,7 @@ android {
     defaultConfig {
         applicationId 'com.designplox.github'
         minSdkVersion 16
+        multiDexEnabled true
         targetSdkVersion 27
         versionCode 1
         versionName '1.0'
@@ -57,22 +54,21 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-sentry')
-    compile(project(':react-native-firebase')) {
-        transitive = false
-    }
+    implementation project(':react-native-firebase')
 
-    compile 'com.google.android.gms:play-services-base:11.8.0'
-    compile 'com.google.firebase:firebase-core:11.8.0'
-    compile 'com.google.firebase:firebase-messaging:11.8.0'
+    api 'com.crashlytics.sdk.android:crashlytics:2.9.1@aar'
 
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.firebase:firebase-core:11.8.0'
+    implementation 'com.google.firebase:firebase-messaging:11.8.0'
 
-    compile 'com.android.support:appcompat-v7:27.1.0'
-    compile 'com.facebook.react:react-native:+'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:support-v4:27.1.0'
+    implementation 'com.android.support:support-media-compat:27.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+
+    implementation 'com.facebook.react:react-native:+'
 }
-
-
 
 task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile

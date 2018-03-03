@@ -6,7 +6,7 @@ import { Colors, Layout } from '../styles'
 
 export default class Button extends Component {
   render() {
-    const { label, loading, style, onPress } = this.props
+    const { label, loading, style, styleLabel, onPress } = this.props
 
     if (loading) {
       return (
@@ -19,7 +19,7 @@ export default class Button extends Component {
     return (
       <View style={[styles.main, style]}>
         <Touchable style={styles.touchable} onPress={onPress}>
-          <Text style={styles.label}>{label}</Text>
+          <Text style={[styles.label, styleLabel]}>{label}</Text>
         </Touchable>
       </View>
     )

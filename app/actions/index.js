@@ -1,6 +1,7 @@
 // app
 import getToken from './get-token'
 import login from './login'
+import loginWithToken from './login-with-token'
 import logout from './logout'
 
 // api
@@ -20,6 +21,7 @@ export {
   getToken,
   getUser,
   login,
+  loginWithToken,
   logout,
   markRead,
   toggleNotifications
