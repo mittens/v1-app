@@ -3,13 +3,26 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 
 import { Touchable } from '.'
-import { all, unread, settings } from '../assets'
+import {
+  all,
+  unread,
+  settings,
+  allActive,
+  unreadActive,
+  settingsActive
+} from '../assets'
 import { Colors, Fonts, Layout } from '../styles'
 
 const icons = {
   all,
   unread,
   settings
+}
+
+const iconsActive = {
+  all: allActive,
+  unread: unreadActive,
+  settings: settingsActive
 }
 
 export default class TabBar extends Component {
@@ -30,7 +43,7 @@ export default class TabBar extends Component {
             >
               <Image
                 style={[styles.icon, current && styles.active]}
-                source={icons[key]}
+                source={current ? iconsActive[key] : icons[key]}
               />
             </Touchable>
           )
