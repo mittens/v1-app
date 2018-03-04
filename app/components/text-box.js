@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     borderWidth: 1
   },
   focused: {
-    borderColor: Colors.accent
+    borderColor: Colors.primary
   },
   input: {
     color: Colors.text,
