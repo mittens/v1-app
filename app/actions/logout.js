@@ -10,7 +10,7 @@ export const logout = () => {
 
 export default () => {
   return async dispatch => {
-    await api.delete('/users')
+    await api.delete('/users/me')
 
     await storage.remove('authToken')
     await storage.remove('githubToken')
