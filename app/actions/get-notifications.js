@@ -37,7 +37,9 @@ export default () => {
 
       dispatch(getNotificationsSuccess(notifications))
 
-      firebase.badge(notifications.length)
+      const unread = notifications.filter(notification => notification.unread)
+
+      firebase.badge(unread.length)
     } catch (err) {
       dispatch(getNotificationsFailure(err))
     }
