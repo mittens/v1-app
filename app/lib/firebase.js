@@ -10,6 +10,18 @@ class Firebase {
   token() {
     return messaging.getToken()
   }
+
+  notification() {
+    return messaging.getInitialNotification()
+  }
+
+  badge(number) {
+    messaging.setBadgeNumber(number)
+  }
+
+  clear(id = '*') {
+    messaging.removeDeliveredNotification(id)
+  }
 }
 
 export default new Firebase()

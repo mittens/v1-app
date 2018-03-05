@@ -4,7 +4,7 @@ import {
   GET_NOTIFICATIONS_FAILURE
 } from '../constants'
 
-import { github } from '../lib'
+import { firebase, github } from '../lib'
 
 export const getNotificationsPending = () => {
   return {
@@ -36,6 +36,8 @@ export default () => {
       )
 
       dispatch(getNotificationsSuccess(notifications))
+
+      firebase.badge(notifications.length)
     } catch (err) {
       dispatch(getNotificationsFailure(err))
     }

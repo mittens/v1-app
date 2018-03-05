@@ -41,6 +41,8 @@ export const Navigator = StackNavigator(
 class Mittens extends Component {
   componentDidMount() {
     firebase.requestPermissions()
+
+    firebase.clear()
   }
 
   render() {
