@@ -7,7 +7,7 @@ import { Colors, Layout } from '../styles'
 
 export default class Notification extends Component {
   render() {
-    const { notification, onPress } = this.props
+    const { notification, highlight, onPress } = this.props
     const {
       repository,
       subject,
@@ -25,7 +25,7 @@ export default class Notification extends Component {
     const same = read === updated
 
     return (
-      <View style={unread && styles.unread}>
+      <View style={highlight && unread && styles.unread}>
         <Touchable style={styles.main} onPress={() => onPress(notification)}>
           <Image style={styles.image} source={{ uri: avatar_url }} />
           <View style={styles.details}>

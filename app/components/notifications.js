@@ -33,9 +33,15 @@ export default class Notifications extends Component {
   }
 
   renderItem = ({ item }) => {
-    const { onPress } = this.props
+    const { highlight, onPress } = this.props
 
-    return <Notification notification={item} onPress={onPress} />
+    return (
+      <Notification
+        notification={item}
+        highlight={highlight}
+        onPress={onPress}
+      />
+    )
   }
 
   render() {

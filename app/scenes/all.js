@@ -33,6 +33,7 @@ class All extends Component {
     return (
       <Notifications
         notifications={data}
+        highlight={true}
         loading={loading}
         onPress={this.onPress}
         reload={this.refresh}
