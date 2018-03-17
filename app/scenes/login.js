@@ -138,11 +138,11 @@ const styles = StyleSheet.create({
     padding: Layout.margin * 2
   },
   logo: {
-    height: 100,
+    height: 90,
     width: 100
   },
   title: {
-    color: Colors.primary,
+    color: Colors.primaryDark,
     fontSize: Fonts.size.title,
     marginTop: Layout.margin,
     textAlign: 'center'

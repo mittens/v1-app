@@ -15,8 +15,8 @@
         android:theme="@style/AppTheme">
 
         <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="5d5aec76dbedb9716d49d06fc55bdb86a4463cf1" />
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

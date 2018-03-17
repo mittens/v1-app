@@ -15,18 +15,18 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mittens" translatesAutoresizingMaskIntoConstraints="NO" id="SwX-no-roF">
-                    <rect key="frame" x="190" y="190" width="100" height="100"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mittens" translatesAutoresizingMaskIntoConstraints="NO" id="5Xn-NB-atX">
+                    <rect key="frame" x="190" y="195" width="100" height="90"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="PC0-ho-iEn"/>
-                        <constraint firstAttribute="height" constant="100" id="SFy-kv-aeQ"/>
+                        <constraint firstAttribute="width" constant="100" id="T7l-Uo-v2C"/>
+                        <constraint firstAttribute="height" constant="90" id="pLH-kI-TRv"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="SwX-no-roF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="BcA-GI-sYg"/>
-                <constraint firstItem="SwX-no-roF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DKL-qW-ZXp"/>
+                <constraint firstItem="5Xn-NB-atX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Gd9-SS-Md2"/>
+                <constraint firstItem="5Xn-NB-atX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QcS-nh-ag9"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -34,6 +34,6 @@
         </view>
     </objects>
     <resources>
-        <image name="Mittens" width="100" height="100"/>
+        <image name="Mittens" width="100" height="90"/>
     </resources>
 </document>

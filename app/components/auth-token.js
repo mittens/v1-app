@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     margin: Layout.margin
   },
   title: {
-    ...Fonts.title,
+    ...Fonts.subtitle,
     color: Colors.text,
     margin: Layout.margin,
     marginBottom: 0

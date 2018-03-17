@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 
 import com.android.build.OutputFile
 
@@ -55,8 +54,6 @@ android {
 
 dependencies {
     implementation project(':react-native-firebase')
-
-    api 'com.crashlytics.sdk.android:crashlytics:2.9.1@aar'
 
     implementation 'com.google.firebase:firebase-core:11.8.0'
     implementation 'com.google.firebase:firebase-messaging:11.8.0'

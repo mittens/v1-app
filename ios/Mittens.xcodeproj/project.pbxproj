@@ -684,7 +684,6 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				4D179C2D3827C8996EB9F0E9 /* [CP] Embed Pods Frameworks */,
 				F216F33F7130379AB1141B02 /* [CP] Copy Pods Resources */,
-				D96C4406204AC328007DC4A1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1189,19 +1188,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mittens/Pods-Mittens-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		D96C4406204AC328007DC4A1 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 5d5aec76dbedb9716d49d06fc55bdb86a4463cf1 ae3d73960cb738042608d3e186167cdaff8daf9c91f00a93e72c169024bc8d35";
 		};
 		EB909D14B41035EEA547D2DB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
