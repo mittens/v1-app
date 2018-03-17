@@ -3,6 +3,7 @@ import { LOGIN } from '../constants'
 import { api, dialog, firebase, storage } from '../lib'
 
 import { getUserPending } from './get-user'
+import { logout } from './logout'
 
 export const login = data => {
   return {
@@ -32,6 +33,8 @@ export default githubToken => {
 
       dispatch(login(user))
     } catch (err) {
+      dispatch(logout())
+
       dialog.alert(err.message)
     }
   }
