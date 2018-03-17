@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, Platform, StyleSheet, Text, View } from 'react-native'
 import moment from 'moment'
 
 import { Touchable } from '.'
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     padding: Layout.margin
   },
   image: {
-    borderRadius: 40,
+    borderRadius: Platform.OS === 'android' ? 80 : 20,
     height: 40,
     resizeMode: 'contain',
     width: 40
