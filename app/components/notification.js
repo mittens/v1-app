@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     padding: Layout.margin
   },
   image: {
-    borderRadius: 20,
+    borderRadius: 40,
     height: 40,
     resizeMode: 'contain',
     width: 40
