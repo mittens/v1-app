@@ -4,7 +4,7 @@ import {
   GET_USER_FAILURE
 } from '../constants'
 
-import { api } from '../lib'
+import { api, dialog } from '../lib'
 
 export const getUserPending = () => {
   return {
@@ -36,6 +36,8 @@ export default () => {
       dispatch(getUserSuccess(user))
     } catch (err) {
       dispatch(getUserFailure(err))
+
+      dialog.alert(err.message)
     }
   }
 }
