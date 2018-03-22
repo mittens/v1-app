@@ -11,6 +11,23 @@ apply from: '../../node_modules/react-native/react.gradle'
 def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
+def getPassword(String currentUser, String keyChain) {
+    def stdout = new ByteArrayOutputStream()
+    def stderr = new ByteArrayOutputStream()
+
+    exec {
+        commandLine 'security', '-q', 'find-generic-password', '-a', currentUser, '-s', keyChain, '-w'
+        standardOutput = stdout
+        errorOutput = stderr
+        ignoreExitValue true
+    }
+
+    stdout.toString().trim()
+}
+
+def MITTENS_PASSWORD_STORE = getPassword('mittens', 'mittens_password_store')
+def MITTENS_PASSWORD_KEY = getPassword('mittens', 'mittens_password_key')
+
 android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
@@ -34,10 +51,21 @@ android {
             include 'armeabi-v7a', 'x86'
         }
     }
+    signingConfigs {
+        release {
+            if (project.hasProperty('MITTENS_STORE_FILE')) {
+                storeFile file(MITTENS_STORE_FILE)
+                storePassword MITTENS_PASSWORD_STORE
+                keyAlias MITTENS_KEY_ALIAS
+                keyPassword MITTENS_PASSWORD_KEY
+            }
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     applicationVariants.all { variant ->
