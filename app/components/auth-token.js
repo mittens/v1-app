@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
   main: {
     backgroundColor: Colors.background,
     borderRadius: Layout.borderRadius,
-    margin: Layout.margin
+    margin: Layout.margin * 2,
+    overflow: 'hidden'
   },
   title: {
     ...Fonts.subtitle,
@@ -82,21 +83,16 @@ const styles = StyleSheet.create({
     margin: Layout.margin
   },
   footer: {
-    backgroundColor: Colors.primary,
-    borderBottomLeftRadius: Layout.borderRadius,
-    borderBottomRightRadius: Layout.borderRadius,
     flexDirection: 'row'
   },
   login: {
     borderRadius: 0,
-    borderBottomLeftRadius: Layout.borderRadius,
     flex: 1
   },
   cancel: {
     borderLeftColor: Colors.border,
     borderLeftWidth: StyleSheet.hairlineWidth,
     borderRadius: 0,
-    borderBottomRightRadius: Layout.borderRadius,
     flex: 1
   }
 })

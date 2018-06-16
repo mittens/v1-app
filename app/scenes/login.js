@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions, StackActions } from 'react-navigation'
 import { connect } from 'react-redux'
 
 import { getConfig, getToken, getUser, login, loginWithToken } from '../actions'
@@ -28,7 +28,7 @@ class Login extends Component {
     const { config, token, user, navigation, getUser } = props
 
     if (token.data && user.data) {
-      const reset = NavigationActions.reset({
+      const reset = StackActions.reset({
         index: 0,
         actions: [
           NavigationActions.navigate({
@@ -108,6 +108,7 @@ class Login extends Component {
         </Main>
         <Button
           style={styles.login}
+          styleLabel={styles.loginLabel}
           label="Login with GitHub"
           loading={loading}
           onPress={this.login}
@@ -138,11 +139,11 @@ const styles = StyleSheet.create({
     padding: Layout.margin * 2
   },
   logo: {
-    height: 90,
+    height: 100,
     width: 100
   },
   title: {
-    color: Colors.primaryDark,
+    color: Colors.primary,
     fontSize: Fonts.size.title,
     marginTop: Layout.margin,
     textAlign: 'center'
@@ -156,7 +157,12 @@ const styles = StyleSheet.create({
     width: '70%'
   },
   login: {
+    backgroundColor: Colors.accent,
     margin: Layout.margin
+  },
+  loginLabel: {
+    color: Colors.background,
+    fontWeight: Fonts.weight.semibold
   },
   loginWithToken: {
     backgroundColor: Colors.background,
@@ -190,4 +196,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login)

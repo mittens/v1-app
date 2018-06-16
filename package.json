@@ -1,7 +1,13 @@
 {
   "name": "mittens",
   "description": "GitHub notifications",
-  "author": "Ali Zahid <ali.zahid@live.com> (https://designplox.com/)",
+  "license": "UNLICENSED",
+  "private": true,
+  "author": {
+    "name": "Ali Zahid",
+    "email": "ali.zahid@live.com",
+    "url": "https://designplox.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/alizahid/mittens"
@@ -9,32 +15,36 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "ios": "react-native run-ios",
+    "ios": "react-native run-ios --simulator 'iPhone X'",
     "android": "react-native run-android",
     "precommit": "lint-staged"
   },
   "dependencies": {
     "lodash.get": "^4.4.2",
-    "moment": "^2.21.0",
-    "react": "16.2.0",
-    "react-native": "0.54.2",
-    "react-native-firebase": "^3.3.1",
-    "react-navigation": "^1.5.8",
+    "moment": "^2.22.2",
+    "react": "16.3.1",
+    "react-native": "0.55.4",
+    "react-native-firebase": "^4.2.0",
+    "react-native-rate": "^1.0.9",
+    "react-navigation": "^2.3.1",
     "react-redux": "^5.0.7",
-    "redux": "^3.7.2",
+    "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0",
-    "url-parse": "^1.2.0"
+    "redux-thunk": "^2.3.0",
+    "url-parse": "^1.4.1"
   },
   "devDependencies": {
-    "babel-jest": "23.0.0-alpha.0",
+    "babel-jest": "23.0.1",
     "babel-preset-react-native": "^4.0.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-prettier": "latest",
     "husky": "^0.14.3",
-    "jest": "22.4.2",
-    "lint-staged": "^7.0.0",
-    "prettier": "^1.11.1",
+    "jest": "23.1.0",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.5",
     "react-native-dotenv": "^0.1.1",
-    "react-test-renderer": "16.2.0"
+    "react-test-renderer": "16.3.1"
   },
   "jest": {
     "preset": "react-native"

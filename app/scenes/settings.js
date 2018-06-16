@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { StyleSheet, Switch, Text, View } from 'react-native'
+import { Image, StyleSheet, Switch, Text, View } from 'react-native'
 import { connect } from 'react-redux'
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions, StackActions } from 'react-navigation'
 import { get } from 'lodash'
 
-import { getProfile, logout, toggleNotifications } from '../actions'
-import { Button, Main, NavBar } from '../components'
+import { about, help, privacyPolicy, rate } from '../assets'
+import { logout, updateUser } from '../actions'
+import { Button, Main, NavBar, Touchable } from '../components'
+import { link } from '../lib'
 import { Colors, Fonts, Layout } from '../styles'
 
 class Settings extends Component {
@@ -18,13 +20,13 @@ class Settings extends Component {
   }
 
   componentDidMount() {
-    const { getProfile, user } = this.props
+    const { user } = this.props
 
-    getProfile()
-
+    const badge = get(user, 'data.badge', false)
     const notifications = get(user, 'data.notifications', false)
 
     this.setState({
+      badge,
       notifications
     })
   }
@@ -32,17 +34,33 @@ class Settings extends Component {
   componentWillReceiveProps(props) {
     const { user } = props
 
+    const badge = get(user, 'data.badge', false)
     const notifications = get(user, 'data.notifications', false)
 
     this.setState({
+      badge,
       notifications
     })
   }
 
-  toggleNotifications = notifications => {
-    const { toggleNotifications } = this.props
+  toggleBadge = badge => {
+    const { updateUser } = this.props
 
-    toggleNotifications(notifications)
+    updateUser({
+      badge
+    })
+
+    this.setState({
+      badge
+    })
+  }
+
+  toggleNotifications = notifications => {
+    const { updateUser } = this.props
+
+    updateUser({
+      notifications
+    })
 
     this.setState({
       notifications
@@ -54,8 +72,9 @@ class Settings extends Component {
 
     await logout()
 
-    const reset = NavigationActions.reset({
+    const reset = StackActions.reset({
       index: 0,
+      key: null,
       actions: [
         NavigationActions.navigate({
           routeName: 'login'
@@ -66,15 +85,58 @@ class Settings extends Component {
     navigation.dispatch(reset)
   }
 
+  renderLink(id) {
+    const base = 'https://mittens.app'
+
+    let icon
+    let label
+    let uri
+
+    switch (id) {
+      case 'privacy-policy':
+        label = 'Privacy policy'
+        uri = `${base}/privacy-policy`
+        icon = privacyPolicy
+
+        break
+
+      case 'about':
+        label = 'About Mittens'
+        uri = base
+        icon = about
+
+        break
+
+      case 'rate':
+        label = 'Rate Mittens'
+        uri = 'rate-mittens'
+        icon = rate
+
+        break
+
+      default:
+        return null
+    }
+
+    return (
+      <View key={id} style={styles.link}>
+        <Touchable style={styles.touchable} onPress={() => link.go(uri)}>
+          <Image style={styles.icon} source={icon} />
+          <Text style={styles.text}>{label}</Text>
+        </Touchable>
+      </View>
+    )
+  }
+
   render() {
-    const { name } = this.props
-    const { notifications } = this.state
+    const { badge, notifications } = this.state
+
+    const links = ['privacy-policy', 'about', 'rate']
 
     return (
       <Main>
-        <Main style={styles.main}>
-          {!!name && <Text style={styles.name}>Hello, {name}</Text>}
-          <View style={styles.toggle}>
+        <Main scroll>
+          <View style={[styles.toggle, styles.link]}>
             <Text style={styles.label}>Push notifications</Text>
             <Switch
               onTintColor={Colors.accent}
@@ -82,6 +144,15 @@ class Settings extends Component {
               value={notifications}
             />
           </View>
+          <View style={[styles.toggle, styles.link]}>
+            <Text style={styles.label}>Badge counter</Text>
+            <Switch
+              onTintColor={Colors.accent}
+              onValueChange={this.toggleBadge}
+              value={badge}
+            />
+          </View>
+          {links.map(id => this.renderLink(id))}
         </Main>
         <View style={styles.footer}>
           <Button label="Logout" onPress={this.logout} />
@@ -92,23 +163,32 @@ class Settings extends Component {
 }
 
 const styles = StyleSheet.create({
-  main: {
-    paddingHorizontal: Layout.margin
-  },
-  name: {
-    ...Fonts.subtitle,
-    color: Colors.text,
-    marginBottom: Layout.padding,
-    marginTop: Layout.margin
-  },
   toggle: {
     alignItems: 'center',
     flexDirection: 'row',
-    marginVertical: Layout.margin
+    padding: Layout.margin
   },
   label: {
     color: Colors.text,
     flex: 1
+  },
+  link: {
+    borderBottomColor: Colors.border,
+    borderBottomWidth: StyleSheet.hairlineWidth
+  },
+  touchable: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: Layout.margin
+  },
+  text: {
+    color: Colors.text,
+    flex: 1,
+    marginLeft: Layout.margin
+  },
+  icon: {
+    height: 30,
+    width: 30
   },
   footer: {
     padding: Layout.margin
@@ -116,26 +196,21 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => {
-  const { profile, user } = state
-
-  const name = (get(profile, 'data.name', '') || get(profile, 'data.login', ''))
-    .split(' ')
-    .shift()
+  const { user } = state
 
   return {
-    name,
-    profile,
     user
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getProfile: () => dispatch(getProfile()),
     logout: () => dispatch(logout()),
-    toggleNotifications: notifications =>
-      dispatch(toggleNotifications(notifications))
+    updateUser: user => dispatch(updateUser(user))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Settings)

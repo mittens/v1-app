@@ -1,7 +1,7 @@
 import Login from './login'
 
-import All from './all'
-import Unread from './unread'
+import Read from './read'
 import Settings from './settings'
+import Unread from './unread'
 
-export { Login, All, Unread, Settings }
+export { Login, Read, Settings, Unread }

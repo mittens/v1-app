@@ -33,15 +33,9 @@ export default class Notifications extends Component {
   }
 
   renderItem = ({ item }) => {
-    const { highlight, onPress } = this.props
+    const { onPress } = this.props
 
-    return (
-      <Notification
-        notification={item}
-        highlight={highlight}
-        onPress={onPress}
-      />
-    )
+    return <Notification notification={item} onPress={onPress} />
   }
 
   render() {
@@ -102,7 +96,7 @@ const styles = StyleSheet.create({
   },
   empty: {
     alignItems: 'center',
-    height: height * 3 / 4,
+    height: (height * 3) / 4,
     justifyContent: 'center'
   },
   done: {

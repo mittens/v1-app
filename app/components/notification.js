@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, Platform, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import moment from 'moment'
 
 import { Touchable } from '.'
@@ -7,7 +7,7 @@ import { Colors, Layout } from '../styles'
 
 export default class Notification extends Component {
   render() {
-    const { notification, highlight, onPress } = this.props
+    const { notification, onPress } = this.props
     const {
       repository,
       subject,
@@ -25,7 +25,7 @@ export default class Notification extends Component {
     const same = read === updated
 
     return (
-      <View style={highlight && unread && styles.unread}>
+      <View>
         <Touchable style={styles.main} onPress={() => onPress(notification)}>
           <Image style={styles.image} source={{ uri: avatar_url }} />
           <View style={styles.details}>
@@ -50,16 +50,13 @@ export default class Notification extends Component {
 }
 
 const styles = StyleSheet.create({
-  unread: {
-    backgroundColor: Colors.backgroundDark
-  },
   main: {
     alignItems: 'center',
     flexDirection: 'row',
     padding: Layout.margin
   },
   image: {
-    borderRadius: Platform.OS === 'android' ? 80 : 20,
+    borderRadius: Layout.borderRadius,
     height: 40,
     resizeMode: 'contain',
     width: 40

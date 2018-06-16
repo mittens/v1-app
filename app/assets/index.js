@@ -1,26 +1,26 @@
 import mittens from './mittens.png'
 
-import all from './all.png'
+import read from './read.png'
 import unread from './unread.png'
 import requests from './requests.png'
 import settings from './settings.png'
 
-import allActive from './all-active.png'
-import unreadActive from './unread-active.png'
-import requestsActive from './requests-active.png'
-import settingsActive from './settings-active.png'
-
 import check from './check.png'
+
+import about from './about.png'
+import help from './help.png'
+import privacyPolicy from './privacy-policy.png'
+import rate from './rate.png'
 
 export {
   mittens,
-  all,
+  read,
   unread,
   requests,
   settings,
-  allActive,
-  unreadActive,
-  requestsActive,
-  settingsActive,
-  check
+  check,
+  about,
+  help,
+  privacyPolicy,
+  rate
 }

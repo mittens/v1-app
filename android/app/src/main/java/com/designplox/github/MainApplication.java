@@ -2,6 +2,7 @@ package com.designplox.github;
 
 import android.app.Application;
 
+import com.RNRate.RNRatePackage;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -13,10 +14,12 @@ import java.util.List;
 
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+
         @Override
         public boolean getUseDeveloperSupport() {
             return BuildConfig.DEBUG;
@@ -27,7 +30,9 @@ public class MainApplication extends Application implements ReactApplication {
             return Arrays.asList(
                     new MainReactPackage(),
                     new RNFirebasePackage(),
-                    new RNFirebaseMessagingPackage()
+                    new RNFirebaseMessagingPackage(),
+                    new RNFirebaseNotificationsPackage(),
+                    new RNRatePackage()
             );
         }
 

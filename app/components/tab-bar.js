@@ -3,31 +3,18 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 
 import { Touchable } from '.'
-import {
-  all,
-  unread,
-  settings,
-  allActive,
-  unreadActive,
-  settingsActive
-} from '../assets'
+import { read, unread, settings } from '../assets'
 import { Colors, Fonts, Layout } from '../styles'
 
 const icons = {
-  all,
+  read,
   unread,
   settings
 }
 
-const iconsActive = {
-  all: allActive,
-  unread: unreadActive,
-  settings: settingsActive
-}
-
 export default class TabBar extends Component {
   render() {
-    const { navigation, jumpToIndex } = this.props
+    const { navigation, jumpTo } = this.props
     const { routes } = navigation.state
 
     return (
@@ -39,11 +26,11 @@ export default class TabBar extends Component {
             <Touchable
               key={key}
               style={styles.button}
-              onPress={() => jumpToIndex(index)}
+              onPress={() => jumpTo(key)}
             >
               <Image
                 style={[styles.icon, current && styles.active]}
-                source={current ? iconsActive[key] : icons[key]}
+                source={icons[key]}
               />
             </Touchable>
           )

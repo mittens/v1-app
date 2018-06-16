@@ -1,10 +1,11 @@
 import firebase from 'react-native-firebase'
 
 const messaging = firebase.messaging()
+const notifications = firebase.notifications()
 
 class Firebase {
   requestPermissions() {
-    messaging.requestPermissions()
+    messaging.requestPermission()
   }
 
   token() {
@@ -12,15 +13,23 @@ class Firebase {
   }
 
   notification() {
-    return messaging.getInitialNotification()
+    return notifications.getInitialNotification()
   }
 
   badge(number) {
-    messaging.setBadgeNumber(number)
+    if (this.badgeEnabled) {
+      notifications.setBadge(number)
+    } else {
+      notifications.setBadge(0)
+    }
   }
 
-  clear(id = '*') {
-    messaging.removeDeliveredNotification(id)
+  clear() {
+    notifications.removeAllDeliveredNotifications()
+  }
+
+  enableBadge(enabled) {
+    this.badgeEnabled = Boolean(enabled)
   }
 }
 

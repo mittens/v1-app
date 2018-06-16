@@ -4,7 +4,7 @@ import {
   GET_USER_FAILURE
 } from '../constants'
 
-import { api, dialog } from '../lib'
+import { api, dialog, firebase } from '../lib'
 
 export const getUserPending = () => {
   return {
@@ -34,6 +34,8 @@ export default () => {
       const { user } = await api.get('/users/me')
 
       dispatch(getUserSuccess(user))
+
+      firebase.enableBadge(user.badge)
     } catch (err) {
       dispatch(getUserFailure(err))
 

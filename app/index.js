@@ -6,19 +6,28 @@ import {
   StyleSheet,
   View
 } from 'react-native'
-import { StackNavigator, TabNavigator } from 'react-navigation'
+import {
+  createStackNavigator,
+  createBottomTabNavigator
+} from 'react-navigation'
 import { connect } from 'react-redux'
 
 import { TabBar } from './components'
 import { firebase } from './lib'
-import { Login, All, Unread, Settings } from './scenes'
+import { Login, Read, Settings, Unread } from './scenes'
 import { Colors } from './styles'
 
-const AppNavigator = TabNavigator(
+const AppNavigator = createBottomTabNavigator(
   {
-    unread: Unread,
-    all: All,
-    settings: Settings
+    unread: createStackNavigator({
+      Unread
+    }),
+    read: createStackNavigator({
+      Read
+    }),
+    settings: createStackNavigator({
+      Settings
+    })
   },
   {
     tabBarComponent: TabBar,
@@ -26,7 +35,7 @@ const AppNavigator = TabNavigator(
   }
 )
 
-export const Navigator = StackNavigator(
+export const Navigator = createStackNavigator(
   {
     login: Login,
     app: AppNavigator
@@ -34,7 +43,8 @@ export const Navigator = StackNavigator(
   {
     cardStyle: {
       shadowColor: 'transparent'
-    }
+    },
+    headerMode: 'none'
   }
 )
 

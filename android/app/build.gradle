@@ -82,16 +82,22 @@ android {
 
 dependencies {
     implementation project(':react-native-firebase')
+    implementation project(':react-native-rate')
 
-    implementation 'com.google.firebase:firebase-core:11.8.0'
-    implementation 'com.google.firebase:firebase-messaging:11.8.0'
+    implementation 'com.google.android.gms:play-services-base:15.0.1'
+
+    implementation 'com.google.firebase:firebase-core:15.0.2'
+    implementation 'com.google.firebase:firebase-messaging:15.0.2'
+
+    implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:support-v4:27.1.0'
-    implementation 'com.android.support:support-media-compat:27.1.0'
-    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:support-media-compat:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
 
+    //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'
 }
 

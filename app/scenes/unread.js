@@ -7,7 +7,7 @@ import { link } from '../lib'
 
 class Unread extends Component {
   static navigationOptions = {
-    header: <NavBar title="Unread" />
+    header: <NavBar title="New" />
   }
 
   componentDidMount = () => {
@@ -57,4 +57,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Unread)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Unread)

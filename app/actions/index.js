@@ -7,7 +7,7 @@ import logout from './logout'
 // api
 import getConfig from './get-config'
 import getUser from './get-user'
-import toggleNotifications from './toggle-notifications'
+import updateUser from './update-user'
 
 // github
 import getNotifications from './get-notifications'
@@ -24,5 +24,5 @@ export {
   loginWithToken,
   logout,
   markRead,
-  toggleNotifications
+  updateUser
 }
