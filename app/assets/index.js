@@ -1,6 +1,6 @@
 import mittens from './mittens.png'
 
-import read from './read.png'
+import all from './all.png'
 import unread from './unread.png'
 import requests from './requests.png'
 import settings from './settings.png'
@@ -14,7 +14,7 @@ import rate from './rate.png'
 
 export {
   mittens,
-  read,
+  all,
   unread,
   requests,
   settings,

@@ -37,7 +37,7 @@ export default class AuthToken extends Component {
     const Main = Platform.OS === 'android' ? View : KeyboardAvoidingView
 
     return (
-      <Modal animationType="fade" transparent={true} onRequestClose={onClose}>
+      <Modal animationType="fade" transparent onRequestClose={onClose}>
         <Main style={styles.modal} behavior="padding">
           <View style={styles.main}>
             <Text style={styles.title}>Enter token from GitHub</Text>

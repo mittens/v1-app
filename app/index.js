@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 
 import { TabBar } from './components'
 import { firebase } from './lib'
-import { Login, Read, Settings, Unread } from './scenes'
+import { Login, All, Settings, Unread } from './scenes'
 import { Colors } from './styles'
 
 const AppNavigator = createBottomTabNavigator(
@@ -22,8 +22,8 @@ const AppNavigator = createBottomTabNavigator(
     unread: createStackNavigator({
       Unread
     }),
-    read: createStackNavigator({
-      Read
+    all: createStackNavigator({
+      All
     }),
     settings: createStackNavigator({
       Settings

@@ -3,11 +3,11 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 
 import { Touchable } from '.'
-import { read, unread, settings } from '../assets'
+import { all, unread, settings } from '../assets'
 import { Colors, Fonts, Layout } from '../styles'
 
 const icons = {
-  read,
+  all,
   unread,
   settings
 }

@@ -85,7 +85,7 @@ export default class Auth extends Component {
       <SafeAreaView style={styles.main}>
         <WebView
           source={source}
-          startInLoadingState={true}
+          startInLoadingState
           onNavigationStateChange={this.onNavigationStateChange}
           scalesPageToFit={false}
           renderLoading={this.renderLoading}

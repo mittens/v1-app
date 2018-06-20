@@ -5,7 +5,7 @@ import { getNotifications, markRead } from '../actions'
 import { NavBar, Notifications } from '../components'
 import { link } from '../lib'
 
-class Read extends Component {
+class All extends Component {
   static navigationOptions = {
     header: <NavBar title="Notifications" />
   }
@@ -28,12 +28,12 @@ class Read extends Component {
   }
 
   render() {
-    const { notifications, loading } = this.props
+    const { data, loading } = this.props
 
     return (
       <Notifications
-        notifications={notifications}
-        highlight={true}
+        notifications={data}
+        highlight
         loading={loading}
         onPress={this.onPress}
         reload={this.refresh}
@@ -45,10 +45,8 @@ class Read extends Component {
 const mapStateToProps = state => {
   const { data, loading } = state.notifications
 
-  const notifications = data.filter(notification => !notification.unread)
-
   return {
-    notifications,
+    data,
     loading
   }
 }
@@ -63,4 +61,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Read)
+)(All)
