@@ -155,12 +155,7 @@ class Settings extends Component {
           {links.map(id => this.renderLink(id))}
         </Main>
         <View style={styles.footer}>
-          <Button
-            style={styles.logout}
-            styleLabel={styles.logoutLabel}
-            label="Logout"
-            onPress={this.logout}
-          />
+          <Button label="Logout" onPress={this.logout} />
         </View>
       </Main>
     )
@@ -197,14 +192,6 @@ const styles = StyleSheet.create({
   },
   footer: {
     padding: Layout.margin
-  },
-  logout: {
-    backgroundColor: Colors.background,
-    borderColor: Colors.primary,
-    borderWidth: 1
-  },
-  logoutLabel: {
-    color: Colors.primary
   }
 })
 
