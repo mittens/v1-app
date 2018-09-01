@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   loginWithToken: {
     backgroundColor: Colors.background,
     borderColor: Colors.primary,
-    borderWidth: 1,
+    borderWidth: Layout.borderWidth,
     margin: Layout.margin,
     marginTop: 0
   },

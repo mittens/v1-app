@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     borderColor: Colors.border,
     borderRadius: Layout.borderRadius,
-    borderWidth: 1
+    borderWidth: Layout.borderWidth
   },
   focused: {
     borderColor: Colors.primary

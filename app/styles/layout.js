@@ -3,6 +3,7 @@ export default {
   padding: 10,
 
   borderRadius: 5,
+  borderWidth: 2,
 
   tabBarHeight: 50,
   buttonHeight: 50,

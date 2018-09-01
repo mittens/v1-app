@@ -40,12 +40,14 @@ export default class AuthToken extends Component {
       <Modal animationType="fade" transparent onRequestClose={onClose}>
         <Main style={styles.modal} behavior="padding">
           <View style={styles.main}>
-            <Text style={styles.title}>Enter token from GitHub</Text>
-            <TextBox
-              style={styles.textbox}
-              onChangeText={this.onChangeText}
-              placeholder="Personal access token"
-            />
+            <View style={styles.container}>
+              <Text style={styles.title}>Enter token from GitHub</Text>
+              <TextBox
+                style={styles.textbox}
+                onChangeText={this.onChangeText}
+                placeholder="Personal access token"
+              />
+            </View>
             <View style={styles.footer}>
               <Button
                 style={styles.login}
@@ -68,10 +70,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   main: {
-    backgroundColor: Colors.background,
     borderRadius: Layout.borderRadius,
     margin: Layout.margin * 2,
     overflow: 'hidden'
+  },
+  container: {
+    backgroundColor: Colors.background
   },
   title: {
     ...Fonts.subtitle,
