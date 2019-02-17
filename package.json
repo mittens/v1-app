@@ -19,11 +19,13 @@
   },
   "devDependencies": {
     "babel-core": "^7.0.0-bridge.0",
-    "metro-react-native-babel-preset": "0.51.1"
+    "metro-react-native-babel-preset": "0.51.1",
+    "react-native-dotenv": "^0.2.0"
   },
   "babel": {
     "presets": [
-      "module:metro-react-native-babel-preset"
+      "module:metro-react-native-babel-preset",
+      "module:react-native-dotenv"
     ]
   }
 }

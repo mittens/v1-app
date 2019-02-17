@@ -26,7 +26,6 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		D9BC2E6E2219B184009CB1E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D9BC2E6D2219B184009CB1E5 /* GoogleService-Info.plist */; };
-		D9BC2ECB2219C5C2009CB1E5 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BC2ECA2219C5C2009CB1E5 /* LoginManager.m */; };
 		DC1C118557944BC58E1869CC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F3F9B1B9B26D4F1BA0A9B93E /* libz.tbd */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
@@ -327,8 +326,6 @@
 		D891CAF3AE7F443EA16AE4E1 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
 		D9BC2E6A2219AF79009CB1E5 /* Mittens.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Mittens.entitlements; path = Mittens/Mittens.entitlements; sourceTree = "<group>"; };
 		D9BC2E6D2219B184009CB1E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		D9BC2EC92219C5C2009CB1E5 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginManager.h; sourceTree = "<group>"; };
-		D9BC2ECA2219C5C2009CB1E5 /* LoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginManager.m; sourceTree = "<group>"; };
 		DFBAEDE2A9EC227C2240C4B2 /* Pods-Mittens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mittens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mittens/Pods-Mittens.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -437,8 +434,6 @@
 				D9BC2E6D2219B184009CB1E5 /* GoogleService-Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				D9BC2EC92219C5C2009CB1E5 /* LoginManager.h */,
-				D9BC2ECA2219C5C2009CB1E5 /* LoginManager.m */,
 			);
 			name = Mittens;
 			sourceTree = "<group>";
@@ -1062,7 +1057,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9BC2ECB2219C5C2009CB1E5 /* LoginManager.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
