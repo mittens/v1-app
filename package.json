@@ -1,46 +1,29 @@
 {
   "name": "mittens",
-  "description": "GitHub notifications",
   "private": true,
-  "author": {
-    "name": "Ali Zahid",
-    "email": "ali.zahid@live.com",
-    "url": "https://designplox.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/alizahid/mittens"
-  },
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "ios": "react-native run-ios --simulator 'iPhone X'"
+    "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "lodash.get": "^4.4.2",
-    "moment": "^2.22.2",
-    "react": "16.4.2",
-    "react-native": "0.56.0",
-    "react-native-firebase": "^4.3.8",
-    "react-native-rate": "^1.1.2",
-    "react-navigation": "^2.12.1",
-    "react-redux": "^5.0.7",
-    "redux": "^4.0.0",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "url-parse": "^1.4.3"
+    "immutability-helper": "^3.0.0",
+    "moment": "^2.24.0",
+    "react": "16.8.2",
+    "react-native": "0.58.4",
+    "react-native-code-push": "^5.5.2",
+    "react-native-firebase": "^5.2.2",
+    "react-native-sentry": "^0.42.0",
+    "react-redux": "^6.0.0",
+    "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "babel-preset-react-native": "^5",
-    "eslint": "^5.5.0",
-    "husky": "^1.0.0-rc.13",
-    "prettier": "^1.14.2",
-    "pretty-quick": "^1.6.0",
-    "react-native-dotenv": "^0.2.0",
-    "react-test-renderer": "16.4.2"
+    "babel-core": "^7.0.0-bridge.0",
+    "metro-react-native-babel-preset": "0.51.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
+  "babel": {
+    "presets": [
+      "module:metro-react-native-babel-preset"
+    ]
   }
 }

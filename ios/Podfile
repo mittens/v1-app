@@ -1,6 +1,26 @@
-platform :ios, '10.0'
+platform :ios, '9.0'
 
 target 'Mittens' do
+  pod 'React', path: '../node_modules/react-native'
+  pod 'yoga', path: '../node_modules/react-native/ReactCommon/yoga'
+
+  pod 'DoubleConversion', podspec: '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'Folly', podspec: '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+  pod 'glog', podspec: '../node_modules/react-native/third-party-podspecs/glog.podspec'
+
+  pod 'CodePush', path: '../node_modules/react-native-code-push'
+  pod 'SentryReactNative', path: '../node_modules/react-native-sentry'
+
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
   pod 'Firebase/Messaging'
+end
+
+post_install do |installer|
+  targets_to_ignore = %w[React yoga]
+
+  installer.pods_project.targets.each do |target|
+    target.remove_from_project if targets_to_ignore.include? target.name
+  end
 end
