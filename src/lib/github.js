@@ -15,7 +15,7 @@ class GitHub {
   }
 
   getNotifications() {
-    return this.request('/notifications?all=true')
+    return this.request(`/notifications?all=true&random=${Date.now()}`)
   }
 
   markAsRead(id) {

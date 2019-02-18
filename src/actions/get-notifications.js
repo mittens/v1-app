@@ -1,4 +1,4 @@
-import { dialog, github } from '../lib'
+import { dialog, github, firebase } from '../lib'
 
 export const GET_NOTIFICATIONS_PENDING = 'GET_NOTIFICATIONS_PENDING'
 export const GET_NOTIFICATIONS_SUCCESS = 'GET_NOTIFICATIONS_SUCCESS'
@@ -31,6 +31,10 @@ export default () => async dispatch => {
     const notifications = await github.getNotifications()
 
     dispatch(getNotificationsSuccess(notifications))
+
+    const unread = notifications.filter(({ unread }) => unread).length
+
+    await firebase.badge(unread)
   } catch (error) {
     dispatch(getNotificationsFailure(error))
 

@@ -10,6 +10,10 @@ export default {
     height: 50
   },
 
+  mittens: {
+    height: 170 / 2,
+    width: 200 / 2
+  },
   avatar: {
     height: 40,
     width: 40

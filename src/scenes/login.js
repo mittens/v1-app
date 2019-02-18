@@ -28,7 +28,7 @@ class Login extends Component {
     return (
       <SafeAreaView style={styles.main}>
         <Image style={styles.mittens} source={mittens} />
-        <Text style={styles.title} title>
+        <Text style={styles.title} color={Colors.accent} title>
           mittens
         </Text>
         <Text center>brings you push notifications {'\n'} from GitHub</Text>
@@ -51,11 +51,9 @@ const styles = StyleSheet.create({
     padding: Layout.margin
   },
   mittens: {
-    height: 170 / 2,
-    width: 200 / 2
+    ...Layout.mittens
   },
   title: {
-    color: Colors.accent,
     marginBottom: Layout.padding,
     marginTop: Layout.margin * 2
   },

@@ -40,15 +40,24 @@ class Firebase {
     return firebase.messaging().getToken()
   }
 
-  updatePushToken(user, token) {
+  async badge(number) {
+    if (number >= 0) {
+      await firebase.notifications().setBadge(number)
+    } else {
+      const current = await firebase.notifications().getBadge()
+
+      this.badge(current + number)
+    }
+  }
+
+  async updateToken(user, token) {
     const { username } = user
 
-    return firebase
+    await firebase
       .firestore()
       .collection('users')
       .doc(username)
       .update({
-        notifications: true,
         push_token: token
       })
   }
@@ -62,7 +71,7 @@ class Firebase {
       .doc(username)
       .delete()
 
-    return firebase.auth().currentUser.delete()
+    await firebase.auth().currentUser.delete()
   }
 }
 

@@ -10,7 +10,7 @@ export default () => async (dispatch, getState) => {
 
     const token = await firebase.token()
 
-    await firebase.updatePushToken(user, token)
+    await firebase.updateToken(user, token)
   } catch (error) {
     const { message } = error
 

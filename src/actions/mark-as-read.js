@@ -1,6 +1,6 @@
 import update from 'immutability-helper'
 
-import { dialog, github } from '../lib'
+import { dialog, github, firebase } from '../lib'
 
 import { getNotificationsSuccess } from './get-notifications'
 
@@ -27,6 +27,8 @@ export default notification => async (dispatch, getState) => {
     })
 
     dispatch(getNotificationsSuccess(data))
+
+    await firebase.badge(-1)
   } catch (error) {
     const { message } = error
 

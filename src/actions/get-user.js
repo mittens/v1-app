@@ -28,7 +28,9 @@ export default () => async dispatch => {
   dispatch(getUserPending())
 
   try {
-    firebase.user().onSnapshot(doc => dispatch(getUserSuccess(doc.data())))
+    const user = await firebase.user().get()
+
+    getUserSuccess(user.data())
   } catch (error) {
     dispatch(getUserFailure(error))
 

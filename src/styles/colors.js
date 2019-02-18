@@ -5,5 +5,7 @@ export default {
   background: '#fff',
 
   text: '#111',
-  textLight: '#999'
+  textLight: '#999',
+
+  modal: 'rgba(255, 255, 255, 0.975)'
 }

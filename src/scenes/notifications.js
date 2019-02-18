@@ -9,14 +9,21 @@ import {
   markAsRead,
   updatePushToken
 } from '../actions'
-import { exit, notifications_all, notifications_unread } from '../assets'
+import {
+  exit,
+  help,
+  mittens,
+  notifications_all,
+  notifications_unread
+} from '../assets'
 import { github } from '../lib'
-import { NavBar, Text, Touchable } from '../components'
-import { Layout, Colors } from '../styles'
+import { Help, NavBar, Text, Touchable } from '../components'
+import { Colors, Layout } from '../styles'
 
 class Notifications extends Component {
   state = {
-    unread: false
+    unread: false,
+    visible: false
   }
 
   componentDidMount() {
@@ -40,6 +47,14 @@ class Notifications extends Component {
     })
   }
 
+  help = () => {
+    const { visible } = this.state
+
+    this.setState({
+      visible: !visible
+    })
+  }
+
   logout = () => {
     const { logout } = this.props
 
@@ -52,7 +67,6 @@ class Notifications extends Component {
     const {
       unread,
       updated_at,
-      url,
       repository: {
         name,
         owner: { avatar_url }
@@ -61,13 +75,14 @@ class Notifications extends Component {
     } = item
 
     return (
-      <Touchable
-        style={[styles.item, !unread && styles.read]}
-        onPress={() => markAsRead(item)}
-      >
+      <Touchable style={[styles.item]} onPress={() => markAsRead(item)}>
         <Image style={styles.image} source={{ uri: avatar_url }} />
         <View style={styles.details}>
-          <Text style={styles.subject} semibold>
+          <Text
+            style={styles.subject}
+            color={unread ? Colors.text : Colors.textLight}
+            semibold
+          >
             {title}
           </Text>
           <Text color={Colors.textLight} small>
@@ -78,9 +93,19 @@ class Notifications extends Component {
     )
   }
 
+  renderEmpty = () => {
+    return (
+      <View style={styles.empty}>
+        <Image style={styles.mittens} source={mittens} />
+        <Text style={styles.clear}>all clear!</Text>
+        <Text>what a sight</Text>
+      </View>
+    )
+  }
+
   render() {
     const { notifications, loading, getNotifications } = this.props
-    const { unread } = this.state
+    const { unread, visible } = this.state
 
     const data = notifications.filter(notification =>
       unread ? notification.unread === true : true
@@ -90,8 +115,10 @@ class Notifications extends Component {
       <View style={styles.main}>
         <NavBar title={unread ? 'unread' : 'notifications'} />
         <FlatList
+          contentContainerStyle={{ flexGrow: 1 }}
           data={data}
           keyExtractor={({ id }) => id}
+          ListEmptyComponent={this.renderEmpty}
           onRefresh={getNotifications}
           refreshing={loading}
           renderItem={this.renderItem}
@@ -102,13 +129,18 @@ class Notifications extends Component {
               style={styles.icon}
               source={unread ? notifications_all : notifications_unread}
             />
-            <Text>show {unread ? 'all' : 'unread'}</Text>
+            <Text>{unread ? 'all' : 'unread'}</Text>
+          </Touchable>
+          <Touchable style={styles.link} onPress={this.help}>
+            <Image style={styles.icon} source={help} />
+            <Text>about</Text>
           </Touchable>
           <Touchable style={styles.link} onPress={this.logout}>
             <Image style={styles.icon} source={exit} />
             <Text>logout</Text>
           </Touchable>
         </SafeAreaView>
+        <Help onClose={this.help} visible={visible} />
       </View>
     )
   }
@@ -122,9 +154,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     padding: Layout.margin
-  },
-  read: {
-    opacity: 0.5
   },
   image: {
     borderRadius: Layout.border.radius,
@@ -151,6 +180,17 @@ const styles = StyleSheet.create({
     height: Layout.footer.icon.height,
     marginRight: Layout.padding,
     width: Layout.footer.icon.width
+  },
+  empty: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center'
+  },
+  mittens: {
+    ...Layout.mittens
+  },
+  clear: {
+    marginTop: Layout.margin
   }
 })
 
