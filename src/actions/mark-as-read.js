@@ -1,3 +1,4 @@
+import { Linking } from 'react-native'
 import update from 'immutability-helper'
 
 import { dialog, github, firebase } from '../lib'
@@ -10,7 +11,21 @@ export default notification => async (dispatch, getState) => {
       notifications: { notifications }
     } = getState()
 
-    const { id } = notification
+    const {
+      id,
+      unread,
+      subject: { url }
+    } = notification
+
+    const uri = url
+      .replace('api.github.com/repos', 'github.com')
+      .replace('/pulls/', '/pull/')
+
+    Linking.openURL(uri)
+
+    if (!unread) {
+      return
+    }
 
     await github.markAsRead(id)
 
