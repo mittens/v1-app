@@ -6,13 +6,13 @@
  */
 
 #import "AppDelegate.h"
+#import "RNFirebaseMessaging.h"
+#import "RNFirebaseNotifications.h"
+#import "RNSentry.h"
 #import <CodePush/CodePush.h>
 #import <Firebase.h>
-#import "RNFirebaseNotifications.h"
-#import "RNFirebaseMessaging.h"
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import "RNSentry.h"
 
 @implementation AppDelegate
 
@@ -39,8 +39,11 @@
   rootView.backgroundColor = [UIColor whiteColor];
   
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+  
   UIViewController *rootViewController = [UIViewController new];
+  
   rootViewController.view = rootView;
+  
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
@@ -48,11 +51,13 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo
-fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler{
+fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler
+{
   [[RNFirebaseNotifications instance] didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
 }
 
-- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
   [[RNFirebaseMessaging instance] didRegisterUserNotificationSettings:notificationSettings];
 }
 
