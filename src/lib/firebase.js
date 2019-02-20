@@ -40,6 +40,10 @@ class Firebase {
     return firebase.messaging().getToken()
   }
 
+  onNotification(callback) {
+    return firebase.notifications().onNotificationOpened(callback)
+  }
+
   async badge(number) {
     if (number >= 0) {
       await firebase.notifications().setBadge(number)

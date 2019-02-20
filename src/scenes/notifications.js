@@ -16,7 +16,7 @@ import {
   notifications_all,
   notifications_unread
 } from '../assets'
-import { github } from '../lib'
+import { firebase, github } from '../lib'
 import { Help, NavBar, Text, Touchable } from '../components'
 import { Colors, Layout } from '../styles'
 
@@ -37,6 +37,16 @@ class Notifications extends Component {
 
     getNotifications()
     updatePushToken()
+
+    this.listener = firebase.onNotification(notification => {
+      if (notification) {
+        getNotifications()
+      }
+    })
+  }
+
+  componentWillUnmount() {
+    this.listener()
   }
 
   toggle = () => {
