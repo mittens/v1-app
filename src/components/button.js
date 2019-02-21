@@ -31,20 +31,21 @@ export default class Button extends Component {
 const styles = StyleSheet.create({
   main: {
     backgroundColor: Colors.accent,
-    borderRadius: Layout.border.radius
+    borderRadius: Layout.border.radius,
+    height: Layout.button.height
   },
   loading: {
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: Layout.margin * (2 / 3)
+    justifyContent: 'center'
   },
   touchable: {
     alignItems: 'center',
+    height: Layout.button.height,
     justifyContent: 'center'
   },
   label: {
     color: Colors.background,
     fontWeight: Fonts.weight.semibold,
-    margin: Layout.margin * (2 / 3)
+    paddingHorizontal: Layout.button.height / 2
   }
 })

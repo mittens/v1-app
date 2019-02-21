@@ -9,6 +9,9 @@ export default {
   button: {
     height: 50
   },
+  textBox: {
+    height: 50
+  },
 
   mittens: {
     height: 170 / 2,

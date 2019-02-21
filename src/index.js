@@ -10,7 +10,7 @@ import { Sentry } from 'react-native-sentry'
 import { connect } from 'react-redux'
 import codePush from 'react-native-code-push'
 
-import { Login, Notifications } from './scenes'
+import { Landing, Notifications } from './scenes'
 
 Sentry.config(SENTRY_DSN).install()
 
@@ -22,7 +22,7 @@ class Mittens extends Component {
       return <Notifications />
     }
 
-    return <Login />
+    return <Landing />
   }
 }
 

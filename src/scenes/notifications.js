@@ -104,11 +104,17 @@ class Notifications extends Component {
   }
 
   renderEmpty = () => {
+    const { loading } = this.props
+
+    if (loading) {
+      return null
+    }
+
     return (
       <View style={styles.empty}>
         <Image style={styles.mittens} source={mittens} />
-        <Text style={styles.clear}>all clear!</Text>
-        <Text>what a sight</Text>
+        <Text style={styles.clear}>all clear</Text>
+        <Text color={Colors.textLight}>what a sight</Text>
       </View>
     )
   }
@@ -137,17 +143,14 @@ class Notifications extends Component {
           <Touchable style={styles.link} onPress={this.toggle}>
             <Image
               style={styles.icon}
-              source={unread ? notifications_all : notifications_unread}
+              source={unread ? notifications_unread : notifications_all}
             />
-            <Text>{unread ? 'all' : 'unread'}</Text>
           </Touchable>
           <Touchable style={styles.link} onPress={this.help}>
             <Image style={styles.icon} source={help} />
-            <Text>about</Text>
           </Touchable>
           <Touchable style={styles.link} onPress={this.logout}>
             <Image style={styles.icon} source={exit} />
-            <Text>logout</Text>
           </Touchable>
         </SafeAreaView>
         <Help onClose={this.help} visible={visible} />
@@ -188,7 +191,6 @@ const styles = StyleSheet.create({
   },
   icon: {
     height: Layout.footer.icon.height,
-    marginRight: Layout.padding,
     width: Layout.footer.icon.width
   },
   empty: {

@@ -1,29 +1,15 @@
 import React, { Component } from 'react'
-import {
-  ActivityIndicator,
-  Image,
-  SafeAreaView,
-  StyleSheet
-} from 'react-native'
+import { Image, SafeAreaView, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
 import { login } from '../actions'
 import { mittens } from '../assets'
-import { Button, Text } from '../components'
-import { dialog } from '../lib'
+import { Login, Text } from '../components'
 import { Layout, Colors } from '../styles'
 
-class Login extends Component {
-  login = async () => {
-    const { login } = this.props
-
-    const token = await dialog.login()
-
-    login(token)
-  }
-
+class Landing extends Component {
   render() {
-    const { loading } = this.props
+    const { loading, login } = this.props
 
     return (
       <SafeAreaView style={styles.main}>
@@ -32,12 +18,7 @@ class Login extends Component {
           mittens
         </Text>
         <Text center>brings you push notifications {'\n'} from GitHub</Text>
-        {loading && (
-          <ActivityIndicator style={styles.loading} color={Colors.accent} />
-        )}
-        {!loading && (
-          <Button style={styles.login} label="login" onPress={this.login} />
-        )}
+        <Login loading={loading} onLogin={token => login(token)} />
       </SafeAreaView>
     )
   }
@@ -59,10 +40,6 @@ const styles = StyleSheet.create({
   },
   loading: {
     marginTop: Layout.margin * 2
-  },
-  login: {
-    marginTop: Layout.margin * 2,
-    paddingHorizontal: Layout.margin
   }
 })
 
@@ -78,4 +55,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login)
+)(Landing)
