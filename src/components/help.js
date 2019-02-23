@@ -49,7 +49,7 @@ export default class Help extends Component {
             </Touchable>
           </View>
           <Touchable style={styles.close} onPress={onClose}>
-            <Text style={styles.close} center color={Colors.textLight}>
+            <Text style={styles.label} center color={Colors.textLight}>
               close
             </Text>
           </Touchable>
@@ -90,6 +90,10 @@ const styles = StyleSheet.create({
     width: 20
   },
   close: {
+    margin: Layout.margin,
+    marginBottom: Layout.margin * 2
+  },
+  label: {
     margin: Layout.margin
   }
 })

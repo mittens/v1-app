@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
-import { FlatList, Image, SafeAreaView, StyleSheet, View } from 'react-native'
+import {
+  FlatList,
+  Image,
+  RefreshControl,
+  SafeAreaView,
+  StyleSheet,
+  View
+} from 'react-native'
 import { connect } from 'react-redux'
 import moment from 'moment'
 
 import {
   getNotifications,
   logout,
+  markAllAsRead,
   markAsRead,
   updatePushToken
 } from '../actions'
@@ -120,7 +128,12 @@ class Notifications extends Component {
   }
 
   render() {
-    const { notifications, loading, getNotifications } = this.props
+    const {
+      notifications,
+      loading,
+      getNotifications,
+      markAllAsRead
+    } = this.props
     const { unread, visible } = this.state
 
     const data = notifications.filter(notification =>
@@ -129,14 +142,23 @@ class Notifications extends Component {
 
     return (
       <View style={styles.main}>
-        <NavBar title={unread ? 'unread' : 'notifications'} />
+        <NavBar
+          title={unread ? 'unread' : 'notifications'}
+          markAllAsRead={markAllAsRead}
+        />
         <FlatList
           contentContainerStyle={{ flexGrow: 1 }}
           data={data}
           keyExtractor={({ id }) => id}
           ListEmptyComponent={this.renderEmpty}
-          onRefresh={getNotifications}
-          refreshing={loading}
+          refreshControl={
+            <RefreshControl
+              onRefresh={getNotifications}
+              refreshing={loading}
+              size="default"
+              tintColor={Colors.primary}
+            />
+          }
           renderItem={this.renderItem}
         />
         <SafeAreaView style={styles.footer}>
@@ -187,6 +209,7 @@ const styles = StyleSheet.create({
   link: {
     alignItems: 'center',
     flexDirection: 'row',
+    marginHorizontal: Layout.margin,
     padding: Layout.footer.margin
   },
   icon: {
@@ -219,6 +242,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = dispatch => ({
   getNotifications: () => dispatch(getNotifications()),
   logout: () => dispatch(logout()),
+  markAllAsRead: () => dispatch(markAllAsRead()),
   markAsRead: notification => dispatch(markAsRead(notification)),
   updatePushToken: () => dispatch(updatePushToken())
 })

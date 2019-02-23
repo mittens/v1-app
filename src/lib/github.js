@@ -22,6 +22,10 @@ class GitHub {
     return this.request(`/notifications/threads/${id}`, 'PATCH')
   }
 
+  markAllAsRead() {
+    return this.request('/notifications', 'PUT')
+  }
+
   async request(uri, method = 'GET') {
     const { token } = this
 
