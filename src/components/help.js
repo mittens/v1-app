@@ -8,7 +8,7 @@ import {
   View
 } from 'react-native'
 
-import { love, mittens } from '../assets'
+import { close, love, mittens } from '../assets'
 import { Colors, Layout } from '../styles'
 
 import Text from './text'
@@ -47,12 +47,10 @@ export default class Help extends Component {
               <Image style={styles.love} source={love} />
               <Text color={Colors.textLight}>by ali zahid</Text>
             </Touchable>
+            <Touchable style={styles.close} onPress={onClose}>
+              <Image style={styles.icon} source={close} />
+            </Touchable>
           </View>
-          <Touchable style={styles.close} onPress={onClose}>
-            <Text style={styles.label} center color={Colors.textLight}>
-              close
-            </Text>
-          </Touchable>
         </SafeAreaView>
       </Modal>
     )
@@ -61,13 +59,19 @@ export default class Help extends Component {
 
 const styles = StyleSheet.create({
   modal: {
+    alignItems: 'center',
     backgroundColor: Colors.modal,
-    flex: 1
+    flex: 1,
+    justifyContent: 'center'
   },
   main: {
     alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center'
+    backgroundColor: Colors.background,
+    borderRadius: Layout.padding,
+    margin: Layout.margin * 2,
+    paddingHorizontal: Layout.margin,
+    paddingBottom: 0,
+    paddingTop: Layout.margin * 2
   },
   mittens: {
     ...Layout.mittens
@@ -90,10 +94,13 @@ const styles = StyleSheet.create({
     width: 20
   },
   close: {
-    margin: Layout.margin,
-    marginBottom: Layout.margin * 2
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    marginTop: Layout.margin * 2
   },
-  label: {
-    margin: Layout.margin
+  icon: {
+    height: Layout.footer.icon.height,
+    margin: Layout.margin,
+    width: Layout.footer.icon.width
   }
 })

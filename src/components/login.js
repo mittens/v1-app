@@ -122,12 +122,12 @@ const styles = StyleSheet.create({
   },
   modal: {
     alignItems: 'center',
-    backgroundColor: Colors.modalDark,
+    backgroundColor: Colors.modal,
     flex: 1,
     justifyContent: 'center'
   },
   main: {
-    backgroundColor: Colors.modal,
+    backgroundColor: Colors.background,
     borderRadius: Layout.padding,
     flexGrow: 0,
     margin: Layout.margin * 2
