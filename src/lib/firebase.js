@@ -10,6 +10,10 @@ class Firebase {
 
     const credentials = await firebase.auth().signInAnonymously()
 
+    await credentials.user.updateProfile({
+      displayName: login
+    })
+
     await firebase
       .firestore()
       .collection('users')
