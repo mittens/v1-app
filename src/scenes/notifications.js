@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
-import {
-  FlatList,
-  Image,
-  RefreshControl,
-  SafeAreaView,
-  StyleSheet,
-  View
-} from 'react-native'
+import { FlatList, Image, RefreshControl, StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
 import moment from 'moment'
 
@@ -17,21 +10,14 @@ import {
   markAsRead,
   updatePushToken
 } from '../actions'
-import {
-  exit,
-  help,
-  mittens,
-  notifications_all,
-  notifications_unread
-} from '../assets'
+import { mittens } from '../assets'
 import { firebase, github } from '../lib'
-import { Help, NavBar, Text, Touchable } from '../components'
+import { NavBar, TabBar, Text, Touchable } from '../components'
 import { Colors, Layout } from '../styles'
 
 class Notifications extends Component {
   state = {
-    unread: false,
-    visible: false
+    unread: false
   }
 
   componentDidMount() {
@@ -62,14 +48,6 @@ class Notifications extends Component {
 
     this.setState({
       unread: !unread
-    })
-  }
-
-  help = () => {
-    const { visible } = this.state
-
-    this.setState({
-      visible: !visible
     })
   }
 
@@ -134,7 +112,7 @@ class Notifications extends Component {
       getNotifications,
       markAllAsRead
     } = this.props
-    const { unread, visible } = this.state
+    const { unread } = this.state
 
     const data = notifications.filter(notification =>
       unread ? notification.unread === true : true
@@ -161,21 +139,7 @@ class Notifications extends Component {
           }
           renderItem={this.renderItem}
         />
-        <SafeAreaView style={styles.footer}>
-          <Touchable style={styles.link} onPress={this.toggle}>
-            <Image
-              style={styles.icon}
-              source={unread ? notifications_unread : notifications_all}
-            />
-          </Touchable>
-          <Touchable style={styles.link} onPress={this.help}>
-            <Image style={styles.icon} source={help} />
-          </Touchable>
-          <Touchable style={styles.link} onPress={this.logout}>
-            <Image style={styles.icon} source={exit} />
-          </Touchable>
-        </SafeAreaView>
-        <Help onClose={this.help} visible={visible} />
+        <TabBar toggle={this.toggle} unread={unread} />
       </View>
     )
   }
@@ -201,20 +165,6 @@ const styles = StyleSheet.create({
   },
   subject: {
     marginBottom: Layout.padding
-  },
-  footer: {
-    justifyContent: 'center',
-    flexDirection: 'row'
-  },
-  link: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginHorizontal: Layout.margin,
-    padding: Layout.footer.margin
-  },
-  icon: {
-    height: Layout.footer.icon.height,
-    width: Layout.footer.icon.width
   },
   empty: {
     alignItems: 'center',
