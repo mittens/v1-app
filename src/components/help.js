@@ -69,9 +69,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     borderRadius: Layout.padding,
     margin: Layout.margin * 2,
+    paddingBottom: Layout.margin * 2,
     paddingHorizontal: Layout.margin,
-    paddingBottom: 0,
-    paddingTop: Layout.margin * 2
+    paddingTop: Layout.margin * 3
   },
   mittens: {
     ...Layout.mittens
@@ -96,7 +96,9 @@ const styles = StyleSheet.create({
   close: {
     alignItems: 'center',
     alignSelf: 'stretch',
-    marginTop: Layout.margin * 2
+    position: 'absolute',
+    right: 0,
+    top: 0
   },
   icon: {
     height: Layout.footer.icon.height,
