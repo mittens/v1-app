@@ -13,7 +13,7 @@ export default class Button extends Component {
     if (loading) {
       return (
         <View style={[styles.main, styles.loading, style]}>
-          <ActivityIndicator color={Colors.background} />
+          <ActivityIndicator style={styles.spinner} color={Colors.background} />
         </View>
       )
     }
@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
   loading: {
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  spinner: {
+    marginHorizontal: Layout.margin
   },
   touchable: {
     alignItems: 'center',
