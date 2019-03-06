@@ -4,6 +4,7 @@ import login from './login'
 import logout from './logout'
 import markAllAsRead from './mark-all-as-read'
 import markAsRead from './mark-as-read'
+import startAuth from './start-auth'
 import updatePushToken from './update-push-token'
 
 export {
@@ -13,5 +14,6 @@ export {
   logout,
   markAllAsRead,
   markAsRead,
+  startAuth,
   updatePushToken
 }

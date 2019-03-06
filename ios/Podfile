@@ -14,6 +14,7 @@ target 'Mittens' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Functions'
   pod 'Firebase/Messaging'
 end
 

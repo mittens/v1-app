@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
-import { Image, SafeAreaView, StyleSheet } from 'react-native'
+import {
+  ActivityIndicator,
+  Image,
+  SafeAreaView,
+  StyleSheet
+} from 'react-native'
 import { connect } from 'react-redux'
 
-import { login } from '../actions'
+import { startAuth } from '../actions'
 import { mittens } from '../assets'
-import { Login, Text } from '../components'
+import { Button, Text } from '../components'
 import { Layout, Colors } from '../styles'
 
 class Landing extends Component {
   render() {
-    const { loading, login } = this.props
+    const { loading, startAuth } = this.props
 
     return (
       <SafeAreaView style={styles.main}>
@@ -18,7 +23,17 @@ class Landing extends Component {
           mittens
         </Text>
         <Text center>brings you push notifications {'\n'} from GitHub</Text>
-        <Login loading={loading} onLogin={token => login(token)} />
+        {loading && (
+          <ActivityIndicator style={styles.spinner} color={Colors.primary} />
+        )}
+        {!loading && (
+          <Button
+            style={styles.login}
+            label="login with GitHub"
+            loading={loading}
+            onPress={startAuth}
+          />
+        )}
       </SafeAreaView>
     )
   }
@@ -38,7 +53,10 @@ const styles = StyleSheet.create({
     marginBottom: Layout.padding,
     marginTop: Layout.margin * 2
   },
-  loading: {
+  spinner: {
+    marginTop: Layout.margin * 2
+  },
+  login: {
     marginTop: Layout.margin * 2
   }
 })
@@ -49,7 +67,7 @@ const mapStateToProps = ({ user: { loading, user } }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  login: token => dispatch(login(token))
+  startAuth: () => dispatch(startAuth())
 })
 
 export default connect(
