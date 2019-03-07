@@ -21,7 +21,7 @@ export default class TabBar extends Component {
   }
 
   render() {
-    const { unread, toggle } = this.props
+    const { unread, logout, toggle } = this.props
     const { visible } = this.state
 
     return (
@@ -36,7 +36,7 @@ export default class TabBar extends Component {
           <Touchable style={styles.link} onPress={this.toggle}>
             <Image style={styles.icon} source={help} />
           </Touchable>
-          <Touchable style={styles.link} onPress={this.logout}>
+          <Touchable style={styles.link} onPress={logout}>
             <Image style={styles.icon} source={exit} />
           </Touchable>
         </SafeAreaView>

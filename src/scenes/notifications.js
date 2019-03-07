@@ -51,12 +51,6 @@ class Notifications extends Component {
     })
   }
 
-  logout = () => {
-    const { logout } = this.props
-
-    logout()
-  }
-
   renderItem = ({ item }) => {
     const { markAsRead } = this.props
 
@@ -119,7 +113,7 @@ class Notifications extends Component {
   }
 
   render() {
-    const { notifications, markAllAsRead } = this.props
+    const { notifications, logout, markAllAsRead } = this.props
     const { unread } = this.state
 
     const data = notifications.filter(notification =>
@@ -140,7 +134,7 @@ class Notifications extends Component {
           refreshControl={this.refreshControl()}
           renderItem={this.renderItem}
         />
-        <TabBar toggle={this.toggle} unread={unread} />
+        <TabBar logout={logout} toggle={this.toggle} unread={unread} />
       </View>
     )
   }
