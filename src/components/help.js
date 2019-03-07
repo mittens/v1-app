@@ -4,6 +4,7 @@ import {
   Linking,
   Modal,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   View
 } from 'react-native'
@@ -34,7 +35,10 @@ export default class Help extends Component {
         visible={visible}
       >
         <SafeAreaView style={styles.modal}>
-          <View style={styles.main}>
+          <ScrollView
+            style={styles.main}
+            contentContainerStyle={styles.content}
+          >
             <Touchable onPress={this.web}>
               <Image style={styles.mittens} source={mittens} />
             </Touchable>
@@ -42,6 +46,21 @@ export default class Help extends Component {
               mittens
             </Text>
             <Text center>brings you push notifications {'\n'} from GitHub</Text>
+            <View style={styles.help}>
+              <Text center subtitle>
+                tips
+              </Text>
+              <Text style={styles.tip} center small>
+                tap a notification to open in browser and mark as read
+              </Text>
+              <Text style={styles.tip} center small>
+                swipe right on a notification to mark as read without opening in
+                browser
+              </Text>
+              <Text style={styles.tip} center small>
+                tap the double ticks on the top right to mark all as read
+              </Text>
+            </View>
             <Touchable style={styles.credits} onPress={this.ali}>
               <Text color={Colors.textLight}>built with</Text>
               <Image style={styles.love} source={love} />
@@ -50,7 +69,7 @@ export default class Help extends Component {
             <Touchable style={styles.close} onPress={onClose}>
               <Image style={styles.icon} source={close} />
             </Touchable>
-          </View>
+          </ScrollView>
         </SafeAreaView>
       </Modal>
     )
@@ -65,10 +84,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   main: {
-    alignItems: 'center',
     backgroundColor: Colors.background,
     borderRadius: Layout.padding,
     margin: Layout.margin * 2,
+    flexGrow: 0
+  },
+  content: {
+    alignItems: 'center',
     paddingBottom: Layout.margin * 2,
     paddingHorizontal: Layout.margin,
     paddingTop: Layout.margin * 3
@@ -80,13 +102,18 @@ const styles = StyleSheet.create({
     marginBottom: Layout.padding,
     marginTop: Layout.margin * 2
   },
+  help: {
+    backgroundColor: Colors.backgroundDark,
+    marginHorizontal: -Layout.margin,
+    marginVertical: Layout.margin,
+    padding: Layout.margin
+  },
+  tip: {
+    marginTop: Layout.padding
+  },
   credits: {
     alignItems: 'center',
-    flexDirection: 'row',
-    marginTop: Layout.margin * 2
-  },
-  link: {
-    margin: Layout.margin
+    flexDirection: 'row'
   },
   love: {
     height: 20,
