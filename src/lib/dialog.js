@@ -13,11 +13,12 @@ export default class Dialog {
     return new Promise(resolve =>
       Alert.alert(null, message, [
         {
+          onPress: () => resolve(false),
           style: 'cancel',
           text: 'no'
         },
         {
-          onPress: () => resolve(),
+          onPress: () => resolve(true),
           text: 'yes'
         }
       ])

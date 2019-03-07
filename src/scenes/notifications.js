@@ -50,7 +50,7 @@ class Notifications extends Component {
     })
   }
 
-  async logout() {
+  logout = async () => {
     const confirm = await dialog.confirm('Are you sure you want to log out?')
 
     if (confirm) {
