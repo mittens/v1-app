@@ -30,7 +30,6 @@ class Landing extends Component {
           <Button
             style={styles.login}
             label="login with GitHub"
-            loading={loading}
             onPress={startAuth}
           />
         )}
