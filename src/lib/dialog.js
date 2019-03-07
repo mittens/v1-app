@@ -1,8 +1,8 @@
-import { AlertIOS } from 'react-native'
+import { Alert } from 'react-native'
 
 export default class Dialog {
   static alert(message) {
-    AlertIOS.alert(null, message, [
+    Alert.alert(null, message, [
       {
         text: 'okay'
       }
@@ -11,7 +11,7 @@ export default class Dialog {
 
   static confirm(message) {
     return new Promise(resolve =>
-      AlertIOS.alert(null, message, [
+      Alert.alert(null, message, [
         {
           style: 'cancel',
           text: 'no'
