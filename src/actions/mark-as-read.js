@@ -5,7 +5,7 @@ import { dialog, github, firebase } from '../lib'
 
 import { getNotificationsSuccess } from './get-notifications'
 
-export default notification => async (dispatch, getState) => {
+export default (notification, open) => async (dispatch, getState) => {
   try {
     const {
       notifications: { notifications }
@@ -17,11 +17,13 @@ export default notification => async (dispatch, getState) => {
       subject: { url }
     } = notification
 
-    const uri = url
-      .replace('api.github.com/repos', 'github.com')
-      .replace('/pulls/', '/pull/')
+    if (open) {
+      const uri = url
+        .replace('api.github.com/repos', 'github.com')
+        .replace('/pulls/', '/pull/')
 
-    Linking.openURL(uri)
+      Linking.openURL(uri)
+    }
 
     if (!unread) {
       return

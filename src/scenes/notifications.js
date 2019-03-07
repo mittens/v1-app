@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { FlatList, Image, RefreshControl, StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
-import moment from 'moment'
 
 import {
   getNotifications,
@@ -12,7 +11,7 @@ import {
 } from '../actions'
 import { mittens } from '../assets'
 import { dialog, firebase, github } from '../lib'
-import { NavBar, TabBar, Text, Touchable } from '../components'
+import { NavBar, Notification, TabBar, Text } from '../components'
 import { Colors, Layout } from '../styles'
 
 class Notifications extends Component {
@@ -64,33 +63,7 @@ class Notifications extends Component {
   renderItem = ({ item }) => {
     const { markAsRead } = this.props
 
-    const {
-      unread,
-      updated_at,
-      repository: {
-        name,
-        owner: { avatar_url }
-      },
-      subject: { title }
-    } = item
-
-    return (
-      <Touchable style={[styles.item]} onPress={() => markAsRead(item)}>
-        <Image style={styles.image} source={{ uri: avatar_url }} />
-        <View style={styles.details}>
-          <Text
-            style={styles.subject}
-            color={unread ? Colors.text : Colors.textLight}
-            semibold
-          >
-            {title}
-          </Text>
-          <Text color={Colors.textLight} small>
-            {name}, {moment(updated_at).fromNow()}
-          </Text>
-        </View>
-      </Touchable>
-    )
+    return <Notification item={item} markAsRead={markAsRead} />
   }
 
   renderEmpty = () => {
@@ -137,7 +110,7 @@ class Notifications extends Component {
           markAllAsRead={markAllAsRead}
         />
         <FlatList
-          contentContainerStyle={{ flexGrow: 1 }}
+          contentContainerStyle={styles.content}
           data={data}
           keyExtractor={({ id }) => id}
           ListEmptyComponent={this.renderEmpty}
@@ -154,22 +127,8 @@ const styles = StyleSheet.create({
   main: {
     flex: 1
   },
-  item: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    padding: Layout.margin
-  },
-  image: {
-    borderRadius: Layout.border.radius,
-    height: Layout.avatar.height,
-    width: Layout.avatar.width
-  },
-  details: {
-    flex: 1,
-    marginLeft: Layout.margin
-  },
-  subject: {
-    marginBottom: Layout.padding
+  content: {
+    flexGrow: 1
   },
   empty: {
     alignItems: 'center',
@@ -198,7 +157,7 @@ const mapDispatchToProps = dispatch => ({
   getNotifications: () => dispatch(getNotifications()),
   logout: () => dispatch(logout()),
   markAllAsRead: () => dispatch(markAllAsRead()),
-  markAsRead: notification => dispatch(markAsRead(notification)),
+  markAsRead: (notification, open) => dispatch(markAsRead(notification, open)),
   updatePushToken: () => dispatch(updatePushToken())
 })
 
