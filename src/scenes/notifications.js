@@ -87,7 +87,7 @@ class Notifications extends Component {
     const { notifications, loading } = this.props
 
     if (notifications.length === 0 && loading) {
-      return
+      return null
     }
 
     return (
