@@ -10,6 +10,7 @@ target 'Mittens' do
 
   pod 'CodePush', path: '../node_modules/react-native-code-push'
   pod 'SentryReactNative', path: '../node_modules/react-native-sentry'
+  pod 'RNGestureHandler', path: '../node_modules/react-native-gesture-handler'
 
   pod 'Firebase/Core'
   pod 'Firebase/Auth'

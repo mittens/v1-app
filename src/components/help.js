@@ -51,11 +51,10 @@ export default class Help extends Component {
                 tips
               </Text>
               <Text style={styles.tip} center small>
-                tap a notification to open in browser and mark as read
+                swipe right on a notification to mark as read
               </Text>
               <Text style={styles.tip} center small>
-                swipe right on a notification to mark as read without opening in
-                browser
+                swipe left on a notification to mark as read and open in browser
               </Text>
               <Text style={styles.tip} center small>
                 tap the double ticks on the top right to mark all as read

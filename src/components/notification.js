@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet, View } from 'react-native'
+import Swipeable from 'react-native-gesture-handler/Swipeable'
 import moment from 'moment'
 
 import { Colors, Layout } from '../styles'
@@ -7,6 +8,38 @@ import { Colors, Layout } from '../styles'
 import Text from './text'
 
 export default class Notification extends Component {
+  renderLeftActions = () => {
+    return (
+      <Text style={styles.action} color={Colors.accent}>
+        mark as read
+      </Text>
+    )
+  }
+
+  renderRightActions = () => {
+    return (
+      <Text style={styles.action} color={Colors.accent}>
+        open
+      </Text>
+    )
+  }
+
+  mark = () => {
+    const { item, markAsRead } = this.props
+
+    markAsRead(item)
+
+    this.swipeable.close()
+  }
+
+  open = () => {
+    const { item, markAsRead } = this.props
+
+    markAsRead(item, true)
+
+    this.swipeable.close()
+  }
+
   render() {
     const { item } = this.props
 
@@ -21,26 +54,36 @@ export default class Notification extends Component {
     } = item
 
     return (
-      <View style={styles.main}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: avatar_url
-          }}
-        />
-        <View style={styles.details}>
-          <Text
-            style={styles.subject}
-            color={unread ? Colors.text : Colors.textLight}
-            semibold
-          >
-            {title}
-          </Text>
-          <Text color={Colors.textLight} small>
-            {name}, {moment(updated_at).fromNow()}
-          </Text>
+      <Swipeable
+        ref={swipeable => {
+          this.swipeable = swipeable
+        }}
+        onSwipeableLeftOpen={this.mark}
+        onSwipeableRightOpen={this.open}
+        renderLeftActions={this.renderLeftActions}
+        renderRightActions={this.renderRightActions}
+      >
+        <View style={styles.main}>
+          <Image
+            style={styles.image}
+            source={{
+              uri: avatar_url
+            }}
+          />
+          <View style={styles.details}>
+            <Text
+              style={styles.subject}
+              color={unread ? Colors.text : Colors.textLight}
+              semibold
+            >
+              {title}
+            </Text>
+            <Text color={Colors.textLight} small>
+              {name}, {moment(updated_at).fromNow()}
+            </Text>
+          </View>
         </View>
-      </View>
+      </Swipeable>
     )
   }
 }
@@ -64,8 +107,8 @@ const styles = StyleSheet.create({
   subject: {
     marginBottom: Layout.padding
   },
-  help: {
-    position: 'absolute',
-    marginLeft: Layout.margin
+  action: {
+    alignSelf: 'center',
+    marginHorizontal: Layout.margin
   }
 })

@@ -11,6 +11,7 @@
     "react-native": "0.58.6",
     "react-native-code-push": "^5.5.2",
     "react-native-firebase": "^5.2.3",
+    "react-native-gesture-handler": "^1.1.0",
     "react-native-sentry": "^0.42.0",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
