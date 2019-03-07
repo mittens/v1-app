@@ -9,27 +9,18 @@ export default class Dialog {
     ])
   }
 
-  static login() {
+  static confirm(message) {
     return new Promise(resolve =>
-      AlertIOS.prompt(
-        'login with personal access token',
-        'create a personal access token on `GitHub > Settings > Developer settings > Personal access tokens` and paste here',
-        [
-          {
-            style: 'cancel',
-            text: 'cancel'
-          },
-          {
-            onPress: token => {
-              if (token) {
-                resolve(token)
-              }
-            },
-            text: 'login'
-          }
-        ],
-        'secure-text'
-      )
+      AlertIOS.alert(null, message, [
+        {
+          style: 'cancel',
+          text: 'no'
+        },
+        {
+          onPress: () => resolve(),
+          text: 'yes'
+        }
+      ])
     )
   }
 }

@@ -11,7 +11,7 @@ import {
   updatePushToken
 } from '../actions'
 import { mittens } from '../assets'
-import { firebase, github } from '../lib'
+import { dialog, firebase, github } from '../lib'
 import { NavBar, TabBar, Text, Touchable } from '../components'
 import { Colors, Layout } from '../styles'
 
@@ -49,6 +49,16 @@ class Notifications extends Component {
     this.setState({
       unread: !unread
     })
+  }
+
+  async logout() {
+    const confirm = await dialog.confirm('Are you sure you want to log out?')
+
+    if (confirm) {
+      const { logout } = this.props
+
+      logout()
+    }
   }
 
   renderItem = ({ item }) => {
@@ -113,7 +123,7 @@ class Notifications extends Component {
   }
 
   render() {
-    const { notifications, logout, markAllAsRead } = this.props
+    const { notifications, markAllAsRead } = this.props
     const { unread } = this.state
 
     const data = notifications.filter(notification =>
@@ -134,7 +144,7 @@ class Notifications extends Component {
           refreshControl={this.refreshControl()}
           renderItem={this.renderItem}
         />
-        <TabBar logout={logout} toggle={this.toggle} unread={unread} />
+        <TabBar logout={this.logout} toggle={this.toggle} unread={unread} />
       </View>
     )
   }
