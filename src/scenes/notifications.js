@@ -90,10 +90,10 @@ class Notifications extends Component {
   }
 
   renderEmpty = () => {
-    const { loading } = this.props
+    const { notifications, loading } = this.props
 
-    if (loading) {
-      return null
+    if (notifications.length === 0 && loading) {
+      return
     }
 
     return (
@@ -105,13 +105,21 @@ class Notifications extends Component {
     )
   }
 
+  refreshControl = () => {
+    const { loading, getNotifications } = this.props
+
+    return (
+      <RefreshControl
+        onRefresh={getNotifications}
+        refreshing={loading}
+        size="default"
+        tintColor={Colors.primary}
+      />
+    )
+  }
+
   render() {
-    const {
-      notifications,
-      loading,
-      getNotifications,
-      markAllAsRead
-    } = this.props
+    const { notifications, markAllAsRead } = this.props
     const { unread } = this.state
 
     const data = notifications.filter(notification =>
@@ -129,14 +137,7 @@ class Notifications extends Component {
           data={data}
           keyExtractor={({ id }) => id}
           ListEmptyComponent={this.renderEmpty}
-          refreshControl={
-            <RefreshControl
-              onRefresh={getNotifications}
-              refreshing={loading}
-              size="default"
-              tintColor={Colors.primary}
-            />
-          }
+          refreshControl={this.refreshControl()}
           renderItem={this.renderItem}
         />
         <TabBar toggle={this.toggle} unread={unread} />
