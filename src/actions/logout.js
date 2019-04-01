@@ -9,13 +9,13 @@ export default () => async (dispatch, getState) => {
       user: { user }
     } = getState()
 
+    dispatch(getUserSuccess(null))
+    dispatch(getNotificationsSuccess([]))
+
     await firebase.logout(user)
   } catch (error) {
     const { message } = error
 
     dialog.alert(message)
-  } finally {
-    dispatch(getUserSuccess(null))
-    dispatch(getNotificationsSuccess([]))
   }
 }

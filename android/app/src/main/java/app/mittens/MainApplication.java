@@ -8,6 +8,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.microsoft.codepush.react.CodePush;
+import com.proyecto26.inappbrowser.RNInAppBrowserPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 
 import java.util.Arrays;
@@ -47,6 +48,7 @@ public class MainApplication extends Application implements ReactApplication {
                     new RNFirebaseMessagingPackage(),
                     new RNFirebaseNotificationsPackage(),
                     new RNGestureHandlerPackage(),
+                    new RNInAppBrowserPackage(),
                     new RNSentryPackage()
             );
         }

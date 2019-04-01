@@ -9,8 +9,9 @@ target 'Mittens' do
   pod 'glog', podspec: '../node_modules/react-native/third-party-podspecs/glog.podspec'
 
   pod 'CodePush', path: '../node_modules/react-native-code-push'
-  pod 'SentryReactNative', path: '../node_modules/react-native-sentry'
   pod 'RNGestureHandler', path: '../node_modules/react-native-gesture-handler'
+  pod 'RNInAppBrowser', path: '../node_modules/react-native-inappbrowser-reborn'
+  pod 'SentryReactNative', path: '../node_modules/react-native-sentry'
 
   pod 'Firebase/Core'
   pod 'Firebase/Auth'

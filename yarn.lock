@@ -4290,6 +4290,13 @@ react-native-gesture-handler@^1.1.0:
     invariant "^2.2.2"
     prop-types "^15.5.10"
 
+react-native-inappbrowser-reborn@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-inappbrowser-reborn/-/react-native-inappbrowser-reborn-2.0.0.tgz#5ebd4519e6ad2f0565f89200955474c0edc56c13"
+  integrity sha512-i1x7ZtkL6lJs4CVFAsp9cfLn/xdg1fUlsgT+/zyWW9AdDQSYKDL+bPx0c9LAlGgb2+6saJ1wsKuD9jqKniO2SQ==
+  dependencies:
+    invariant "^2.2.4"
+
 react-native-sentry@^0.42.0:
   version "0.42.0"
   resolved "https://registry.yarnpkg.com/react-native-sentry/-/react-native-sentry-0.42.0.tgz#9cd59659d9b6cd36d6fc4c48f50613cd82cde25f"

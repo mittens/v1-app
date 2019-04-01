@@ -13,6 +13,7 @@
     "react-native-code-push": "^5.6.0",
     "react-native-firebase": "^5.2.3",
     "react-native-gesture-handler": "^1.1.0",
+    "react-native-inappbrowser-reborn": "^2.0.0",
     "react-native-sentry": "^0.42.0",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
