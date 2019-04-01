@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { FlatList, Image, RefreshControl, StyleSheet, View } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -67,17 +67,17 @@ class Notifications extends Component {
   }
 
   renderEmpty = () => {
-    const { notifications, loading } = this.props
-
-    if (notifications.length === 0 && loading) {
-      return null
-    }
+    const { loading } = this.props
 
     return (
       <View style={styles.empty}>
         <Image style={styles.mittens} source={mittens} />
-        <Text style={styles.clear}>all clear</Text>
-        <Text color={Colors.textLight}>what a sight</Text>
+        {!loading && (
+          <Fragment>
+            <Text style={styles.clear}>all clear</Text>
+            <Text color={Colors.textLight}>what a sight</Text>
+          </Fragment>
+        )}
       </View>
     )
   }
@@ -87,9 +87,10 @@ class Notifications extends Component {
 
     return (
       <RefreshControl
+        colors={[Colors.primary, Colors.accent]}
         onRefresh={getNotifications}
         refreshing={loading}
-        size="default"
+        size={RefreshControl.SIZE.DEFAULT}
         tintColor={Colors.primary}
       />
     )
