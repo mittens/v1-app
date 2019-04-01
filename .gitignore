@@ -29,6 +29,9 @@ build/
 .gradle
 local.properties
 *.iml
+*.apk
+*.aab
+android/app/release/output.json
 
 # node.js
 #
