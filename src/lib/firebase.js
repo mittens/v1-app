@@ -64,13 +64,19 @@ class Firebase {
     return firebase.notifications().onNotificationOpened(callback)
   }
 
+  async clear() {
+    await firebase.notifications().removeAllDeliveredNotifications()
+
+    return this.badge(0)
+  }
+
   async badge(number) {
     if (number >= 0) {
-      await firebase.notifications().setBadge(number)
+      return firebase.notifications().setBadge(number)
     } else {
       const current = await firebase.notifications().getBadge()
 
-      this.badge(current + number)
+      return this.badge(current + number)
     }
   }
 

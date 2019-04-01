@@ -26,7 +26,7 @@ export default () => async (dispatch, getState) => {
 
     dispatch(getNotificationsSuccess(data))
 
-    await firebase.badge(0)
+    await firebase.clear()
   } catch (error) {
     const { message } = error
 
