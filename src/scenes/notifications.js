@@ -1,5 +1,12 @@
 import React, { Component, Fragment } from 'react'
-import { FlatList, Image, RefreshControl, StyleSheet, View } from 'react-native'
+import {
+  AppState,
+  FlatList,
+  Image,
+  RefreshControl,
+  StyleSheet,
+  View
+} from 'react-native'
 import { connect } from 'react-redux'
 
 import {
@@ -10,7 +17,7 @@ import {
   updatePushToken
 } from '../actions'
 import { mittens } from '../assets'
-import { dialog, firebase, github } from '../lib'
+import { dialog, github } from '../lib'
 import { NavBar, Notification, TabBar, Text } from '../components'
 import { Colors, Layout } from '../styles'
 
@@ -31,15 +38,19 @@ class Notifications extends Component {
     getNotifications()
     updatePushToken()
 
-    this.listener = firebase.onNotification(notification => {
-      if (notification) {
-        getNotifications()
-      }
-    })
+    AppState.addEventListener('change', this.appStateChanged)
   }
 
   componentWillUnmount() {
-    this.listener()
+    AppState.removeEventListener('change', this.appStateChanged)
+  }
+
+  appStateChanged = state => {
+    if (state === 'active') {
+      const { getNotifications } = this.props
+
+      getNotifications()
+    }
   }
 
   toggle = () => {

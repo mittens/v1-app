@@ -60,10 +60,6 @@ class Firebase {
     return firebase.messaging().getToken()
   }
 
-  onNotification(callback) {
-    return firebase.notifications().onNotificationOpened(callback)
-  }
-
   async clear() {
     await firebase.notifications().removeAllDeliveredNotifications()
 
