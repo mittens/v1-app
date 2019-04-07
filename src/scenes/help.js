@@ -68,9 +68,8 @@ const styles = StyleSheet.create({
     marginTop: Layout.margin * 2
   },
   help: {
-    backgroundColor: Colors.backgroundDark,
-    marginVertical: Layout.margin,
-    padding: Layout.margin
+    marginHorizontal: Layout.margin,
+    marginVertical: Layout.margin * 2
   },
   tip: {
     marginTop: Layout.padding
@@ -80,8 +79,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   love: {
-    height: 20,
-    marginHorizontal: Layout.padding / 2,
-    width: 20
+    ...Layout.icon,
+    marginHorizontal: Layout.padding / 2
   }
 })

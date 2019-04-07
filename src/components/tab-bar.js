@@ -59,9 +59,8 @@ const styles = StyleSheet.create({
     padding: Layout.footer.margin
   },
   icon: {
-    height: Layout.footer.icon.height,
-    opacity: 0.5,
-    width: Layout.footer.icon.width
+    ...Layout.icon,
+    opacity: 0.5
   },
   active: {
     opacity: 1

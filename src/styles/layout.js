@@ -13,6 +13,10 @@ export default {
     height: 50
   },
 
+  icon: {
+    height: 25,
+    width: 25
+  },
   mittens: {
     height: 170 / 2,
     width: 200 / 2
@@ -22,10 +26,6 @@ export default {
     width: 40
   },
   footer: {
-    icon: {
-      height: 25,
-      width: 25
-    },
     margin: 15
   }
 }

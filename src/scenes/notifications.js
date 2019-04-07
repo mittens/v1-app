@@ -159,9 +159,8 @@ const styles = StyleSheet.create({
     top: 0
   },
   icon: {
-    height: Layout.footer.icon.height,
-    margin: Layout.margin,
-    width: Layout.footer.icon.width
+    ...Layout.icon,
+    margin: Layout.margin
   },
   empty: {
     alignItems: 'center',

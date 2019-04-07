@@ -3,6 +3,7 @@ import { Image, StyleSheet, View } from 'react-native'
 import { Swipeable } from 'react-native-gesture-handler'
 import moment from 'moment'
 
+import { mark_as_read, open_in_browser } from '../assets'
 import { Colors, Layout } from '../styles'
 
 import Text from './text'
@@ -12,11 +13,11 @@ export default class Notification extends Component {
   renderLeftActions = () => {
     return (
       <View style={styles.actions}>
-        <Touchable style={styles.action} onPress={() => this.action(true)}>
-          <Text color={Colors.primary}>open</Text>
-        </Touchable>
         <Touchable style={styles.action} onPress={() => this.action(false)}>
-          <Text color={Colors.accent}>mark as read</Text>
+          <Image style={styles.icon} source={mark_as_read} />
+        </Touchable>
+        <Touchable style={styles.action} onPress={() => this.action(true)}>
+          <Image style={styles.icon} source={open_in_browser} />
         </Touchable>
       </View>
     )
@@ -31,17 +32,17 @@ export default class Notification extends Component {
   }
 
   render() {
-    const { item } = this.props
-
     const {
-      unread,
-      updated_at,
-      repository: {
-        name,
-        owner: { avatar_url }
-      },
-      subject: { title }
-    } = item
+      item: {
+        unread,
+        updated_at,
+        repository: {
+          name,
+          owner: { avatar_url }
+        },
+        subject: { title }
+      }
+    } = this.props
 
     return (
       <Swipeable
@@ -99,7 +100,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   action: {
-    justifyContent: 'center',
-    paddingHorizontal: Layout.margin
+    justifyContent: 'center'
+  },
+  icon: {
+    ...Layout.icon,
+    margin: Layout.margin
   }
 })
