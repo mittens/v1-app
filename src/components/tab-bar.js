@@ -1,44 +1,47 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Image, SafeAreaView, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 
+import { logout } from '../actions'
 import { exit, help, notifications } from '../assets'
 import { Layout } from '../styles'
 
-import Help from './help'
 import Touchable from './touchable'
 
-export default class TabBar extends Component {
-  state = {
-    visible: false
-  }
+const icons = {
+  Help: help,
+  Logout: exit,
+  Notifications: notifications
+}
 
-  toggle = () => {
-    const { visible } = this.state
-
-    this.setState({
-      visible: !visible
-    })
-  }
-
+class TabBar extends Component {
   render() {
-    const { logout, toggle } = this.props
-    const { visible } = this.state
+    const {
+      logout,
+      onTabPress,
+      navigation: {
+        state: { index, routes }
+      }
+    } = this.props
 
     return (
-      <Fragment>
-        <SafeAreaView style={styles.main}>
-          <Touchable style={styles.link} onPress={toggle}>
-            <Image style={styles.icon} source={notifications} />
+      <SafeAreaView style={styles.main}>
+        {routes.map((route, current) => (
+          <Touchable
+            style={styles.link}
+            key={route.key}
+            onPress={() => onTabPress({ route })}
+          >
+            <Image
+              style={[styles.icon, current === index && styles.active]}
+              source={icons[route.key]}
+            />
           </Touchable>
-          <Touchable style={styles.link} onPress={this.toggle}>
-            <Image style={styles.icon} source={help} />
-          </Touchable>
-          <Touchable style={styles.link} onPress={logout}>
-            <Image style={styles.icon} source={exit} />
-          </Touchable>
-        </SafeAreaView>
-        <Help onClose={this.toggle} visible={visible} />
-      </Fragment>
+        ))}
+        <Touchable style={styles.link} onPress={logout}>
+          <Image style={styles.icon} source={exit} />
+        </Touchable>
+      </SafeAreaView>
     )
   }
 }
@@ -57,6 +60,19 @@ const styles = StyleSheet.create({
   },
   icon: {
     height: Layout.footer.icon.height,
+    opacity: 0.5,
     width: Layout.footer.icon.width
+  },
+  active: {
+    opacity: 1
   }
 })
+
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(logout())
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(TabBar)

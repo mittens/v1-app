@@ -12,7 +12,7 @@ import { mittens } from '../assets'
 import { Button, Text } from '../components'
 import { Layout, Colors } from '../styles'
 
-class Landing extends Component {
+class Login extends Component {
   render() {
     const { loading, startAuth } = this.props
 
@@ -72,4 +72,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Landing)
+)(Login)

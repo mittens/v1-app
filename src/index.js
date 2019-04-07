@@ -8,21 +8,36 @@ import React, { Component } from 'react'
 import { Platform } from 'react-native'
 import { Sentry } from 'react-native-sentry'
 import { connect } from 'react-redux'
+import { createAppContainer, createBottomTabNavigator } from 'react-navigation'
 import codePush from 'react-native-code-push'
 
-import { Landing, Notifications } from './scenes'
+import { TabBar } from './components'
+import { Help, Login, Notifications } from './scenes'
 
 Sentry.config(SENTRY_DSN).install()
+
+const Navigator = createBottomTabNavigator(
+  {
+    Notifications,
+    Help
+  },
+  {
+    initialRouteName: 'Notifications',
+    tabBarComponent: TabBar
+  }
+)
+
+const Container = createAppContainer(Navigator)
 
 class Mittens extends Component {
   render() {
     const { user } = this.props
 
     if (user) {
-      return <Notifications />
+      return <Container />
     }
 
-    return <Landing />
+    return <Login />
   }
 }
 

@@ -12,21 +12,16 @@ import { connect } from 'react-redux'
 
 import {
   getNotifications,
-  logout,
   markAllAsRead,
   markAsRead,
   updatePushToken
 } from '../actions'
 import { mark_all_as_read, mittens } from '../assets'
-import { dialog, github } from '../lib'
-import { Notification, TabBar, Text, Touchable } from '../components'
+import { github } from '../lib'
+import { Notification, Text, Touchable } from '../components'
 import { Colors, Layout } from '../styles'
 
 class Notifications extends Component {
-  state = {
-    unread: false
-  }
-
   componentDidMount() {
     const { user, getNotifications, updatePushToken } = this.props
 
@@ -52,14 +47,6 @@ class Notifications extends Component {
 
       getNotifications()
     }
-  }
-
-  toggle = () => {
-    const { unread } = this.state
-
-    this.setState({
-      unread: !unread
-    })
   }
 
   renderSectionHeader = ({ section: { data, title } }) => {
@@ -120,7 +107,7 @@ class Notifications extends Component {
   }
 
   render() {
-    const { notifications, logout } = this.props
+    const { notifications } = this.props
 
     const sections = [
       {
@@ -144,7 +131,6 @@ class Notifications extends Component {
           renderSectionHeader={this.renderSectionHeader}
           sections={sections}
         />
-        <TabBar logout={logout} toggle={this.toggle} />
       </SafeAreaView>
     )
   }
@@ -159,9 +145,9 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
+    backgroundColor: Colors.background,
     flexDirection: 'row',
-    marginTop: Layout.margin
-    // padding: Layout.margin
+    paddingTop: Layout.margin
   },
   title: {
     flex: 1,
@@ -170,7 +156,7 @@ const styles = StyleSheet.create({
   markAllAsRead: {
     position: 'absolute',
     right: 0,
-    top: -Layout.margin
+    top: 0
   },
   icon: {
     height: Layout.footer.icon.height,
@@ -202,7 +188,6 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = dispatch => ({
   getNotifications: () => dispatch(getNotifications()),
-  logout: () => dispatch(logout()),
   markAllAsRead: () => dispatch(markAllAsRead()),
   markAsRead: (notification, open) => dispatch(markAsRead(notification, open)),
   updatePushToken: () => dispatch(updatePushToken())

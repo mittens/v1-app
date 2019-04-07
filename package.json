@@ -15,6 +15,7 @@
     "react-native-gesture-handler": "^1.1.0",
     "react-native-inappbrowser-reborn": "^2.0.0",
     "react-native-sentry": "^0.42.0",
+    "react-navigation": "^3.6.1",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
     "redux-persist": "^5.10.0",

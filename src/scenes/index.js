@@ -1,4 +1,5 @@
-import Landing from './landing'
+import Help from './help'
+import Login from './login'
 import Notifications from './notifications'
 
-export { Landing, Notifications }
+export { Help, Login, Notifications }
