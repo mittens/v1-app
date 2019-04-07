@@ -1,41 +1,31 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet, View } from 'react-native'
-import Swipeable from 'react-native-gesture-handler/Swipeable'
+import { Swipeable } from 'react-native-gesture-handler'
 import moment from 'moment'
 
 import { Colors, Layout } from '../styles'
 
 import Text from './text'
+import Touchable from './touchable'
 
 export default class Notification extends Component {
   renderLeftActions = () => {
     return (
-      <Text style={styles.action} color={Colors.accent}>
-        mark as read
-      </Text>
+      <View style={styles.actions}>
+        <Touchable style={styles.action} onPress={() => this.action(true)}>
+          <Text color={Colors.primary}>open</Text>
+        </Touchable>
+        <Touchable style={styles.action} onPress={() => this.action(false)}>
+          <Text color={Colors.accent}>mark as read</Text>
+        </Touchable>
+      </View>
     )
   }
 
-  renderRightActions = () => {
-    return (
-      <Text style={styles.action} color={Colors.accent}>
-        open
-      </Text>
-    )
-  }
-
-  mark = () => {
+  action = open => {
     const { item, markAsRead } = this.props
 
-    markAsRead(item)
-
-    this.swipeable.close()
-  }
-
-  open = () => {
-    const { item, markAsRead } = this.props
-
-    markAsRead(item, true)
+    markAsRead(item, open)
 
     this.swipeable.close()
   }
@@ -58,10 +48,7 @@ export default class Notification extends Component {
         ref={swipeable => {
           this.swipeable = swipeable
         }}
-        onSwipeableLeftOpen={this.mark}
-        onSwipeableRightOpen={this.open}
         renderLeftActions={this.renderLeftActions}
-        renderRightActions={this.renderRightActions}
       >
         <View style={styles.main}>
           <Image
@@ -107,8 +94,12 @@ const styles = StyleSheet.create({
   subject: {
     marginBottom: Layout.padding
   },
+  actions: {
+    alignItems: 'stretch',
+    flexDirection: 'row'
+  },
   action: {
-    alignSelf: 'center',
-    marginHorizontal: Layout.margin
+    justifyContent: 'center',
+    paddingHorizontal: Layout.margin
   }
 })

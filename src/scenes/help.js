@@ -31,14 +31,12 @@ export default class Help extends Component {
               tips
             </Text>
             <Text style={styles.tip} center small>
-              &bull; swipe right on a notification to mark as read
+              &bull; swipe right on a notification to view actions to open or
+              mark as read
             </Text>
             <Text style={styles.tip} center small>
-              &bull; swipe left on a notification to mark as read and open in
-              browser
-            </Text>
-            <Text style={styles.tip} center small>
-              &bull; tap the double ticks on the top right to mark all as read
+              &bull; tap the icon on the top right to mark all notifications as
+              read
             </Text>
           </View>
           <Touchable style={styles.credits} onPress={this.ali}>
