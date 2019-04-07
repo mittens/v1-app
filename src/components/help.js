@@ -21,7 +21,7 @@ export default class Help extends Component {
   }
 
   ali = () => {
-    InAppBrowser.open('https://designplox.com')
+    InAppBrowser.open('https://alizahid.dev')
   }
 
   render() {
