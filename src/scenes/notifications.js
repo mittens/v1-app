@@ -147,7 +147,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: Colors.background,
     flexDirection: 'row',
-    paddingTop: Layout.margin
+    paddingVertical: Layout.margin,
+    marginBottom: -Layout.margin
   },
   title: {
     flex: 1,
