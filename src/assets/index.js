@@ -4,16 +4,6 @@ import help from './help.png'
 import love from './love.png'
 import mark_all_as_read from './mark_all_as_read.png'
 import mittens from './mittens.png'
-import notifications_all from './notifications_all.png'
-import notifications_unread from './notifications_unread.png'
+import notifications from './notifications.png'
 
-export {
-  close,
-  exit,
-  help,
-  love,
-  mark_all_as_read,
-  mittens,
-  notifications_all,
-  notifications_unread
-}
+export { close, exit, help, love, mark_all_as_read, mittens, notifications }

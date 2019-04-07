@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Image, SafeAreaView, StyleSheet } from 'react-native'
 
-import { exit, help, notifications_all, notifications_unread } from '../assets'
+import { exit, help, notifications } from '../assets'
 import { Layout } from '../styles'
 
 import Help from './help'
@@ -21,17 +21,14 @@ export default class TabBar extends Component {
   }
 
   render() {
-    const { unread, logout, toggle } = this.props
+    const { logout, toggle } = this.props
     const { visible } = this.state
 
     return (
       <Fragment>
         <SafeAreaView style={styles.main}>
           <Touchable style={styles.link} onPress={toggle}>
-            <Image
-              style={styles.icon}
-              source={unread ? notifications_unread : notifications_all}
-            />
+            <Image style={styles.icon} source={notifications} />
           </Touchable>
           <Touchable style={styles.link} onPress={this.toggle}>
             <Image style={styles.icon} source={help} />

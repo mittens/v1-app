@@ -13,7 +13,9 @@ export default class Button extends Component {
     return (
       <View style={[styles.main, style]}>
         <Touchable style={styles.touchable} onPress={onPress}>
-          <Text style={styles.label}>{label}</Text>
+          <Text style={styles.label} color={Colors.background}>
+            {label}
+          </Text>
         </Touchable>
       </View>
     )
@@ -32,7 +34,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   label: {
-    color: Colors.background,
     fontWeight: Fonts.weight.semibold,
     paddingHorizontal: Layout.button.height / 2
   }

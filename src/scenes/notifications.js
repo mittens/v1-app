@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react'
 import {
   AppState,
-  FlatList,
   Image,
   RefreshControl,
+  SafeAreaView,
+  SectionList,
   StyleSheet,
   View
 } from 'react-native'
@@ -16,9 +17,9 @@ import {
   markAsRead,
   updatePushToken
 } from '../actions'
-import { mittens } from '../assets'
+import { mark_all_as_read, mittens } from '../assets'
 import { dialog, github } from '../lib'
-import { NavBar, Notification, TabBar, Text } from '../components'
+import { Notification, TabBar, Text, Touchable } from '../components'
 import { Colors, Layout } from '../styles'
 
 class Notifications extends Component {
@@ -61,14 +62,25 @@ class Notifications extends Component {
     })
   }
 
-  logout = async () => {
-    const confirm = await dialog.confirm('Are you sure you want to log out?')
-
-    if (confirm) {
-      const { logout } = this.props
-
-      logout()
+  renderSectionHeader = ({ section: { data, title } }) => {
+    if (data.length === 0) {
+      return null
     }
+
+    const { markAllAsRead } = this.props
+
+    return (
+      <View style={styles.header}>
+        <Text style={styles.title} title>
+          {title}
+        </Text>
+        {title === 'unread' && (
+          <Touchable style={styles.markAllAsRead} onPress={markAllAsRead}>
+            <Image style={styles.icon} source={mark_all_as_read} />
+          </Touchable>
+        )}
+      </View>
+    )
   }
 
   renderItem = ({ item }) => {
@@ -108,29 +120,32 @@ class Notifications extends Component {
   }
 
   render() {
-    const { notifications, markAllAsRead } = this.props
-    const { unread } = this.state
+    const { notifications, logout } = this.props
 
-    const data = notifications.filter(notification =>
-      unread ? notification.unread === true : true
-    )
+    const sections = [
+      {
+        title: 'unread',
+        data: notifications.filter(({ unread }) => unread === true)
+      },
+      {
+        title: 'notifications',
+        data: notifications.filter(({ unread }) => unread === false)
+      }
+    ]
 
     return (
-      <View style={styles.main}>
-        <NavBar
-          title={unread ? 'unread' : 'notifications'}
-          markAllAsRead={markAllAsRead}
-        />
-        <FlatList
+      <SafeAreaView style={styles.main}>
+        <SectionList
           contentContainerStyle={styles.content}
-          data={data}
-          keyExtractor={({ id }) => id}
+          keyExtractor={(item, index) => item + index}
           ListEmptyComponent={this.renderEmpty}
           refreshControl={this.refreshControl()}
           renderItem={this.renderItem}
+          renderSectionHeader={this.renderSectionHeader}
+          sections={sections}
         />
-        <TabBar logout={this.logout} toggle={this.toggle} unread={unread} />
-      </View>
+        <TabBar logout={logout} toggle={this.toggle} />
+      </SafeAreaView>
     )
   }
 }
@@ -141,6 +156,26 @@ const styles = StyleSheet.create({
   },
   content: {
     flexGrow: 1
+  },
+  header: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginTop: Layout.margin
+    // padding: Layout.margin
+  },
+  title: {
+    flex: 1,
+    marginHorizontal: Layout.margin
+  },
+  markAllAsRead: {
+    position: 'absolute',
+    right: 0,
+    top: -Layout.margin
+  },
+  icon: {
+    height: Layout.footer.icon.height,
+    margin: Layout.margin,
+    width: Layout.footer.icon.width
   },
   empty: {
     alignItems: 'center',

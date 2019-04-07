@@ -5,6 +5,12 @@ import { getNotificationsSuccess } from './get-notifications'
 
 export default () => async (dispatch, getState) => {
   try {
+    const confirm = await dialog.confirm('are you sure you want to log out?')
+
+    if (!confirm) {
+      return
+    }
+
     const {
       user: { user }
     } = getState()
