@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import {
   Image,
-  Linking,
   Modal,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   View
 } from 'react-native'
+import InAppBrowser from 'react-native-inappbrowser-reborn'
 
 import { close, love, mittens } from '../assets'
 import { Colors, Layout } from '../styles'
@@ -17,11 +17,11 @@ import Touchable from './touchable'
 
 export default class Help extends Component {
   web = () => {
-    Linking.openURL('https://mittens.app')
+    InAppBrowser.open('https://mittens.app')
   }
 
   ali = () => {
-    Linking.openURL('https://designplox.com')
+    InAppBrowser.open('https://designplox.com')
   }
 
   render() {

@@ -1,4 +1,4 @@
-import { Linking } from 'react-native'
+import InAppBrowser from 'react-native-inappbrowser-reborn'
 import update from 'immutability-helper'
 
 import { dialog, github, firebase } from '../lib'
@@ -22,7 +22,7 @@ export default (notification, open) => async (dispatch, getState) => {
         .replace('api.github.com/repos', 'github.com')
         .replace('/pulls/', '/pull/')
 
-      Linking.openURL(uri)
+      InAppBrowser.open(uri)
     }
 
     if (!unread) {
