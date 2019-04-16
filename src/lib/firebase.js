@@ -45,11 +45,12 @@ class Firebase {
     return user.data()
   }
 
-  user(username) {
+  onUser(callback) {
     return firebase
       .firestore()
       .collection('users')
       .doc(username)
+      .onSnapshot(user => callback(user.data()))
   }
 
   requestPermissions() {

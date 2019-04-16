@@ -12,13 +12,14 @@ import { createAppContainer, createBottomTabNavigator } from 'react-navigation'
 import codePush from 'react-native-code-push'
 
 import { TabBar } from './components'
-import { Help, Login, Notifications } from './scenes'
+import { Filters, Help, Login, Notifications } from './scenes'
 
 Sentry.config(SENTRY_DSN).install()
 
 const Navigator = createBottomTabNavigator(
   {
     Notifications,
+    Filters,
     Help
   },
   {

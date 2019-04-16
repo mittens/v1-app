@@ -1,7 +1,5 @@
 import { dialog, firebase } from '../lib'
-
-import { getUserSuccess } from './get-user'
-import { getNotificationsSuccess } from './get-notifications'
+import { persistor } from '../store'
 
 export default () => async (dispatch, getState) => {
   try {
@@ -15,8 +13,7 @@ export default () => async (dispatch, getState) => {
       user: { user }
     } = getState()
 
-    dispatch(getUserSuccess(null))
-    dispatch(getNotificationsSuccess([]))
+    await persistor.purge()
 
     await firebase.logout(user)
   } catch (error) {

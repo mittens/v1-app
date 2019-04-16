@@ -24,7 +24,9 @@ export default () => async dispatch => {
 
       dispatch(login(code))
 
-      Linking.removeAllListeners('url')
+      if (Linking.listeners().length > 0) {
+        Linking.removeAllListeners()
+      }
     })
   } catch (error) {
     dispatch(getUserFailure(error))

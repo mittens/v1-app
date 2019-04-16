@@ -3,12 +3,13 @@ import { Image, SafeAreaView, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 
 import { logout } from '../actions'
-import { exit, help, notifications } from '../assets'
+import { exit, filters, help, notifications } from '../assets'
 import { Layout } from '../styles'
 
 import Touchable from './touchable'
 
 const icons = {
+  Filters: filters,
   Help: help,
   Logout: exit,
   Notifications: notifications
