@@ -1,20 +1,13 @@
-import {
-  CODE_PUSH_KEY_ANDROID,
-  CODE_PUSH_KEY_IOS,
-  SENTRY_DSN
-} from 'react-native-dotenv'
+import { CODE_PUSH_KEY_ANDROID, CODE_PUSH_KEY_IOS } from 'react-native-dotenv'
 
 import React, { Component } from 'react'
 import { Platform } from 'react-native'
-import { Sentry } from 'react-native-sentry'
 import { connect } from 'react-redux'
 import { createAppContainer, createBottomTabNavigator } from 'react-navigation'
 import codePush from 'react-native-code-push'
 
 import { TabBar } from './components'
 import { Help, Login, Notifications } from './scenes'
-
-Sentry.config(SENTRY_DSN).install()
 
 const Navigator = createBottomTabNavigator(
   {
