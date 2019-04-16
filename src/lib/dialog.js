@@ -4,7 +4,7 @@ export default class Dialog {
   static alert(message) {
     Alert.alert(null, message, [
       {
-        text: 'okay'
+        text: 'Okay'
       }
     ])
   }
@@ -15,11 +15,11 @@ export default class Dialog {
         {
           onPress: () => resolve(false),
           style: 'cancel',
-          text: 'no'
+          text: 'No'
         },
         {
           onPress: () => resolve(true),
-          text: 'yes'
+          text: 'Yes'
         }
       ])
     )

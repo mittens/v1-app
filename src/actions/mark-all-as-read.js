@@ -7,7 +7,7 @@ import { getNotificationsSuccess } from './get-notifications'
 export default () => async (dispatch, getState) => {
   try {
     const confirm = await dialog.confirm(
-      'do you want to mark all notifications as read?'
+      'Do you want to mark all notifications as read?'
     )
 
     if (!confirm) {
