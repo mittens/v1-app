@@ -29,9 +29,13 @@ export const Mittens: FunctionComponent = () => {
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null)
 
   useEffect(() => {
-    firebase.onUser(user => setUser(user))
+    firebase.onUser(user => {
+      setUser(user)
 
-    firebase.updateToken()
+      if (user) {
+        firebase.updateToken()
+      }
+    })
   }, [])
 
   return <View style={styles.main}>{user ? <Container /> : <Login />}</View>

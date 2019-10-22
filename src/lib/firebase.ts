@@ -6,6 +6,10 @@ import messaging from '@react-native-firebase/messaging'
 import { storage } from './storage'
 
 class Firebase {
+  constructor() {
+    messaging().requestPermission()
+  }
+
   async auth(code: string): Promise<string> {
     const {
       data: { access_token }
@@ -26,9 +30,6 @@ class Firebase {
     const {
       user: { uid }
     } = await auth().signInWithCredential(credential)
-
-    await messaging().requestPermission()
-    await messaging().getAPNSToken()
 
     const push_token = await messaging().getToken()
 
@@ -61,9 +62,6 @@ class Firebase {
   }
 
   async updateToken() {
-    await messaging().requestPermission()
-    await messaging().getAPNSToken()
-
     const push_token = await messaging().getToken()
 
     const login = await storage.get('@login')
