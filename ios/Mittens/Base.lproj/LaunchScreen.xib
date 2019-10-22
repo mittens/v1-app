@@ -21,6 +21,7 @@
                     </constraints>
                 </imageView>
             </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="VRK-8A-1NX" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="A7L-cf-Qoa"/>
                 <constraint firstItem="VRK-8A-1NX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="TuG-FM-eEn"/>
