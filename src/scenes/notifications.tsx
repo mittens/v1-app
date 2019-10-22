@@ -44,15 +44,6 @@ export const Notifications: FunctionComponent = () => {
     return <Spinner />
   }
 
-  const sections = orderBy(
-    Object.entries(groupBy(notifications, 'unread')).map(([key, data]) => ({
-      data,
-      title: key === 'false' ? 'notifications' : 'unread'
-    })),
-    'title',
-    'desc'
-  )
-
   return (
     <SafeAreaView
       style={styles.main}
@@ -69,13 +60,18 @@ export const Notifications: FunctionComponent = () => {
           />
         )}
         renderSectionHeader={({ section: { title } }) => (
-          <Header
-            markAllAsRead={() => markAllAsRead()}
-            title={title}
-            unread={sections.length === 2}
-          />
+          <Header markAllAsRead={() => markAllAsRead()} title={title} />
         )}
-        sections={sections}
+        sections={orderBy(
+          Object.entries(groupBy(notifications, 'unread')).map(
+            ([key, data]) => ({
+              data,
+              title: key === 'false' ? 'notifications' : 'unread'
+            })
+          ),
+          'title',
+          'desc'
+        )}
       />
     </SafeAreaView>
   )

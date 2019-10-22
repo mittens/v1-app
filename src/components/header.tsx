@@ -8,22 +8,17 @@ import { Touchable } from './touchable'
 
 interface Props {
   title: string
-  unread: boolean
 
   markAllAsRead: () => void
 }
 
-export const Header: FunctionComponent<Props> = ({
-  title,
-  unread,
-  markAllAsRead
-}) => {
+export const Header: FunctionComponent<Props> = ({ title, markAllAsRead }) => {
   const styles = useDynamicStyleSheet(stylesheet)
 
   return (
     <View style={styles.main}>
       <Text style={styles.title}>{title}</Text>
-      {title === 'unread' && unread && (
+      {title === 'unread' && (
         <Touchable onPress={markAllAsRead}>
           <Image style={styles.icon} source={img_mark_all_as_read} />
         </Touchable>
