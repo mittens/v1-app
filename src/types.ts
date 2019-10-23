@@ -1,3 +1,8 @@
+export interface Meta {
+  issues: string[]
+  tips: string[]
+}
+
 export interface GitHubNotification {
   id: string
   repository: {

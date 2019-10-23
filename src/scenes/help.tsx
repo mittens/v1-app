@@ -5,11 +5,14 @@ import { SafeAreaView } from 'react-navigation'
 
 import { img_love, img_mittens } from '../assets'
 import { Touchable } from '../components'
+import { useMeta } from '../hooks'
 import { browser } from '../lib'
 import { colors, fonts, layout } from '../styles'
 
 export const Help: FunctionComponent = () => {
   const styles = useDynamicStyleSheet(stylesheet)
+
+  const { issues, tips } = useMeta()
 
   return (
     <SafeAreaView
@@ -28,14 +31,17 @@ export const Help: FunctionComponent = () => {
         </Text>
         <View style={styles.help}>
           <Text style={styles.subtitle}>tips</Text>
-          <Text style={styles.tip}>
-            &bull; swipe right on a notification to view actions to open or mark
-            as read
-          </Text>
-          <Text style={styles.tip}>
-            &bull; tap the icon on the top right to mark all notifications as
-            read
-          </Text>
+          {tips.map((tip, index) => (
+            <Text key={index} style={styles.tip}>
+              {tip}
+            </Text>
+          ))}
+          <Text style={styles.subtitle}>known issues</Text>
+          {issues.map((issue, index) => (
+            <Text key={index} style={styles.tip}>
+              {issue}
+            </Text>
+          ))}
         </View>
         <Touchable
           style={styles.credits}
@@ -52,7 +58,6 @@ export const Help: FunctionComponent = () => {
 const stylesheet = new DynamicStyleSheet({
   content: {
     alignItems: 'center',
-    backgroundColor: colors.background,
     flex: 1,
     justifyContent: 'center',
     padding: layout.margin * 2
@@ -72,7 +77,8 @@ const stylesheet = new DynamicStyleSheet({
     textAlign: 'center'
   },
   help: {
-    marginVertical: layout.margin * 2
+    marginBottom: layout.margin * 2,
+    marginTop: layout.margin
   },
   love: {
     ...layout.icon,
@@ -87,6 +93,7 @@ const stylesheet = new DynamicStyleSheet({
   subtitle: {
     ...fonts.subtitle,
     color: colors.foreground,
+    marginTop: layout.margin,
     textAlign: 'center'
   },
   tip: {
