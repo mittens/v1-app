@@ -43,7 +43,6 @@ const stylesheet = new DynamicStyleSheet({
   },
   main: {
     alignItems: 'center',
-    backgroundColor: colors.background,
     flex: 1,
     justifyContent: 'center',
     padding: layout.margin

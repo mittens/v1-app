@@ -40,7 +40,6 @@ const stylesheet = new DynamicStyleSheet({
   },
   main: {
     alignItems: 'center',
-    backgroundColor: colors.background,
     borderBottomColor: colors.backgroundDark,
     borderBottomWidth: layout.border.width,
     flexDirection: 'row',

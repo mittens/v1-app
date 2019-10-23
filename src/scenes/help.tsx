@@ -79,7 +79,6 @@ const stylesheet = new DynamicStyleSheet({
     marginHorizontal: layout.padding / 2
   },
   main: {
-    backgroundColor: colors.background,
     flex: 1
   },
   mittens: {

@@ -82,7 +82,6 @@ const stylesheet = new DynamicStyleSheet({
     padding: layout.margin
   },
   main: {
-    backgroundColor: colors.background,
     borderTopColor: colors.backgroundDark,
     borderTopWidth: layout.border.width,
     flexDirection: 'row',
