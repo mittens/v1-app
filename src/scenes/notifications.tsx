@@ -1,17 +1,12 @@
-import { groupBy, orderBy } from 'lodash'
+import { get, orderBy } from 'lodash'
 import React, { FunctionComponent, useCallback, useEffect } from 'react'
-import { AppState, AppStateStatus, SectionList } from 'react-native'
-import { DynamicStyleSheet, useDynamicStyleSheet } from 'react-native-dark-mode'
-import { SafeAreaView } from 'react-navigation'
+import { AppState, AppStateStatus, FlatList } from 'react-native'
 
-import { Header, Refresh, Spinner } from '../components'
+import { Header, Refresh } from '../components'
 import { Notification } from '../components/notification'
 import { useNotifications } from '../hooks'
-import { colors } from '../styles'
 
 export const Notifications: FunctionComponent = () => {
-  const styles = useDynamicStyleSheet(stylesheet)
-
   const {
     notifications,
     loading,
@@ -40,17 +35,19 @@ export const Notifications: FunctionComponent = () => {
     }
   }, [refetch])
 
-  if (loading && notifications.length === 0) {
-    return <Spinner />
-  }
+  const data = orderBy(
+    notifications,
+    ['unread', 'updated_at'],
+    ['desc', 'desc']
+  )
+
+  const unread = get(data, '0.unread', false)
 
   return (
-    <SafeAreaView
-      style={styles.main}
-      forceInset={{
-        bottom: 'never'
-      }}>
-      <SectionList
+    <>
+      <Header markAllAsRead={() => markAllAsRead()} unread={unread} />
+      <FlatList
+        data={data}
         keyExtractor={item => item.id}
         refreshControl={<Refresh onRefresh={refetch} refreshing={loading} />}
         renderItem={({ item }) => (
@@ -59,27 +56,7 @@ export const Notifications: FunctionComponent = () => {
             notification={item}
           />
         )}
-        renderSectionHeader={({ section: { title } }) => (
-          <Header markAllAsRead={() => markAllAsRead()} title={title} />
-        )}
-        sections={orderBy(
-          Object.entries(groupBy(notifications, 'unread')).map(
-            ([key, data]) => ({
-              data,
-              title: key === 'false' ? 'notifications' : 'unread'
-            })
-          ),
-          'title',
-          'desc'
-        )}
       />
-    </SafeAreaView>
+    </>
   )
 }
-
-const stylesheet = new DynamicStyleSheet({
-  main: {
-    backgroundColor: colors.background,
-    flex: 1
-  }
-})
