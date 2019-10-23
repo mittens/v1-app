@@ -1,5 +1,5 @@
 import firestore from '@react-native-firebase/firestore'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { Meta } from '../types'
 
@@ -9,27 +9,27 @@ export const useMeta = () => {
   const [issues, setIssues] = useState<string[]>([])
   const [tips, setTips] = useState<string[]>([])
 
-  let unsubscribe: () => void
+  const unsubscribe = useRef<() => void>()
 
   useEffect(() => {
     setLoading(true)
 
-    unsubscribe = firestore()
+    unsubscribe.current = firestore()
       .collection('meta')
       .onSnapshot(({ docs }) =>
         docs.map(doc => {
           const { issues, tips } = doc.data() as Meta
 
+          setLoading(false)
+
           setIssues(issues)
           setTips(tips)
-
-          setLoading(false)
         })
       )
 
     return () => {
-      if (unsubscribe) {
-        unsubscribe()
+      if (unsubscribe.current) {
+        unsubscribe.current()
       }
     }
   }, [])
