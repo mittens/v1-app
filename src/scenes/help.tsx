@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { Image, ScrollView, Text, View } from 'react-native'
+import { ActivityIndicator, Image, ScrollView, Text, View } from 'react-native'
 import { DynamicStyleSheet, useDynamicStyleSheet } from 'react-native-dark-mode'
 import { SafeAreaView } from 'react-navigation'
 
@@ -12,7 +12,7 @@ import { colors, fonts, layout } from '../styles'
 export const Help: FunctionComponent = () => {
   const styles = useDynamicStyleSheet(stylesheet)
 
-  const { issues, tips } = useMeta()
+  const { issues, loading, tips } = useMeta()
 
   return (
     <SafeAreaView
@@ -31,12 +31,26 @@ export const Help: FunctionComponent = () => {
         </Text>
         <View style={styles.help}>
           <Text style={styles.subtitle}>tips</Text>
+          {loading && (
+            <ActivityIndicator
+              style={styles.spinner}
+              color={colors.primary}
+              size="small"
+            />
+          )}
           {tips.map((tip, index) => (
             <Text key={index} style={styles.tip}>
               {tip}
             </Text>
           ))}
           <Text style={styles.subtitle}>known issues</Text>
+          {loading && (
+            <ActivityIndicator
+              style={styles.spinner}
+              color={colors.primary}
+              size="small"
+            />
+          )}
           {issues.map((issue, index) => (
             <Text key={index} style={styles.tip}>
               {issue}
@@ -58,7 +72,7 @@ export const Help: FunctionComponent = () => {
 const stylesheet = new DynamicStyleSheet({
   content: {
     alignItems: 'center',
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'center',
     padding: layout.margin * 2
   },
@@ -89,6 +103,9 @@ const stylesheet = new DynamicStyleSheet({
   },
   mittens: {
     ...layout.mittens
+  },
+  spinner: {
+    marginTop: layout.margin
   },
   subtitle: {
     ...fonts.subtitle,
