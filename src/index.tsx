@@ -1,7 +1,5 @@
 import { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import { View } from 'react-native'
-import { DynamicStyleSheet, useDynamicStyleSheet } from 'react-native-dark-mode'
 import { createAppContainer } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 
@@ -23,8 +21,6 @@ const Navigator = createBottomTabNavigator(
 const Container = createAppContainer(Navigator)
 
 export const Mittens: FunctionComponent = () => {
-  const styles = useDynamicStyleSheet(stylesheet)
-
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null)
 
@@ -40,11 +36,7 @@ export const Mittens: FunctionComponent = () => {
   }, [])
 
   if (loading) {
-    return (
-      <View style={styles.main}>
-        <Spinner />
-      </View>
-    )
+    return <Spinner />
   }
 
   if (user) {
@@ -53,11 +45,3 @@ export const Mittens: FunctionComponent = () => {
 
   return <Login />
 }
-
-const stylesheet = new DynamicStyleSheet({
-  main: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center'
-  }
-})
