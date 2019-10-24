@@ -1,5 +1,6 @@
 import { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import React, { FunctionComponent, useEffect, useState } from 'react'
+import { DarkModeProvider } from 'react-native-dark-mode'
 import { createAppContainer } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 
@@ -35,13 +36,10 @@ export const Mittens: FunctionComponent = () => {
     })
   }, [])
 
-  if (loading) {
-    return <Spinner />
-  }
-
-  if (user) {
-    return <Container />
-  }
-
-  return <Login />
+  return (
+    <DarkModeProvider>
+      {loading && <Spinner />}
+      {!loading && user ? <Container /> : <Login />}
+    </DarkModeProvider>
+  )
 }

@@ -8,6 +8,8 @@ class Browser {
 
     StatusBar.setBarStyle('light-content')
 
+    await InAppBrowser.isAvailable()
+
     const response = await InAppBrowser.open(uri)
 
     if (isLight) {
@@ -21,6 +23,8 @@ class Browser {
     const isLight = initialMode === 'light'
 
     StatusBar.setBarStyle('light-content')
+
+    await InAppBrowser.isAvailable()
 
     const response = await InAppBrowser.openAuth(uri, deeplink)
 

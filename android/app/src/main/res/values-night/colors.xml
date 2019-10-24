@@ -1,0 +1,4 @@
+<resources>
+  <item name="text" type="color">#fff</item>
+  <item name="background" type="color">#000</item>
+</resources>

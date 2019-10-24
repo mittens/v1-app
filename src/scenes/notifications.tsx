@@ -1,12 +1,21 @@
 import { get, orderBy } from 'lodash'
 import React, { FunctionComponent, useCallback, useEffect } from 'react'
-import { AppState, AppStateStatus, FlatList } from 'react-native'
+import {
+  AppState,
+  AppStateStatus,
+  FlatList,
+  RefreshControl
+} from 'react-native'
+import { useDynamicValue } from 'react-native-dark-mode'
 
-import { Header, Refresh } from '../components'
+import { Header } from '../components'
 import { Notification } from '../components/notification'
 import { useNotifications } from '../hooks'
+import { colors } from '../styles'
 
 export const Notifications: FunctionComponent = () => {
+  const backgroundColor = useDynamicValue(colors.backgroundDark)
+
   const {
     notifications,
     loading,
@@ -49,7 +58,15 @@ export const Notifications: FunctionComponent = () => {
       <FlatList
         data={data}
         keyExtractor={item => item.id}
-        refreshControl={<Refresh onRefresh={refetch} refreshing={loading} />}
+        refreshControl={
+          <RefreshControl
+            progressBackgroundColor={backgroundColor}
+            onRefresh={refetch}
+            refreshing={loading}
+            colors={[colors.primary, colors.accent]}
+            tintColor={colors.primary}
+          />
+        }
         renderItem={({ item }) => (
           <Notification
             markAsRead={(id, open) => markAsRead(id, open)}
