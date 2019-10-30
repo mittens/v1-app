@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/react-native'
 import axios, { AxiosRequestConfig } from 'axios'
-import { cloneDeep, get, set } from 'lodash'
+import { cloneDeep, get, orderBy, set } from 'lodash'
 import moment from 'moment'
 import { useState } from 'react'
 import { GITHUB_API_URI } from 'react-native-dotenv'
@@ -83,7 +83,9 @@ export const useNotifications = () => {
         'get'
       )
 
-      setNotifications(data)
+      setNotifications(
+        orderBy(data, ['unread', 'updated_at'], ['desc', 'desc'])
+      )
     } catch (error) {
       const { message } = error
 
