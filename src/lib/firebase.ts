@@ -48,7 +48,7 @@ class Firebase {
     const login = await storage.get('@login')
 
     if (login) {
-      await firestore()
+      firestore()
         .collection('users')
         .doc(login)
         .delete()
