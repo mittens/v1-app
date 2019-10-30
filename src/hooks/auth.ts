@@ -59,6 +59,8 @@ export const useAuth = () => {
 
       if (response.type === 'success') {
         handler(response)
+      } else {
+        setLoading(false)
       }
     } catch (error) {
       setLoading(false)
