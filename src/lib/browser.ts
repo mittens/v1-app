@@ -4,11 +4,11 @@ import InAppBrowser from 'react-native-inappbrowser-reborn'
 
 class Browser {
   async open(uri: string) {
+    await InAppBrowser.isAvailable()
+
     const isLight = initialMode === 'light'
 
     StatusBar.setBarStyle('light-content')
-
-    await InAppBrowser.isAvailable()
 
     const response = await InAppBrowser.open(uri)
 
@@ -20,11 +20,11 @@ class Browser {
   }
 
   async openAuth(uri: string, deeplink: string) {
+    await InAppBrowser.isAvailable()
+
     const isLight = initialMode === 'light'
 
     StatusBar.setBarStyle('light-content')
-
-    await InAppBrowser.isAvailable()
 
     const response = await InAppBrowser.openAuth(uri, deeplink)
 
