@@ -1,14 +1,11 @@
-import { get, orderBy } from 'lodash'
+import { groupBy } from 'lodash'
 import React, { FunctionComponent, useCallback, useEffect } from 'react'
-import {
-  AppState,
-  AppStateStatus,
-  FlatList,
-  RefreshControl
-} from 'react-native'
+import { AppState, AppStateStatus, RefreshControl } from 'react-native'
 import { useDynamicValue } from 'react-native-dark-mode'
+import { SwipeListView } from 'react-native-swipe-list-view'
+import { SafeAreaView } from 'react-navigation'
 
-import { Header } from '../components'
+import { Header, Spinner, Swipe } from '../components'
 import { Notification } from '../components/notification'
 import { useNotifications } from '../hooks'
 import { colors } from '../styles'
@@ -44,20 +41,26 @@ export const Notifications: FunctionComponent = () => {
     }
   }, [refetch])
 
-  const data = orderBy(
-    notifications,
-    ['unread', 'updated_at'],
-    ['desc', 'desc']
+  if (loading && notifications.length === 0) {
+    return <Spinner />
+  }
+
+  const sections = Object.entries(groupBy(notifications, 'unread')).map(
+    ([key, data]) => ({
+      data,
+      title: key === 'true' ? 'unread' : 'notifications'
+    })
   )
 
-  const unread = get(data, '0.unread', false)
-
   return (
-    <>
-      <Header markAllAsRead={() => markAllAsRead()} unread={unread} />
-      <FlatList
-        data={data}
+    <SafeAreaView
+      forceInset={{
+        bottom: 'never',
+        top: 'always'
+      }}>
+      <SwipeListView
         keyExtractor={item => item.id}
+        leftOpenValue={120}
         refreshControl={
           <RefreshControl
             progressBackgroundColor={backgroundColor}
@@ -67,13 +70,16 @@ export const Notifications: FunctionComponent = () => {
             tintColor={colors.primary}
           />
         }
-        renderItem={({ item }) => (
-          <Notification
-            markAsRead={(id, open) => markAsRead(id, open)}
-            notification={item}
-          />
+        renderHiddenItem={({ item: { id } }, map) => (
+          <Swipe id={id} markAsRead={markAsRead} row={map[id]} />
         )}
+        renderItem={({ item }) => <Notification notification={item} />}
+        renderSectionHeader={({ section: { title } }) => (
+          <Header markAllAsRead={markAllAsRead} title={title} />
+        )}
+        sections={sections}
+        useSectionList
       />
-    </>
+    </SafeAreaView>
   )
 }
