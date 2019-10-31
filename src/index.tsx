@@ -1,6 +1,7 @@
 import { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import { DarkModeProvider } from 'react-native-dark-mode'
+import { StatusBar } from 'react-native'
+import { DarkModeProvider, useDarkMode } from 'react-native-dark-mode'
 import { createAppContainer } from 'react-navigation'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 
@@ -22,6 +23,8 @@ const Navigator = createBottomTabNavigator(
 const Container = createAppContainer(Navigator)
 
 export const Mittens: FunctionComponent = () => {
+  const barStyle = useDarkMode() ? 'light-content' : 'dark-content'
+
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null)
 
@@ -38,6 +41,7 @@ export const Mittens: FunctionComponent = () => {
 
   return (
     <DarkModeProvider>
+      <StatusBar barStyle={barStyle} />
       {loading && <Spinner />}
       {!loading && user ? <Container /> : <Login />}
     </DarkModeProvider>
