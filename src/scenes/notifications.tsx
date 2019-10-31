@@ -1,6 +1,11 @@
 import { groupBy } from 'lodash'
 import React, { FunctionComponent, useCallback, useEffect } from 'react'
-import { AppState, AppStateStatus, RefreshControl } from 'react-native'
+import {
+  AppState,
+  AppStateStatus,
+  RefreshControl,
+  StyleSheet
+} from 'react-native'
 import { useDynamicValue } from 'react-native-dark-mode'
 import { SwipeListView } from 'react-native-swipe-list-view'
 import { SafeAreaView } from 'react-navigation'
@@ -54,6 +59,7 @@ export const Notifications: FunctionComponent = () => {
 
   return (
     <SafeAreaView
+      style={styles.main}
       forceInset={{
         bottom: 'never',
         top: 'always'
@@ -83,3 +89,9 @@ export const Notifications: FunctionComponent = () => {
     </SafeAreaView>
   )
 }
+
+const styles = StyleSheet.create({
+  main: {
+    flex: 1
+  }
+})
