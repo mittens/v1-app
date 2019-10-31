@@ -1,4 +1,4 @@
-import { groupBy } from 'lodash'
+import { groupBy, orderBy } from 'lodash'
 import React, { FunctionComponent, useCallback, useEffect } from 'react'
 import {
   AppState,
@@ -50,12 +50,12 @@ export const Notifications: FunctionComponent = () => {
     return <Spinner />
   }
 
-  const sections = Object.entries(groupBy(notifications, 'unread')).map(
-    ([key, data]) => ({
-      data,
-      title: key === 'true' ? 'unread' : 'notifications'
-    })
-  )
+  const groups = groupBy(notifications, 'unread')
+
+  const sections = Object.entries(groups).map(([key, data]) => ({
+    data,
+    title: key === 'true' ? 'unread' : 'notifications'
+  }))
 
   return (
     <SafeAreaView
@@ -83,7 +83,7 @@ export const Notifications: FunctionComponent = () => {
         renderSectionHeader={({ section: { title } }) => (
           <Header markAllAsRead={markAllAsRead} title={title} />
         )}
-        sections={sections}
+        sections={orderBy(sections, 'title', 'desc')}
         useSectionList
       />
     </SafeAreaView>
