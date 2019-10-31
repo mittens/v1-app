@@ -15,7 +15,7 @@ def enableProguardInReleaseBuilds = false
 
 def jscFlavor = 'org.webkit:android-jsc:+'
 
-def enableHermes = project.ext.react.get('enableHermes', false);
+def enableHermes = project.ext.react.get('enableHermes', false)
 
 android {
   compileSdkVersion rootProject.ext.compileSdkVersion

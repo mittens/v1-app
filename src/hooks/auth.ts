@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/react-native'
 import { useEffect, useState } from 'react'
-import { Linking } from 'react-native'
+import { Linking, Platform } from 'react-native'
 import { DEEPLINK_AUTH } from 'react-native-dotenv'
 import { GITHUB_CLIENT_ID } from 'react-native-dotenv'
 import parse from 'url-parse'
@@ -59,7 +59,7 @@ export const useAuth = () => {
 
       if (response.type === 'success') {
         handler(response)
-      } else {
+      } else if (Platform.OS === 'ios') {
         setLoading(false)
       }
     } catch (error) {
