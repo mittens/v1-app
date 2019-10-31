@@ -1,20 +1,15 @@
 import { StatusBar } from 'react-native'
-import { initialMode } from 'react-native-dark-mode'
 import InAppBrowser from 'react-native-inappbrowser-reborn'
 
 class Browser {
   async open(uri: string) {
     await InAppBrowser.isAvailable()
 
-    const isLight = initialMode === 'light'
-
-    StatusBar.setBarStyle('light-content')
+    const old = this.switchStatusBar()
 
     const response = await InAppBrowser.open(uri)
 
-    if (isLight) {
-      StatusBar.setBarStyle('dark-content')
-    }
+    this.switchStatusBar(old)
 
     return response
   }
@@ -22,17 +17,24 @@ class Browser {
   async openAuth(uri: string, deeplink: string) {
     await InAppBrowser.isAvailable()
 
-    const isLight = initialMode === 'light'
-
-    StatusBar.setBarStyle('light-content')
+    const old = this.switchStatusBar()
 
     const response = await InAppBrowser.openAuth(uri, deeplink)
 
-    if (isLight) {
-      StatusBar.setBarStyle('dark-content')
-    }
+    this.switchStatusBar(old)
 
     return response
+  }
+
+  switchStatusBar(old?: any) {
+    if (old) {
+      return StatusBar.popStackEntry(old)
+    }
+
+    return StatusBar.pushStackEntry({
+      animate: true,
+      barStyle: 'light-content'
+    })
   }
 }
 
